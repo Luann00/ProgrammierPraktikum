@@ -3,10 +3,14 @@ package logic;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
+import java.awt.*;
+
 
 public class MyFrame extends JFrame{
 	
@@ -22,16 +26,17 @@ public class MyFrame extends JFrame{
 		this.setResizable(true);
 		
 		this.setLayout(new BorderLayout());
-		
-		
-		menueTafel = new Menuetafel(this);
+
+		menueTafel = new Menuetafel(this);		
 		anzeigeTafel = new Anzeigetafel(this);
+		
+		this.add(menueTafel, BorderLayout.EAST);
+		this.add(anzeigeTafel, BorderLayout.CENTER);
+
 		
 
 		
-		this.add(menueTafel, BorderLayout.EAST);
-		this.add(anzeigeTafel, BorderLayout.WEST);
-		
+
 		
 		
 		/*
@@ -48,12 +53,12 @@ public class MyFrame extends JFrame{
 				
 				menueTafel.setPreferredSize(new Dimension(width/3, height));
 				anzeigeTafel.setPreferredSize(new Dimension(width/3*2, height));
+				System.out.println(height);
 
 				
 			}
 		});
-		
-		
+				
 		
 		
 		

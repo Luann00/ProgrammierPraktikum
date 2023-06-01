@@ -15,7 +15,7 @@ public class Anzeigetafel extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(this.getWidth()/3*2, this.getHeight()));
-		
+				
 		
 		
 		this.setVisible(true);

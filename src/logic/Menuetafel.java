@@ -5,11 +5,6 @@ import java.awt.event.ComponentEvent;
 
 import java.awt.*;
 import javax.swing.*;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 public class Menuetafel extends JPanel{
@@ -17,7 +12,12 @@ public class Menuetafel extends JPanel{
 	private MyFrame myFrame;
 	private JButton startButton;
 	private JButton startButton2;
-	private String[] auswahl = {"3","4","5","6","7","8","9","10"};
+	private JComboBox<String> zeilenAuswahl;
+	private JComboBox<String> spaltenAuswahl;
+	String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
+	String[] spaltenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
+
+
 
 	
 	public Menuetafel(MyFrame myFrame) {
@@ -53,8 +53,7 @@ public class Menuetafel extends JPanel{
 		
 		konfiguration.setLayout(new BoxLayout(konfiguration, BoxLayout.Y_AXIS));
 
-		konfiguration.add(new JLabel("Spielbrett Einstellungen"));
-		konfiguration.add(new JLabel(" "));
+		konfiguration.add(new JLabel("<HTML><U>Spielbrett Einstellungen</U></HTML>"));
 
 
 		
@@ -72,19 +71,24 @@ public class Menuetafel extends JPanel{
 
 		JPanel zeilenAuswaehlen = new JPanel();
 		zeilenAuswaehlen.setLayout(new BoxLayout(zeilenAuswaehlen, BoxLayout.Y_AXIS));
-		JLabel zeilenWaehlen = new JLabel("Zeile für das Brett auswählen");
-		zeilenAuswaehlen.add(zeilenWaehlen);
-		zeilenAuswaehlen.add(new JRadioButton("5"));
-
+		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilenanzahl auswählen: ");
+		Font f = zeilenanzahlAuswaehlen.getFont();
+		zeilenanzahlAuswaehlen.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
+		zeilenAuswaehlen.add(zeilenanzahlAuswaehlen);
+		zeilenAuswahl = new JComboBox<String>(zeilenAnzahl);
+		zeilenAuswaehlen.add(zeilenAuswahl);
+		
 		
 		
 		//Panel, wo man die Spalte auswaehlt
 		JPanel spalteAuswaehlen = new JPanel();
 		spalteAuswaehlen.setLayout(new BoxLayout(spalteAuswaehlen, BoxLayout.Y_AXIS));
-		JLabel spalteWaehlen = new JLabel("Spalte für das Brett auswählen");
-		spalteAuswaehlen.add(spalteWaehlen);
-		spalteAuswaehlen.add(new JRadioButton("5"));
-
+		JLabel spaltenanzahlAuswaehlen = new JLabel("Spaltenanzahl auswählen: ");
+		Font g = zeilenanzahlAuswaehlen.getFont();
+		spaltenanzahlAuswaehlen.setFont(g.deriveFont(g.getStyle() & ~Font.BOLD));
+		spalteAuswaehlen.add(spaltenanzahlAuswaehlen);
+		spaltenAuswahl = new JComboBox<String>(spaltenAnzahl);
+		spalteAuswaehlen.add(spaltenAuswahl);
 		
 
 		
@@ -101,7 +105,8 @@ public class Menuetafel extends JPanel{
 
 		konfiguration.add(zeileUndSpalteAnzeigen);
 
-		
+		konfiguration.setBorder(BorderFactory.createLineBorder(Color.black));
+
 
 		
 
@@ -112,30 +117,47 @@ public class Menuetafel extends JPanel{
 		
 		JPanel spielEinstellungen = new JPanel();
 		spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3*2));
-		spielEinstellungen.setBackground(Color.BLACK);
-		
-		this.add(konfiguration, BorderLayout.NORTH);
-		
-		this.add(spielEinstellungen, BorderLayout.SOUTH);
+		spielEinstellungen.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
+		JPanel ueberSchrift = new JPanel();
+		ueberSchrift.setLayout(new GridLayout(1,2));
+		ueberSchrift.add(new JLabel("<HTML><U>Spielen</U></HTML>"));
+		ueberSchrift.add(new JLabel(" "));
+		ueberSchrift.add(new JLabel("0:00"));
 		
-		/*
-		 * Responsitivitaet einbauen, sodass die Komponenten und deren Anordnung auch nach resizen des
-		 * Fensters die gleiche Anordnung haben
-		 */
+		
+		spielEinstellungen.add(ueberSchrift);
+		
+		
+
+
+		
+		
+		
+		
+		
+		
+		this.add(konfiguration);
+		
+		this.add(spielEinstellungen);
+		
+		
+		
+		
 		
 		this.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent component) {
 				
 				Component mase = (Component) component.getSource();
 				
-				int width = mase.getWidth();
-				int height = mase.getHeight();
+				int width = myFrame.getWidth();
+				int height = myFrame.getHeight();
 				
-				konfiguration.setPreferredSize(new Dimension(width, height/3));
-				spielEinstellungen.setPreferredSize(new Dimension(width, height/3*2));
-
+				konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3));
+				spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), (myFrame.getHeight()/3)*2));
+				System.out.println(myFrame.getHeight());
+				
 				
 			}
 		});
