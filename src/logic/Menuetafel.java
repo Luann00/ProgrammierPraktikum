@@ -11,7 +11,6 @@ public class Menuetafel extends JPanel{
 	
 	private MyFrame myFrame;
 	private JButton startButton;
-	private JButton startButton2;
 	private JComboBox<String> zeilenAuswahl;
 	private JComboBox<String> spaltenAuswahl;
 	String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
@@ -23,12 +22,12 @@ public class Menuetafel extends JPanel{
 	public Menuetafel(MyFrame myFrame) {
 		
 		this.myFrame = myFrame;
-		this.setPreferredSize(new Dimension(myFrame.getWidth()/3, myFrame.getHeight()));
 		
 		//Layout der Menuetafel
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		
+		this.setLayout(new GridLayout(2,1));
+				
+		this.setPreferredSize(new Dimension(myFrame.getWidth()/3, myFrame.getHeight()));
+
 		
 		startButton = new JButton("Start");
 		startButton.setFocusPainted(false);
@@ -42,7 +41,6 @@ public class Menuetafel extends JPanel{
 		
 		JPanel konfiguration = new JPanel();
 		konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3));
-//		konfiguration.setBackground(Color.GREEN);
 		
 		
 		
@@ -54,6 +52,7 @@ public class Menuetafel extends JPanel{
 		konfiguration.setLayout(new BoxLayout(konfiguration, BoxLayout.Y_AXIS));
 
 		konfiguration.add(new JLabel("<HTML><U>Spielbrett Einstellungen</U></HTML>"));
+
 
 
 		
@@ -117,26 +116,40 @@ public class Menuetafel extends JPanel{
 		
 		JPanel spielEinstellungen = new JPanel();
 		spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3*2));
+		spielEinstellungen.setLayout(new BoxLayout(spielEinstellungen, BoxLayout.Y_AXIS));
+				
+		spielEinstellungen.add(new JLabel("<HTML><U>Spieleinstellungen</U></HTML>"));
+		
+		spielEinstellungen.add(Box.createRigidArea(new Dimension(1, 5)));
+
+		
+		
+		JPanel buttonUndTimer = new JPanel();
+		buttonUndTimer.setLayout(new BoxLayout(buttonUndTimer, BoxLayout.X_AXIS));
+		
+		
+		JButton play = new JButton("Play");
+		JLabel timer = new JLabel("0:00");
+		buttonUndTimer.add(play);
+		buttonUndTimer.add(timer);
+
+		
+		spielEinstellungen.add(buttonUndTimer);
+		
+
+
+
+
+		
+		
+		
+
+
+		
+		
+		
 		spielEinstellungen.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		
-		JPanel ueberSchrift = new JPanel();
-		ueberSchrift.setLayout(new GridLayout(1,2));
-		ueberSchrift.add(new JLabel("<HTML><U>Spielen</U></HTML>"));
-		ueberSchrift.add(new JLabel(" "));
-		ueberSchrift.add(new JLabel("0:00"));
-		
-		
-		spielEinstellungen.add(ueberSchrift);
-		
-		
 
-
-		
-		
-		
-		
-		
 		
 		this.add(konfiguration);
 		
@@ -146,22 +159,23 @@ public class Menuetafel extends JPanel{
 		
 		
 		
-		this.addComponentListener(new ComponentAdapter() {
-			public void componentResized(ComponentEvent component) {
-				
-				Component mase = (Component) component.getSource();
-				
-				int width = myFrame.getWidth();
-				int height = myFrame.getHeight();
-				
-				konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3));
-				spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), (myFrame.getHeight()/3)*2));
-				System.out.println(myFrame.getHeight());
-				
-				
-			}
-		});
 		
+		
+//		this.addComponentListener(new ComponentAdapter() {
+//			public void componentResized(ComponentEvent component) {
+//				
+//				Component mase = (Component) component.getSource();
+//				
+//				int width = myFrame.getWidth();
+//				int height = myFrame.getHeight();
+//				
+//				konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3));
+//				spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), (myFrame.getHeight()/3)*2));
+//				System.out.println(myFrame.getHeight());
+//				
+//				
+//			}
+//		});
 		
 		
 		
@@ -170,9 +184,9 @@ public class Menuetafel extends JPanel{
 	}
 	
 	
-	public JLabel textKreiren(String s) {
-		return new JLabel(s);
-	}
+	
+	
+
 	
 	
 	public void spielbrettGenerieren(int zeilen, int spalten, int farbenImSpiel) {

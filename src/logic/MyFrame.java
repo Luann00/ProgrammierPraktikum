@@ -25,13 +25,17 @@ public class MyFrame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(true);
 		
+		
 		this.setLayout(new BorderLayout());
 
-		menueTafel = new Menuetafel(this);		
+		
 		anzeigeTafel = new Anzeigetafel(this);
-		
-		this.add(menueTafel, BorderLayout.EAST);
 		this.add(anzeigeTafel, BorderLayout.CENTER);
+		
+		
+		menueTafel = new Menuetafel(this);
+		this.add(menueTafel, BorderLayout.EAST);
+
 
 		
 
@@ -39,27 +43,23 @@ public class MyFrame extends JFrame{
 
 		
 		
-		/*
-		 * Responsitivitaet einbauen, sodass die Komponenten und deren Anordnung auch nach resizen des
-		 * Fensters die gleiche Anordnung haben
-		 */
-		this.addComponentListener(new ComponentAdapter() {
-			public void componentResized(ComponentEvent component) {
-				
-				Component mase = (Component) component.getSource();
-				
-				int width = mase.getWidth();
-				int height = mase.getHeight();
-				
-				menueTafel.setPreferredSize(new Dimension(width/3, height));
-				anzeigeTafel.setPreferredSize(new Dimension(width/3*2, height));
-				System.out.println(height);
-
-				
-			}
-		});
-				
 		
+//		this.addComponentListener(new ComponentAdapter() {
+//			public void componentResized(ComponentEvent component) {
+//				
+//				Component mase = (Component) component.getSource();
+//				
+//				int width = mase.getWidth();
+//				int height = mase.getHeight();
+//				
+//				menueTafel.setPreferredSize(new Dimension(width/3, height));
+//				anzeigeTafel.setPreferredSize(new Dimension(width/3*2, height));
+//				System.out.println(height);
+//
+//				
+//			}
+//		});
+				
 		
 		
 		this.setVisible(true);
