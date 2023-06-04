@@ -13,6 +13,7 @@ public class Menuetafel extends JPanel{
 	private JButton startButton;
 	private JComboBox<String> zeilenAuswahl;
 	private JComboBox<String> spaltenAuswahl;
+	private Spieleinstellungen spielEinstellungen;
 	String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
 	String[] spaltenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
 
@@ -23,13 +24,15 @@ public class Menuetafel extends JPanel{
 		
 		this.myFrame = myFrame;
 		
-		//Layout der Menuetafel
-		this.setLayout(new GridLayout(2,1));
-				
+		//Layout der Menuetafel				
 		this.setPreferredSize(new Dimension(myFrame.getWidth()/3, myFrame.getHeight()));
+		
+		this.setLayout(new BorderLayout());
+
 
 		
 		startButton = new JButton("Start");
+		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startButton.setFocusPainted(false);
 		
 		
@@ -50,8 +53,12 @@ public class Menuetafel extends JPanel{
 		 */
 		
 		konfiguration.setLayout(new BoxLayout(konfiguration, BoxLayout.Y_AXIS));
+		JLabel ueberSchrift1 = new JLabel("<HTML><U>Spielbrett Einstellungen</U></HTML>", JLabel.CENTER);
+		ueberSchrift1.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		konfiguration.add(new JLabel("<HTML><U>Spielbrett Einstellungen</U></HTML>"));
+		ueberSchrift1.setFont(new Font("Arial",1,13));
+
+		konfiguration.add(ueberSchrift1);
 
 
 
@@ -63,14 +70,12 @@ public class Menuetafel extends JPanel{
 		konfiguration.add(startButton);
 		
 		
-		konfiguration.add(new JLabel(" "));
-
+		
 		
 		//Panel, wo man die Zeile auswaehlt
 
 		JPanel zeilenAuswaehlen = new JPanel();
-		zeilenAuswaehlen.setLayout(new BoxLayout(zeilenAuswaehlen, BoxLayout.Y_AXIS));
-		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilenanzahl auswählen: ");
+		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilenanzahl auswählen: ", JLabel.LEFT);
 		Font f = zeilenanzahlAuswaehlen.getFont();
 		zeilenanzahlAuswaehlen.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
 		zeilenAuswaehlen.add(zeilenanzahlAuswaehlen);
@@ -81,7 +86,6 @@ public class Menuetafel extends JPanel{
 		
 		//Panel, wo man die Spalte auswaehlt
 		JPanel spalteAuswaehlen = new JPanel();
-		spalteAuswaehlen.setLayout(new BoxLayout(spalteAuswaehlen, BoxLayout.Y_AXIS));
 		JLabel spaltenanzahlAuswaehlen = new JLabel("Spaltenanzahl auswählen: ");
 		Font g = zeilenanzahlAuswaehlen.getFont();
 		spaltenanzahlAuswaehlen.setFont(g.deriveFont(g.getStyle() & ~Font.BOLD));
@@ -92,17 +96,19 @@ public class Menuetafel extends JPanel{
 
 		
 		//Panel, wo man die Zeile angezeigt wird
-		JPanel zeileUndSpalteAnzeigen = new JPanel();
-		zeileUndSpalteAnzeigen.setLayout(new FlowLayout());
-		JLabel anzeige = new JLabel();
-		anzeige.setText("<html><body>Das Brett hat aktuell<br>10 Zeilen und 10 Spalten</body></html>");
-		zeileUndSpalteAnzeigen.add(anzeige);
+		JLabel zeilenUndSpaltenAnzeige = new JLabel("<html>Das Brett hat aktuell 10 Zeilen und 10 Spalten</html>", JLabel.CENTER);
+		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		
+	
+
+
 		
 		konfiguration.add(zeilenAuswaehlen);
 		konfiguration.add(spalteAuswaehlen);
 
-		konfiguration.add(zeileUndSpalteAnzeigen);
+		konfiguration.add(zeilenUndSpaltenAnzeige);
+
 
 		konfiguration.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -112,48 +118,18 @@ public class Menuetafel extends JPanel{
 
 
 
+		spielEinstellungen = new Spieleinstellungen(myFrame);
 		
 		
-		JPanel spielEinstellungen = new JPanel();
-		spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3*2));
-		spielEinstellungen.setLayout(new BoxLayout(spielEinstellungen, BoxLayout.Y_AXIS));
-				
-		spielEinstellungen.add(new JLabel("<HTML><U>Spieleinstellungen</U></HTML>"));
-		
-		spielEinstellungen.add(Box.createRigidArea(new Dimension(1, 5)));
-
-		
-		
-		JPanel buttonUndTimer = new JPanel();
-		buttonUndTimer.setLayout(new BoxLayout(buttonUndTimer, BoxLayout.X_AXIS));
-		
-		
-		JButton play = new JButton("Play");
-		JLabel timer = new JLabel("0:00");
-		buttonUndTimer.add(play);
-		buttonUndTimer.add(timer);
-
-		
-		spielEinstellungen.add(buttonUndTimer);
-		
-
-
-
 
 		
 		
 		
 
-
 		
+		this.add(konfiguration, BorderLayout.NORTH);
 		
-		
-		spielEinstellungen.setBorder(BorderFactory.createLineBorder(Color.black));
-
-		
-		this.add(konfiguration);
-		
-		this.add(spielEinstellungen);
+		this.add(spielEinstellungen, BorderLayout.CENTER);
 		
 		
 		

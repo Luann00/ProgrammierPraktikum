@@ -18,8 +18,8 @@ public class Anzeigetafel extends JPanel{
 	
 	public Anzeigetafel(MyFrame myFrame) {		
 		this.myFrame = myFrame;		
-		this.setPreferredSize(new Dimension(myFrame.getWidth()/3*2, myFrame.getHeight()));
-		
+		this.setPreferredSize(new Dimension(myFrame.getWidth()/4*3, myFrame.getHeight()));
+				
 		this.setVisible(true);
 		
 		
