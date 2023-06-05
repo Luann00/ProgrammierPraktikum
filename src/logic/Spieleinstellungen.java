@@ -14,8 +14,9 @@ import javax.swing.*;
 
 public class Spieleinstellungen extends JPanel{
 	
-	MyFrame myFrame;
-	String[] strat = { "1", "2", "3"};
+	private MyFrame myFrame;
+	private String[] strat = { "1", "2", "3"};
+	private JComboBox<String> stratAuswahlListe;
 
 	
 	public Spieleinstellungen(MyFrame myFrame) {
@@ -33,36 +34,46 @@ public class Spieleinstellungen extends JPanel{
 	this.add(ueberSchrift);
 	this.add(playButton);
 	
-	this.add(new JLabel(" "));
+	
+	JLabel beginnerFrage = new JLabel("Wer soll beginnen?", JLabel.LEFT);
+	Font f = beginnerFrage.getFont();
+	beginnerFrage.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
+	this.add(beginnerFrage);
 	
 	
-	JPanel beginner = new JPanel();
-	JLabel beginnerFrage = new JLabel("Wer soll beginnen:", JLabel.CENTER);
-	beginnerFrage.setAlignmentX(Component.CENTER_ALIGNMENT);
+	
+	JPanel beginnerUndStrat = new JPanel();
 	JRadioButton s1RadioButton = new JRadioButton("S1");
 	JRadioButton s2RadioButton = new JRadioButton("S2");
-	beginner.add(beginnerFrage);
-	beginner.add(s1RadioButton);
-	beginner.add(s2RadioButton);
+	beginnerUndStrat.add(beginnerFrage);
+	beginnerUndStrat.add(s1RadioButton);
+	beginnerUndStrat.add(s2RadioButton);
 	
 	ButtonGroup bg = new ButtonGroup();
 	bg.add(s1RadioButton);
 	bg.add(s2RadioButton);
 	
 	
+	JLabel stratFrage = new JLabel("Spielstrategie S2:", JLabel.LEFT);
+	Font f1 = stratFrage.getFont();
+	stratFrage.setFont(f1.deriveFont(f1.getStyle() & ~Font.BOLD));
+	
+	beginnerUndStrat.add(stratFrage);
+	
+	stratAuswahlListe = new JComboBox<String>(strat);
+	beginnerUndStrat.add(stratAuswahlListe);
+	JLabel stratAnzeige = new JLabel("Das Brett hat aktuell 10 Zeilen und 10 Spalten");
+	Font f2 = stratFrage.getFont();
+	stratAnzeige.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
+	
 
 	
 	
-	this.add(beginner);
+	this.add(beginnerUndStrat);
+	
+	this.add(Box.createVerticalGlue());
+	this.add(stratAnzeige);
 
-			
-
-	
-	
-	
-	
-	
-	
 	
 //	JPanel ueberSchrift = new JPanel();
 //	ueberSchrift.setLayout(new BoxLayout(ueberSchrift, BoxLayout.Y_AXIS));

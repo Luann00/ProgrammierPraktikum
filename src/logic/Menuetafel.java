@@ -25,7 +25,7 @@ public class Menuetafel extends JPanel{
 		this.myFrame = myFrame;
 		
 		//Layout der Menuetafel				
-		this.setPreferredSize(new Dimension(myFrame.getWidth()/3, myFrame.getHeight()));
+		this.setPreferredSize(new Dimension(myFrame.getWidth()/4, myFrame.getHeight()));
 		
 		this.setLayout(new BorderLayout());
 
@@ -56,7 +56,7 @@ public class Menuetafel extends JPanel{
 		JLabel ueberSchrift1 = new JLabel("<HTML><U>Spielbrett Einstellungen</U></HTML>", JLabel.CENTER);
 		ueberSchrift1.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		ueberSchrift1.setFont(new Font("Arial",1,13));
+		ueberSchrift1.setFont(new Font("Arial",1,12));
 
 		konfiguration.add(ueberSchrift1);
 
@@ -75,7 +75,7 @@ public class Menuetafel extends JPanel{
 		//Panel, wo man die Zeile auswaehlt
 
 		JPanel zeilenAuswaehlen = new JPanel();
-		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilenanzahl auswählen: ", JLabel.LEFT);
+		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilenanzahl: ", JLabel.LEFT);
 		Font f = zeilenanzahlAuswaehlen.getFont();
 		zeilenanzahlAuswaehlen.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
 		zeilenAuswaehlen.add(zeilenanzahlAuswaehlen);
@@ -86,7 +86,7 @@ public class Menuetafel extends JPanel{
 		
 		//Panel, wo man die Spalte auswaehlt
 		JPanel spalteAuswaehlen = new JPanel();
-		JLabel spaltenanzahlAuswaehlen = new JLabel("Spaltenanzahl auswählen: ");
+		JLabel spaltenanzahlAuswaehlen = new JLabel("Spaltenanzahl: ");
 		Font g = zeilenanzahlAuswaehlen.getFont();
 		spaltenanzahlAuswaehlen.setFont(g.deriveFont(g.getStyle() & ~Font.BOLD));
 		spalteAuswaehlen.add(spaltenanzahlAuswaehlen);

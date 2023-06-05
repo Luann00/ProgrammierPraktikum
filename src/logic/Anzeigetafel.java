@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 
 
@@ -19,7 +20,7 @@ public class Anzeigetafel extends JPanel{
 	public Anzeigetafel(MyFrame myFrame) {		
 		this.myFrame = myFrame;		
 		this.setPreferredSize(new Dimension(myFrame.getWidth()/4*3, myFrame.getHeight()));
-				
+		this.setBackground(Color.BLACK);
 		this.setVisible(true);
 		
 		
