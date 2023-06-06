@@ -16,7 +16,10 @@ public class Spieleinstellungen extends JPanel{
 	
 	private MyFrame myFrame;
 	private String[] strat = { "1", "2", "3"};
+	private String[] farben = {"4", "5", "6","7","8","9"};
 	private JComboBox<String> stratAuswahlListe;
+	private JComboBox<String> farbenAnzahl;
+
 
 	
 	public Spieleinstellungen(MyFrame myFrame) {
@@ -34,12 +37,17 @@ public class Spieleinstellungen extends JPanel{
 	this.add(ueberSchrift);
 	this.add(playButton);
 	
-	
-	JLabel beginnerFrage = new JLabel("Wer soll beginnen?", JLabel.LEFT);
+	JLabel beginnerFrage = new JLabel("<html><u>Beginner auswählen</u></html>", JLabel.LEFT);
 	Font f = beginnerFrage.getFont();
 	beginnerFrage.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
 	this.add(beginnerFrage);
 	
+	
+	
+	JLabel beginnerLabel = new JLabel("Es hat begonnen: " + "S2", JLabel.LEFT);
+	Font f2 = beginnerLabel.getFont();
+	beginnerLabel.setFont(f2.deriveFont(f2.getStyle() & ~Font.BOLD));
+	beginnerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 	
 	
 	JPanel beginnerUndStrat = new JPanel();
@@ -53,68 +61,57 @@ public class Spieleinstellungen extends JPanel{
 	bg.add(s1RadioButton);
 	bg.add(s2RadioButton);
 	
+	beginnerUndStrat.add(beginnerLabel);
+
+	
+	
+	
+	JLabel strategieLabel = new JLabel("<html><u>Spielstrategie für S2</u></html>", JLabel.LEFT);
+	Font f4 = beginnerFrage.getFont();
+	strategieLabel.setFont(f4.deriveFont(f4.getStyle() & ~Font.BOLD));
+	beginnerUndStrat.add(strategieLabel);
+	
 	
 	JLabel stratFrage = new JLabel("Spielstrategie S2:", JLabel.LEFT);
 	Font f1 = stratFrage.getFont();
 	stratFrage.setFont(f1.deriveFont(f1.getStyle() & ~Font.BOLD));
 	
+	
 	beginnerUndStrat.add(stratFrage);
 	
+	int verfolgteStrat = 3;
 	stratAuswahlListe = new JComboBox<String>(strat);
 	beginnerUndStrat.add(stratAuswahlListe);
-	JLabel stratAnzeige = new JLabel("Das Brett hat aktuell 10 Zeilen und 10 Spalten");
-	Font f2 = stratFrage.getFont();
-	stratAnzeige.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
+	JLabel stratAnzeige = new JLabel("Verfolgte Strategie PC: " + verfolgteStrat, JLabel.CENTER);
+	Font f3 = stratFrage.getFont();
+	stratAnzeige.setFont(f3.deriveFont(f3.getStyle() & ~Font.BOLD));
+	stratAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
+	beginnerUndStrat.add(stratAnzeige);
+	
 	
 
+	JPanel farbenPanel = new JPanel();
+	JLabel farbEinst = new JLabel("<html><u>Farbeinstellungen</u></html>");
+	farbenPanel.add(farbEinst);
+	JLabel farbenFrage = new JLabel("Farbenanzahl wählen:");
+	farbenPanel.add(farbenFrage);
+	farbenFrage.setFont(new Font("Arial",1,10));
+	farbenAnzahl = new JComboBox<String>(farben);
+	farbenPanel.add(farbenAnzahl);
+	
+	
+	
+
+	beginnerUndStrat.add(farbenPanel);
+	
 	
 	
 	this.add(beginnerUndStrat);
+	this.add(farbenPanel);
 	
-	this.add(Box.createVerticalGlue());
-	this.add(stratAnzeige);
-
-	
-//	JPanel ueberSchrift = new JPanel();
-//	ueberSchrift.setLayout(new BoxLayout(ueberSchrift, BoxLayout.Y_AXIS));
-//	JLabel ueberSchrift1 = new JLabel("<HTML><U>Spiel Einstellungen</U></HTML>");
-//	ueberSchrift1.setFont(new Font("Arial",1,13));
-//	ueberSchrift.add(ueberSchrift1);	
-//	JButton play = new JButton("Play");
-//	ueberSchrift.add(play);
-//	this.add(ueberSchrift, BorderLayout.NORTH);
-
 	
 
 	
-	
-	
-	
-//	JPanel beginnerWaehlen = new JPanel();
-//	JLabel frageBeginner = new JLabel("Wer soll beginnen?");
-//    frageBeginner.setFont(new Font("Arial",1,10));
-//	beginnerWaehlen.add(frageBeginner);;
-//	JRadioButton s1 = new JRadioButton("S1");
-//	JRadioButton s2 = new JRadioButton("S2");
-//	beginnerWaehlen.add(s1);
-//	beginnerWaehlen.add(s2);
-//	beginnerWaehlen.add(new JLabel("Es hat begonnen: S2"));
-//	this.add(beginnerWaehlen);
-//	
-//	JPanel stratWaehlen = new JPanel();
-//	JLabel frageStrat = new JLabel("Spielstrategie für S2 waehlen: ");
-//	frageStrat.setFont(new Font("Arial",1,10));
-//	stratWaehlen.add(frageStrat);
-//	
-//	
-//	JComboBox<String>zeilenAuswahl = new JComboBox<String>(strat);
-//	stratWaehlen.add(zeilenAuswahl);
-//	
-//	this.add(stratWaehlen);
-//
-//	
-	this.setBorder(BorderFactory.createLineBorder(Color.black));
-//
 
 	this.setVisible(true);
 		
