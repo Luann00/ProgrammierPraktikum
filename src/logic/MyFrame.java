@@ -14,8 +14,7 @@ import java.awt.*;
 
 public class MyFrame extends JFrame{
 	
-	Menuetafel menueTafel;
-	Anzeigetafel anzeigeTafel;
+	JPanels panels;
 	
 	public MyFrame() {
 		
@@ -25,16 +24,11 @@ public class MyFrame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(true);
 		
-		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new GridLayout());
 
-		
-		anzeigeTafel = new Anzeigetafel(this);
-		this.add(anzeigeTafel, BorderLayout.CENTER);
-		
-		
-		menueTafel = new Menuetafel(this);
-		this.add(menueTafel, BorderLayout.EAST);
+		panels = new JPanels(this);
+
+		this.add(panels);
 
 
 		

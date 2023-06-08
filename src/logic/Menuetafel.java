@@ -1,5 +1,7 @@
 package logic;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -13,9 +15,9 @@ public class Menuetafel extends JPanel{
 	private JButton startButton;
 	private JComboBox<String> zeilenAuswahl;
 	private JComboBox<String> spaltenAuswahl;
-	private Spieleinstellungen spielEinstellungen;
-	String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
-	String[] spaltenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
+	private int farbenImSpiel;
+	private String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
+	private String[] spaltenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
 
 
 
@@ -27,13 +29,21 @@ public class Menuetafel extends JPanel{
 		//Layout der Menuetafel				
 		this.setPreferredSize(new Dimension(myFrame.getWidth()/4, myFrame.getHeight()));
 		
-		this.setLayout(new BorderLayout());
-
+		this.setLayout(new GridLayout(2,1));
 
 		
 		startButton = new JButton("Start");
 		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startButton.setFocusPainted(false);
+		startButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+			}
+		});
 		
 		
 		
@@ -43,7 +53,7 @@ public class Menuetafel extends JPanel{
 		 */
 		
 		JPanel konfiguration = new JPanel();
-		konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3));
+		konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/4));
 		
 		
 		
@@ -59,11 +69,6 @@ public class Menuetafel extends JPanel{
 		ueberSchrift1.setFont(new Font("Arial",1,12));
 
 		konfiguration.add(ueberSchrift1);
-
-
-
-		
-		
 		
 		
 
@@ -118,7 +123,6 @@ public class Menuetafel extends JPanel{
 
 
 
-		spielEinstellungen = new Spieleinstellungen(myFrame);
 		
 		
 
@@ -129,29 +133,10 @@ public class Menuetafel extends JPanel{
 		
 		this.add(konfiguration, BorderLayout.NORTH);
 		
-		this.add(spielEinstellungen, BorderLayout.CENTER);
 		
 		
 		
 		
-		
-		
-		
-//		this.addComponentListener(new ComponentAdapter() {
-//			public void componentResized(ComponentEvent component) {
-//				
-//				Component mase = (Component) component.getSource();
-//				
-//				int width = myFrame.getWidth();
-//				int height = myFrame.getHeight();
-//				
-//				konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/3));
-//				spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), (myFrame.getHeight()/3)*2));
-//				System.out.println(myFrame.getHeight());
-//				
-//				
-//			}
-//		});
 		
 		
 		
@@ -161,21 +146,146 @@ public class Menuetafel extends JPanel{
 	
 	
 	
-	
 
-	
-	
-	public void spielbrettGenerieren(int zeilen, int spalten, int farbenImSpiel) {
-		
-		
-		//Farben als Zahl speichern
-		int[] color = new int[9];
-		
-		for(int i = 0; i < color.length; i++) {
-			color[i] = i;
-		}
-		
-		
+
+	public MyFrame getMyFrame() {
+		return myFrame;
+	}
+
+
+
+
+
+
+
+	public void setMyFrame(MyFrame myFrame) {
+		this.myFrame = myFrame;
+	}
+
+
+
+
+
+
+
+	public JButton getStartButton() {
+		return startButton;
+	}
+
+
+
+
+
+
+
+	public void setStartButton(JButton startButton) {
+		this.startButton = startButton;
+	}
+
+
+
+
+
+
+
+	public JComboBox<String> getZeilenAuswahl() {
+		return zeilenAuswahl;
+	}
+
+
+
+
+
+
+
+	public void setZeilenAuswahl(JComboBox<String> zeilenAuswahl) {
+		this.zeilenAuswahl = zeilenAuswahl;
+	}
+
+
+
+
+
+
+
+	public JComboBox<String> getSpaltenAuswahl() {
+		return spaltenAuswahl;
+	}
+
+
+
+
+
+
+
+	public void setSpaltenAuswahl(JComboBox<String> spaltenAuswahl) {
+		this.spaltenAuswahl = spaltenAuswahl;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public int getFarbenImSpiel() {
+		return farbenImSpiel;
+	}
+
+
+
+
+
+
+
+	public void setFarbenImSpiel(int farbenImSpiel) {
+		this.farbenImSpiel = farbenImSpiel;
+	}
+
+
+
+
+
+
+
+	public String[] getZeilenAnzahl() {
+		return zeilenAnzahl;
+	}
+
+
+
+
+
+
+
+	public void setZeilenAnzahl(String[] zeilenAnzahl) {
+		this.zeilenAnzahl = zeilenAnzahl;
+	}
+
+
+
+
+
+
+
+	public String[] getSpaltenAnzahl() {
+		return spaltenAnzahl;
+	}
+
+
+
+
+
+
+
+	public void setSpaltenAnzahl(String[] spaltenAnzahl) {
+		this.spaltenAnzahl = spaltenAnzahl;
 	}
 
 }
