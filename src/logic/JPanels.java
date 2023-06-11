@@ -389,7 +389,6 @@ public class JPanels extends JPanel{
 		ArrayList<Color> nachbarFarben = new ArrayList<Color>();
 		
 		
-		//Problem: Duplikate treten auf in aktuellVerfuegbareFarben
 		ArrayList<Color> ausgewaehlteFarbenTemporaer = new ArrayList<Color>(aktuellVerfuegbareFarben);
 		
 				
