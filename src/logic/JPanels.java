@@ -11,7 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,7 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
+import javax.swing.border.EmptyBorder;
 
 
 public class JPanels extends JPanel{
@@ -32,14 +35,12 @@ public class JPanels extends JPanel{
 	private JPanel menueTafel;
 	private JPanel spielBrett;
 	private JPanel spielEinstellungen;
-	private JPanel farbenAnzeige = new JPanel();
 	
 	
 	
-	private int[] colorZahl;
-	private Color[] alleColors = {Color.black, Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.orange, Color.pink, Color.red};
-	private String[] ausgewaehlteFarben;
-	private JButton[][] chessBoardSquares;
+	private ArrayList<Color> alleMöglichenFarben = new ArrayList<Color>();
+	private ArrayList<Color> ausgewaehlteFarben;
+	private ArrayList<Color> aktuellVerfuegbareFarben;
 	private JButton startButton;
 	private JComboBox<String> zeilenAuswahl;
 	private JComboBox<String> spaltenAuswahl;
@@ -58,6 +59,7 @@ public class JPanels extends JPanel{
 	private String gewaehlterBeginner;
 	private int gewaehlteStrategie;
 	private int gewaehlteFarbenanzahl;
+	JPanel[][] spielbrettArray;
 
 	
 	public JPanels(MyFrame myFrame) {
@@ -76,10 +78,9 @@ public class JPanels extends JPanel{
 
 		
 		
-		menueTafel.setPreferredSize(new Dimension(myFrame.getWidth()/5, myFrame.getHeight()));
-		spielBrett.setPreferredSize(new Dimension(myFrame.getWidth()/5*4, myFrame.getHeight()));
+		menueTafel.setPreferredSize(new Dimension(myFrame.getWidth()/4, myFrame.getHeight()));
+		spielBrett.setPreferredSize(new Dimension(myFrame.getWidth()/4*3, myFrame.getHeight()));
 
-		
 		
 		
 		startButton = new JButton("Start");
@@ -110,9 +111,6 @@ public class JPanels extends JPanel{
 		ueberSchrift1.setFont(new Font("Arial",1,12));
 
 		konfiguration.add(ueberSchrift1);
-		
-		
-
 		konfiguration.add(startButton);
 		
 		
@@ -148,9 +146,7 @@ public class JPanels extends JPanel{
 		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		
-	
-
-
+		
 		
 		konfiguration.add(zeilenAuswaehlen);
 		konfiguration.add(spalteAuswaehlen);
@@ -160,29 +156,24 @@ public class JPanels extends JPanel{
 
 		konfiguration.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+
 		
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				if(startButton.getText().equals("Start")) {
-				startButton.setText("Stop");
-				//Zuerst alle Einstellungsmoeglichkeiten deaktivieren
-				zeilenAuswahl.setEnabled(false);
-				spaltenAuswahl.setEnabled(false);
-				
-				//Ausgewaehlte Werte uebertragen
-				gewaehlteZeilenAnzahl = Integer.parseInt((String) zeilenAuswahl.getSelectedItem());
-				gewaehlteSpaltenAnzahl = Integer.parseInt((String) spaltenAuswahl.getSelectedItem());
-				farbenImSpiel = Integer.parseInt((String)farbenAnzahl.getSelectedItem());
+					
+					setup();				
 
 				
-				spielBrettGenerieren();
 				
 			}	else {
 					startButton.setText("Start");
+					zeilenAuswahl.setEnabled(true);
+					spaltenAuswahl.setEnabled(true);
 					spielBrett.removeAll();
-					spielBrett.revalidate();
+					spielBrett.repaint();
 				
 				
 			} 
@@ -192,14 +183,6 @@ public class JPanels extends JPanel{
 
 
 		
-
-		
-		
-		
-		
-		
-
-
 		spielEinstellungen = new JPanel();
 		
 		spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/4*3));
@@ -281,6 +264,8 @@ public class JPanels extends JPanel{
 		beginnerUndStrat.add(farbenPanel);
 		
 		
+		
+		
 
 		
 		
@@ -307,10 +292,11 @@ public class JPanels extends JPanel{
 		this.add(menueTafel, BorderLayout.EAST);
 		
 		
-
 		
+		//Alle farben in der ArrayList hinzufuegen
+		alleColorsAdden();
 		
-		
+			
 		
 	}
 	
@@ -318,38 +304,59 @@ public class JPanels extends JPanel{
 	
 	//Methode, um das Spielbrett mit den jeweiligen Werten zu erstellen
 	
-	public void spielBrettGenerieren() {
+	public JPanel[][] spielBrettGenerieren() {
 		
 		int zeilen = gewaehlteZeilenAnzahl;
 		int spalten = gewaehlteSpaltenAnzahl;
 		
+		spielbrettArray = new JPanel[zeilen][spalten];
 		
 
 		
 		spielBrett.setLayout(new GridLayout(zeilen, spalten));
 		
+		Dimension dim = new Dimension(50,50);
+		
 		
 		//Spielbrett Felder ausfuellen
 		for(int i = 0; i < zeilen; i++) {
 			for(int j = 0; j < spalten; j++) {
+				
 				JPanel feld = new JPanel();
-				feld.setPreferredSize(new Dimension(30,30));
+
+				
+				feld.setPreferredSize(dim);
+				feld.setMinimumSize(dim);
+				feld.setMaximumSize(dim);
 				feld.setBorder(BorderFactory.createLineBorder(Color.black));
-				feld.setBackground(randomFarbeWaehlen(farbenImSpiel));
+				
+				spielbrettArray[i][j] = feld;
+				
+	
+				
+				int zeile = i;
+				int spalte = j;
+					
+				
 				spielBrett.add(feld);
+				
+				Color randomFarbe = randomFarbeWaehlen(aktuellVerfuegbareFarben.size(), spielbrettArray, i, j);
+				feld.setBackground(randomFarbe);
+
+
 				
 				/*
 				 * Jedem Feld die Koordinaten uebergeben, sodass man beim klicken genau weis, welches
 				 * Feld man angeklickt hat
 				 */
-				int zeile = i;
-				int spalte = j;
+				
 				feld.addMouseListener(new MouseAdapter() {
 					
 					public void mouseClicked(MouseEvent e) {
 						
+						Color aktuelleFarbe = spielbrettArray[zeile][spalte].getBackground();
+												
 						
-
 					}
 				});
 				
@@ -357,41 +364,178 @@ public class JPanels extends JPanel{
 			}
 		}
 		
+			
 		revalidate();
 		repaint();
 		
-		
+
+		return spielbrettArray;
 		
 	}
 	
 	
 	
-	
-	public Color randomFarbeWaehlen(int farbenImSpiel) {
+	/*
+	 * Gibt eine random Farbe zurueck, mit der das jeweilige Feld dann befuellt wird, wobei jedes Feld eine
+	 * andere Farbe hat als sein Nachbar
+	 */
+	public Color randomFarbeWaehlen(int bound, JPanel[][] spielBrett, int i, int j) {
+				
+		
 		Random rand = new Random();
-		int x = rand.nextInt(1, farbenImSpiel+1);
-		System.out.println("x: " + x);
+
 		
-		Color color = null;
-		for(int i = 0; i < farbenImSpiel; i++) {
-			if(i == x) {
-				color = alleColors[i];
-				System.out.println("Color: " + color);
-				break;
-			}
-		}
-		return color;
+		//Alle nachbarFarben sammeln, um diese auszuschliesen fuer die neue farbe
+		ArrayList<Color> nachbarFarben = new ArrayList<Color>();
+		
+		
+		//Problem: Duplikate treten auf in aktuellVerfuegbareFarben
+		ArrayList<Color> ausgewaehlteFarbenTemporaer = new ArrayList<Color>(aktuellVerfuegbareFarben);
+		
+				
+		Color nachbarFarbeOben = null;
+		Color nachbarFarbeLinks = null;
+				
+				
+		if(i == gewaehlteZeilenAnzahl-1 && j == 0) {
+					
+					
+			Color farbeS2 = spielBrett[0][gewaehlteSpaltenAnzahl-1].getBackground();
+			nachbarFarben.add(farbeS2);
+					
+			
+			
+			JPanel oberesFeld = spielBrett[i-1][j];
+			nachbarFarbeOben = oberesFeld.getBackground();
+			nachbarFarben.add(nachbarFarbeOben);
+					
+			ausgewaehlteFarbenTemporaer.removeAll(nachbarFarben);
+
+
+						
+			int x = rand.nextInt(ausgewaehlteFarbenTemporaer.size());
+			return ausgewaehlteFarbenTemporaer.get(x);
+					
+					
+				}
+				
+				
+				//Farbe oberes Feld ueberpruefen
+			if(i > 0) {
+				JPanel oberesFeld = spielBrett[i-1][j];
+				nachbarFarbeOben = oberesFeld.getBackground();
+				nachbarFarben.add(nachbarFarbeOben);
+				} 
+				
+				
+				//Farbe linkes Feld ueberpruefen
+				if(j > 0) {
+					JPanel linkesFeld = spielBrett[i][j-1];
+					nachbarFarbeLinks = linkesFeld.getBackground();
+					nachbarFarben.add(nachbarFarbeLinks);
+				}
+				
+				
+					ausgewaehlteFarbenTemporaer.removeAll(nachbarFarben);
+
+					
+					
+					
+					//Neue random Farbe auswaehlen fuer das jeweilige Feld aus den noch uebrigen Farben
+					int x = rand.nextInt(ausgewaehlteFarbenTemporaer.size());
+					Color neueFarbe = ausgewaehlteFarbenTemporaer.get(x);
+					
+					
+				
+					return neueFarbe;
+		
 		
 	}
 	
+	
+	
+	/*
+	 * Mit dieser Methode picke ich mir x beliebige Farben aus dem volstaendigen Array alleColors raus, um diese dann
+	 * als Farben zu benutzen. x haengt davon ab wie hoch die Farbenanzahl ist
+	 */
 	public void farbenUebernehmen(int farbenImSpiel) {
+
+		Random rand = new Random();
+		
+		ArrayList<Color> temp = new ArrayList<Color>(alleMöglichenFarben);
+		
+		
+		ausgewaehlteFarben = new ArrayList<Color>();
+		
+		
+		
+		/*
+		 * Fehler gefunden: x kann auch zufaelligerweise 2 mal vorkommen, sodass bei ausgewaehlteFarben 2 Farben
+		 * gleichzeitig vorkommen können!
+		 */
 		
 		for(int i = 0; i < farbenImSpiel; i++) {
-		
-		
-			}
-	
+			int x = rand.nextInt(temp.size());
+			ausgewaehlteFarben.add(temp.get(x));
+			temp.remove(x);
 		}
+		
+		
+		
+		
+
+		aktuellVerfuegbareFarben = new ArrayList<Color>(ausgewaehlteFarben);
+		for(int i = 0; i < aktuellVerfuegbareFarben.size(); i++) {
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	public void alleColorsAdden() {
+		alleMöglichenFarben.add(Color.black);
+		alleMöglichenFarben.add(Color.blue);
+		alleMöglichenFarben.add(Color.cyan);
+		alleMöglichenFarben.add(Color.gray);
+		alleMöglichenFarben.add(Color.green);
+		alleMöglichenFarben.add(Color.magenta);
+		alleMöglichenFarben.add(Color.orange);
+		alleMöglichenFarben.add(Color.pink);
+		alleMöglichenFarben.add(Color.red);
+
+	}
+	
+	
+	public void setup() {
+		
+		startButton.setText("Stop");
+		//Zuerst alle Einstellungsmoeglichkeiten deaktivieren
+		zeilenAuswahl.setEnabled(false);
+		spaltenAuswahl.setEnabled(false);
+		
+		//Ausgewaehlte Werte uebertragen
+		gewaehlteZeilenAnzahl = Integer.parseInt((String) zeilenAuswahl.getSelectedItem());
+		gewaehlteSpaltenAnzahl = Integer.parseInt((String) spaltenAuswahl.getSelectedItem());
+		farbenImSpiel = Integer.parseInt((String)farbenAnzahl.getSelectedItem());
+
+		
+
+		spielbrettArray = new JPanel[gewaehlteZeilenAnzahl][gewaehlteSpaltenAnzahl];
+
+		
+		farbenUebernehmen(farbenImSpiel);
+		spielbrettArray = spielBrettGenerieren();
+		
+		
+	}
+	
+	
+	//Problem 3: Jede Farbe soll mindestens ein Mal vorkommen
+	
+	
 	}
 
 
