@@ -64,7 +64,12 @@ public class JPanels extends JPanel{
 	private int gewaehlteStrategie;
 	private int gewaehlteFarbenanzahl;
 	private int anzahlBenutzteFarben = 0;
+	
+	
 	private JPanel[][] spielbrettArray;
+	
+	JRadioButton s1RadioButton;
+	JRadioButton s2RadioButton;
 
 	
 	public JPanels(MyFrame myFrame) {
@@ -207,24 +212,7 @@ public class JPanels extends JPanel{
 		spielEinstellungen.add(playButton);
 		
 		
-		playButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if(playButton.getText().equals("Play")) {
-					playButton.setText("Pause");
-					
-
-				
-				
-			}	else {
-					playButton.setText("Play");
-					
-				
-				
-			} 
-			}
-		});
+		
 		
 		
 		JLabel beginnerFrage = new JLabel("<html><u>Beginner auswählen</u></html>", JLabel.LEFT);
@@ -234,15 +222,13 @@ public class JPanels extends JPanel{
 		
 		
 		
-		JLabel beginnerLabel = new JLabel("Es hat begonnen: " + "S2", JLabel.LEFT);
-		Font f3 = beginnerLabel.getFont();
-		beginnerLabel.setFont(f3.deriveFont(f3.getStyle() & ~Font.BOLD));
-		beginnerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
 		
 		
 		JPanel beginnerUndStrat = new JPanel();
-		JRadioButton s1RadioButton = new JRadioButton("S1");
-		JRadioButton s2RadioButton = new JRadioButton("S2");
+		s1RadioButton = new JRadioButton("S1");
+		s1RadioButton.setSelected(true);
+		s2RadioButton = new JRadioButton("S2");
 		beginnerUndStrat.add(beginnerFrage);
 		beginnerUndStrat.add(s1RadioButton);
 		beginnerUndStrat.add(s2RadioButton);
@@ -250,6 +236,15 @@ public class JPanels extends JPanel{
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(s1RadioButton);
 		bg.add(s2RadioButton);
+		
+	
+		
+		
+		
+		JLabel beginnerLabel = new JLabel();
+		Font f3 = beginnerLabel.getFont();
+		beginnerLabel.setFont(f3.deriveFont(f3.getStyle() & ~Font.BOLD));
+		beginnerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		beginnerUndStrat.add(beginnerLabel);
 
@@ -269,10 +264,9 @@ public class JPanels extends JPanel{
 		
 		beginnerUndStrat.add(stratFrage);
 		
-		int verfolgteStrat = 3;
 		stratAuswahlListe = new JComboBox<String>(strat);
 		beginnerUndStrat.add(stratAuswahlListe);
-		JLabel stratAnzeige = new JLabel("Verfolgte Strategie PC: " + verfolgteStrat, JLabel.CENTER);
+		JLabel stratAnzeige = new JLabel();
 		Font f5 = stratFrage.getFont();
 		stratAnzeige.setFont(f5.deriveFont(f5.getStyle() & ~Font.BOLD));
 		stratAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -307,6 +301,42 @@ public class JPanels extends JPanel{
 		k2.setFont(new Font("Arial",1,11));
 		komponentenPanel.add(k1);
 		komponentenPanel.add(k2);
+		
+		
+		
+		
+		playButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(playButton.getText().equals("Play")) {
+					
+					playButton.setText("Pause");
+					if(s2RadioButton.isSelected()) {
+						gewaehlterBeginner = (String)s2RadioButton.getText();
+					} else {
+						gewaehlterBeginner = s1RadioButton.getText();
+					}
+					
+					beginnerLabel.setText("Es hat begonnen: " + gewaehlterBeginner);
+					
+					
+					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
+
+					stratAnzeige.setText("Verfolgte Strategie PC: " + gewaehlteStrategie);
+
+				
+				
+			}	else {
+					playButton.setText("Play");
+					beginnerLabel.setText("");
+					stratAnzeige.setText("");
+					
+				
+				
+			} 
+			}
+		});
 
 
 		
@@ -587,7 +617,6 @@ public class JPanels extends JPanel{
 		
 		
 	}
-	
 	
 	
 	
