@@ -75,7 +75,9 @@ public class JPanels extends JPanel{
 	private Color geklickteFarbe;
 	
 	
+	
 	private JPanel[][] spielbrettArray;
+	private int[][] koordinaten;
 	
 	JRadioButton s1RadioButton;
 	JRadioButton s2RadioButton;
@@ -424,6 +426,7 @@ public class JPanels extends JPanel{
 				
 				
 				feld.setBackground(randomFarbe);
+				
 
 
 				
@@ -444,10 +447,40 @@ public class JPanels extends JPanel{
 //				});
 				
 				
+				
+			}
+			
+			
+	
+		}
+		
+		
+		for(int i = 0; i < zeilen; i++) {
+			for(int j = 0; j < spalten; j++) {
+				
+				int zeile = i;
+				int spalte = j;
+				
+				spielbrettArray[i][j].addMouseListener(new MouseAdapter() {
+					
+					
+					public void mouseClicked(MouseEvent e) {
+						
+						
+						Color aktuelleFarbe = spielbrettArray[zeile][spalte].getBackground();
+												
+						
+					}
+				});
+				
+				
+
+				
 			}
 		}
 		
 				
+
 			
 		revalidate();
 		repaint();
@@ -684,13 +717,12 @@ public class JPanels extends JPanel{
 
 							for(int i = 0; i < K1.size(); i++) {
 								K1.get(i).setBackground(geklickteFarbe);
+								
 							}
 							
 							
 							
-							
-//							System.out.println(colorToString(s1Farbe));
-			
+										
 							
 						}
 					});
@@ -705,6 +737,9 @@ public class JPanels extends JPanel{
 			
 			
 		}
+			
+			
+			nachbarAufnehmen();
 			
 		
 		
@@ -752,6 +787,11 @@ public class JPanels extends JPanel{
 			//Jedes Feld der Komponente angucken
 			JPanel feld = K1.get(i);
 			
+			int zeile = getZeile(spielbrettArray, feld, gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+			int spalte = getSpalte(spielbrettArray, feld, gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+			
+			
+			
 			/*
 			 * Nun implementieren: Man prueft fuer jedes Feld zuerst, ob der Nachbar schon in K1 drinnen ist
 			 * Falls ja: ueberspringen, sonst auf gleiche Farbe pruefen. Bei gleicher Farbe: aufnehmen in K1
@@ -763,6 +803,47 @@ public class JPanels extends JPanel{
 		}
 		
 		
+		
+	}
+	
+	
+	
+	//Aktuelle Zeile des Feldes wird zurueckgegeben
+	public int getZeile(JPanel[][] brett, JPanel panel, int zeilen, int spalten) {
+		
+		for(int i = 0; i < zeilen; i++) {
+			for(int j = 0; j < spalten; j++) {
+				
+				if(brett[i][j].equals(panel)) {
+					return i;
+				}
+				
+				
+			}
+		}
+		
+		return 0;
+		
+	}
+	
+	
+	
+
+	//Aktuelle Spalte des Feldes wird zurückgegeben
+public int getSpalte(JPanel[][] brett, JPanel panel, int zeilen, int spalten) {
+		
+		for(int i = 0; i < zeilen; i++) {
+			for(int j = 0; j < spalten; j++) {
+				
+				if(brett[i][j].equals(panel)) {
+					return j;
+				}
+				
+				
+			}
+		}
+		
+		return 0;
 		
 	}
 	
