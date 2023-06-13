@@ -48,7 +48,6 @@ public class JPanels extends JPanel{
 	private JButton startButton;
 	private JComboBox<String> zeilenAuswahl;
 	private JComboBox<String> spaltenAuswahl;
-	private int farbenImSpiel;
 	private String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
 	private String[] spaltenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
 	
@@ -62,8 +61,18 @@ public class JPanels extends JPanel{
 	private int gewaehlteSpaltenAnzahl;
 	private String gewaehlterBeginner;
 	private int gewaehlteStrategie;
-	private int gewaehlteFarbenanzahl;
+	private int farbenImSpiel;
 	private int anzahlBenutzteFarben = 0;
+	
+	private ArrayList<JPanel> K1;
+	private ArrayList<JPanel> K2;
+	private Color s1Farbe;
+	private Color s2Farbe;
+	private int groeseK1;
+	private int groeseK2;
+	private int spielZuege;
+	private boolean kVergroesert;
+	private Color geklickteFarbe;
 	
 	
 	private JPanel[][] spielbrettArray;
@@ -313,17 +322,19 @@ public class JPanels extends JPanel{
 					
 					playButton.setText("Pause");
 					if(s2RadioButton.isSelected()) {
-						gewaehlterBeginner = (String)s2RadioButton.getText();
+						gewaehlterBeginner = s2RadioButton.getText();
 					} else {
 						gewaehlterBeginner = s1RadioButton.getText();
 					}
 					
 					beginnerLabel.setText("Es hat begonnen: " + gewaehlterBeginner);
-					
-					
 					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
 
 					stratAnzeige.setText("Verfolgte Strategie PC: " + gewaehlteStrategie);
+					
+					
+					play();
+
 
 				
 				
@@ -331,6 +342,7 @@ public class JPanels extends JPanel{
 					playButton.setText("Play");
 					beginnerLabel.setText("");
 					stratAnzeige.setText("");
+					
 					
 				
 				
@@ -420,15 +432,16 @@ public class JPanels extends JPanel{
 				 * Feld man angeklickt hat
 				 */
 				
-				feld.addMouseListener(new MouseAdapter() {
-					
-					public void mouseClicked(MouseEvent e) {
-						
-						Color aktuelleFarbe = spielbrettArray[zeile][spalte].getBackground();
-												
-						
-					}
-				});
+//				feld.addMouseListener(new MouseAdapter() {
+//					
+//					public void mouseClicked(MouseEvent e) {
+//						
+//						Color aktuelleFarbe = spielbrettArray[zeile][spalte].getBackground();
+//						System.out.println(colorToString(aktuelleFarbe));
+//												
+//						
+//					}
+//				});
 				
 				
 			}
@@ -614,6 +627,141 @@ public class JPanels extends JPanel{
 
 		
 		}
+		
+		
+	}
+	
+	
+	public void play() {
+		
+		K1 = new ArrayList<JPanel>();
+		K2 = new ArrayList<JPanel>();
+		
+		
+		//Am Anfang haben beide Spieler je eine Komponente
+		K1.add(spielbrettArray[gewaehlteZeilenAnzahl-1][0]);
+		K2.add(spielbrettArray[0][gewaehlteSpaltenAnzahl-1]);
+		
+		groeseK1 = 1;
+		groeseK2 = 1;
+		
+		s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl-1][0].getBackground();
+		s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl-1].getBackground();
+
+		
+		spielZuege = 0;
+		kVergroesert = true;
+		
+		
+		/*
+		 * Als naechstes definieren: Zwei Methoden, wobei erste guckt, ob 4 zuege ohne vergroeserung
+		 * geschehen ist. Zweite Methode: Pruefen, ob alle vorhandenen Felder die Farbe von S1 oder S2 haben
+		 */
+		
+		boolean max = maximaleZuege(spielZuege, kVergroesert);
+		boolean endKonf = alleFelderBesetzt(s1Farbe,s2Farbe);
+		
+		
+		
+//		while(max == false && endKonf == false) {
+			
+			for(int i = 0; i < gewaehlteZeilenAnzahl; i++) {
+				
+				for(int j = 0; j < gewaehlteSpaltenAnzahl; j++) {
+					
+					int zeile = i;
+					int spalte = j;
+					
+					spielbrettArray[i][j].addMouseListener(new MouseAdapter() {
+						
+						public void mouseClicked(MouseEvent e) {
+							
+							
+							//Farbe des geklickten Feldes der Komponente zuweisen
+							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
+							s1Farbe = geklickteFarbe;			
+							K1.add(spielbrettArray[zeile][spalte]);
+
+							for(int i = 0; i < K1.size(); i++) {
+								K1.get(i).setBackground(geklickteFarbe);
+							}
+							
+							
+							
+							
+							System.out.println(colorToString(s1Farbe));
+			
+							
+						}
+					});
+					
+										
+				}
+				
+//			}
+				
+
+			
+			
+			
+		}
+			
+		
+		
+
+	}
+	
+	public boolean maximaleZuege(int x, boolean y) {
+		
+		if(x == 4 && y == false) {
+			return true;
+		}
+		
+		return false;
+		
+		
+	}
+	
+	
+	
+	public boolean alleFelderBesetzt(Color s1, Color s2) {
+		
+		for(int i = 0; i < spielbrettArray.length; i++) {
+			
+			for(int j = 0; j < spielbrettArray[i].length; j++) {
+				
+				Color feldFarbe = spielbrettArray[i][j].getBackground();
+				if(!(feldFarbe.equals(s1)) && !(feldFarbe.equals(s2)) ) {
+					return false;
+				}
+				
+			}
+			
+		}
+		
+		return true;
+		
+	}
+	
+	
+	public void nachbarAufnehmen() {
+		
+		for(int i = 0; i < K1.size(); i++) {
+			
+			
+			//Jedes Feld der Komponente angucken
+			JPanel feld = K1.get(i);
+			
+			/*
+			 * Nun implementieren: Man prueft fuer jedes Feld zuerst, ob der Nachbar schon in K1 drinnen ist
+			 * Falls ja: ueberspringen, sonst auf gleiche Farbe pruefen. Bei gleicher Farbe: aufnehmen in K1
+			 */
+			
+			
+			
+			
+		}
+		
 		
 		
 	}
