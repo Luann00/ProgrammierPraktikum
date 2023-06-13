@@ -689,7 +689,7 @@ public class JPanels extends JPanel{
 							
 							
 							
-							System.out.println(colorToString(s1Farbe));
+//							System.out.println(colorToString(s1Farbe));
 			
 							
 						}
