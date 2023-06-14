@@ -713,17 +713,20 @@ public class JPanels extends JPanel{
 							//Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
 							s1Farbe = geklickteFarbe;			
-							K1.add(spielbrettArray[zeile][spalte]);
 
 							for(int i = 0; i < K1.size(); i++) {
 								K1.get(i).setBackground(geklickteFarbe);
+								int zeile = getZeile(spielbrettArray, K1.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+								int spalte = getSpalte(spielbrettArray, K1.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
 								
+								nachbarAufnehmen(geklickteFarbe, zeile, spalte);
+								groeseK1 = K1.size();
+//								System.out.println("Groese K1: " + groeseK1);
+													
+										
 							}
 							
-							
-							
-										
-							
+
 						}
 					});
 					
@@ -739,7 +742,9 @@ public class JPanels extends JPanel{
 		}
 			
 			
-			nachbarAufnehmen();
+
+			
+			
 			
 		
 		
@@ -791,20 +796,255 @@ public class JPanels extends JPanel{
 			int spalte = getSpalte(spielbrettArray, feld, gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
 			
 			
+			/*
+			 * Nun implementieren: Man prueft fuer jedes Feld zuerst, ob der Nachbar schon in K1 drinnen ist
+			 * Falls ja: ueberspringen, sonst auf gleiche Farbe pruefen. Bei gleicher Farbe: aufnehmen in K1
+			 */
+			
+			if(zeile > 0) {
+				Color obererNachbar = spielbrettArray[zeile-1][spalte].getBackground();
+				if(obererNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile-1][spalte])) {
+						continue;
+					} else {
+						K1.add(spielbrettArray[zeile-1][spalte]);
+						i++;
+					}
+					
+					for(int ii = zeile-1; ii > 0; ii--) {
+						
+						if(spielbrettArray[ii-1][spalte].getBackground().equals(s1Farbe)) {
+							
+							if(K1.contains(spielbrettArray[ii-1][spalte])) {
+								continue;
+							} else {
+								K1.add(spielbrettArray[ii-1][spalte]);
+								i++;
+							}
+							
+							
+						} else  {
+							break;
+						}
+						
+					}
+					
+
+					
+				}
+					
+				
+			}
+			
+			if(zeile < gewaehlteZeilenAnzahl-1) {
+				
+				Color untererNachbar = spielbrettArray[zeile+1][spalte].getBackground();
+				if(untererNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile+1][spalte])) {
+						continue;
+					} else {
+						K1.add(spielbrettArray[zeile+1][spalte]);
+						i++;
+
+					}
+					
+					for(int ii = zeile+1; ii < gewaehlteZeilenAnzahl-1; ii++) {
+						if(spielbrettArray[ii+1][spalte].getBackground().equals(s1Farbe)) {
+							
+							if(K1.contains(spielbrettArray[ii+1][spalte])) {
+								continue;
+							} else {
+								K1.add(spielbrettArray[ii+1][spalte]);
+								i++;
+
+							}
+							
+						} else {
+							break;
+						}
+					}
+
+					
+				}
+				
+			}
+			
+			if(spalte > 0) {
+				
+				Color rechterNachbar = spielbrettArray[zeile][spalte-1].getBackground();
+				if(rechterNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile][spalte-1])) {
+						continue;
+					} else {
+						K1.add(spielbrettArray[zeile][spalte-1]);
+						i++;
+
+					}
+					
+					
+					for(int ii = spalte-1; ii > 0; ii--) {
+						if(spielbrettArray[zeile][ii-1].getBackground().equals(s1Farbe)) {
+							
+							if(K1.contains(spielbrettArray[zeile][ii])) {
+								continue;
+							} else {
+								K1.add(spielbrettArray[zeile][ii]);
+								i++;
+
+							}
+							
+						} else {
+							break;
+						}
+					}
+
+
+				
+			}
+			
+						
+					
+				
+			}
+			
+			if(spalte < gewaehlteSpaltenAnzahl-1) {
+				
+				Color linkerNachbar = spielbrettArray[zeile][spalte+1].getBackground();
+				if(linkerNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile][spalte+1])) {
+						continue;
+					} else {
+						K1.add(spielbrettArray[zeile][spalte+1]);
+						i++;
+
+					}
+					
+				}
+				
+				for(int ii = 0; ii < gewaehlteSpaltenAnzahl-1; ii++) {
+					
+					if(spielbrettArray[zeile][ii+1].getBackground().equals(s1Farbe)) {
+						
+						if(K1.contains(spielbrettArray[zeile][ii+1])) {
+							continue;
+						} else {
+							K1.add(spielbrettArray[zeile][spalte+1]);
+							i++;
+
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+			
+		}
+		
+			
+			
+		}
+	
+	
+	
+	public void nachbarAufnehmen(Color farbe, int zeile, int spalte) {
+		
+//		for(int i = 0; i < K1.size(); i++) {
+						
+		
 			
 			/*
 			 * Nun implementieren: Man prueft fuer jedes Feld zuerst, ob der Nachbar schon in K1 drinnen ist
 			 * Falls ja: ueberspringen, sonst auf gleiche Farbe pruefen. Bei gleicher Farbe: aufnehmen in K1
 			 */
 			
+			if(zeile > 0) {
+				Color obererNachbar = spielbrettArray[zeile-1][spalte].getBackground();
+				if(obererNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile-1][spalte])) {
+//						continue;
+					} else {
+						K1.add(spielbrettArray[zeile-1][spalte]);
+//						i++;
+					}
+					
+					
+				}
+					
+				
+			}
 			
+			if(zeile < gewaehlteZeilenAnzahl-1) {
+				
+				Color untererNachbar = spielbrettArray[zeile+1][spalte].getBackground();
+				if(untererNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile+1][spalte])) {
+//						continue;
+					} else {
+						K1.add(spielbrettArray[zeile+1][spalte]);
+//						i++;
+
+					}
+							
+				}
+				
+			}
+			
+			if(spalte > 0) {
+				
+				Color rechterNachbar = spielbrettArray[zeile][spalte-1].getBackground();
+				if(rechterNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile][spalte-1])) {
+//						continue;
+					} else {
+						K1.add(spielbrettArray[zeile][spalte-1]);
+//						i++;
+
+					}
+					
+				
+			}
+			
+						
+					
+				
+			}
+			
+			if(spalte < gewaehlteSpaltenAnzahl-1) {
+				
+				Color linkerNachbar = spielbrettArray[zeile][spalte+1].getBackground();
+				if(linkerNachbar.equals(s1Farbe)) {
+					
+					if(K1.contains(spielbrettArray[zeile][spalte+1])) {
+//						continue;
+					} else {
+						K1.add(spielbrettArray[zeile][spalte+1]);
+//						i++;
+
+					}
+					
+				}
+				
+				
+			}
 			
 			
 		}
 		
 		
+//	}
 		
-	}
+		
+		
+	
 	
 	
 	
