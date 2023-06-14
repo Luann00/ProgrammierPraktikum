@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -25,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import java.util.Scanner;
 
 
 public class JPanels extends JPanel{
@@ -333,6 +336,7 @@ public class JPanels extends JPanel{
 					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
 
 					stratAnzeige.setText("Verfolgte Strategie PC: " + gewaehlteStrategie);
+					
 					
 					
 					play();
@@ -671,6 +675,8 @@ public class JPanels extends JPanel{
 		K2 = new ArrayList<JPanel>();
 		
 		
+		
+		
 		//Am Anfang haben beide Spieler je eine Komponente
 		K1.add(spielbrettArray[gewaehlteZeilenAnzahl-1][0]);
 		K2.add(spielbrettArray[0][gewaehlteSpaltenAnzahl-1]);
@@ -709,10 +715,19 @@ public class JPanels extends JPanel{
 						
 						public void mouseClicked(MouseEvent e) {
 							
+
 							
 							//Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
-							s1Farbe = geklickteFarbe;			
+							
+							if(!(geklickteFarbe.equals(s1Farbe))) {
+								spielZuege++;
+								s1Farbe = geklickteFarbe;
+							}
+							
+							System.out.println("Spielzug: " + spielZuege);
+							
+							
 
 							for(int i = 0; i < K1.size(); i++) {
 								K1.get(i).setBackground(geklickteFarbe);
@@ -721,13 +736,43 @@ public class JPanels extends JPanel{
 								
 								nachbarAufnehmen(geklickteFarbe, zeile, spalte);
 								groeseK1 = K1.size();
-//								System.out.println("Groese K1: " + groeseK1);
-													
+								System.out.println("Groese K1: " + groeseK1);			
 										
 							}
 							
 
 						}
+					});
+					
+					this.setFocusable(true);
+					
+						addKeyListener(new KeyListener() {
+
+						@Override
+						public void keyTyped(KeyEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void keyPressed(KeyEvent e) {
+							
+							if(e.getKeyCode() == 1) {
+//								System.out.println("1 gedrueckt!");
+							}
+							requestFocus();
+
+							
+						}
+
+						@Override
+						public void keyReleased(KeyEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+						
+						
+						
 					});
 					
 										
@@ -1084,6 +1129,13 @@ public int getSpalte(JPanel[][] brett, JPanel panel, int zeilen, int spalten) {
 		}
 		
 		return 0;
+		
+	}
+
+
+	public void strat1() {
+		
+		
 		
 	}
 	
