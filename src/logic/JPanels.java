@@ -39,6 +39,7 @@ public class JPanels extends JPanel{
 	private JPanel menueTafel;
 	private JPanel spielBrett;
 	private JPanel spielEinstellungen;
+	private JPanel konfiguration;
 	
 	
 	
@@ -77,14 +78,15 @@ public class JPanels extends JPanel{
 	private int spielZuege;
 	private boolean kVergroesert;
 	private Color geklickteFarbe;
+	private JLabel zeilenUndSpaltenAnzeige;
 	
 	
 	
 	private JPanel[][] spielbrettArray;
 	private int[][] koordinaten;
 	
-	JRadioButton s1RadioButton;
-	JRadioButton s2RadioButton;
+	private JRadioButton s1RadioButton;
+	private JRadioButton s2RadioButton;
 
 	
 	public JPanels(MyFrame myFrame) {
@@ -119,7 +121,7 @@ public class JPanels extends JPanel{
 		 * Titel hinzufuegen mit dem Button
 		 */
 		
-		JPanel konfiguration = new JPanel();
+		konfiguration = new JPanel();
 		konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight()/4));
 		
 		
@@ -167,7 +169,7 @@ public class JPanels extends JPanel{
 
 		
 		//Panel, wo man die Zeile angezeigt wird
-		JLabel zeilenUndSpaltenAnzeige = new JLabel("<html>Das Brett hat aktuell 10 Zeilen und 10 Spalten</html>", JLabel.CENTER);
+		zeilenUndSpaltenAnzeige = new JLabel();
 		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		
@@ -197,6 +199,7 @@ public class JPanels extends JPanel{
 					startButton.setText("Start");
 					zeilenAuswahl.setEnabled(true);
 					spaltenAuswahl.setEnabled(true);
+					zeilenUndSpaltenAnzeige.setText("");
 					spielBrett.removeAll();
 					spielBrett.repaint();
 				
@@ -435,23 +438,7 @@ public class JPanels extends JPanel{
 				feld.setBackground(randomFarbe);
 				
 
-
 				
-				/*
-				 * Jedem Feld die Koordinaten uebergeben, sodass man beim klicken genau weis, welches
-				 * Feld man angeklickt hat
-				 */
-				
-//				feld.addMouseListener(new MouseAdapter() {
-//					
-//					public void mouseClicked(MouseEvent e) {
-//						
-//						Color aktuelleFarbe = spielbrettArray[zeile][spalte].getBackground();
-//						System.out.println(colorToString(aktuelleFarbe));
-//												
-//						
-//					}
-//				});
 				
 				
 				
@@ -651,6 +638,10 @@ public class JPanels extends JPanel{
 		gewaehlteZeilenAnzahl = Integer.parseInt((String) zeilenAuswahl.getSelectedItem());
 		gewaehlteSpaltenAnzahl = Integer.parseInt((String) spaltenAuswahl.getSelectedItem());
 		farbenImSpiel = Integer.parseInt((String)farbenAnzahl.getSelectedItem());
+
+		zeilenUndSpaltenAnzeige.setText("<html>Das Brett hat aktuell 10 Zeilen und 10 Spalten</html>");
+		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
+		konfiguration.add(zeilenUndSpaltenAnzeige);
 
 		
 
