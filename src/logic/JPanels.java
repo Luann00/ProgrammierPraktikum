@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -339,7 +340,7 @@ public class JPanels extends JPanel{
 					
 					
 					
-					play();
+					setup1();
 
 
 				
@@ -370,6 +371,9 @@ public class JPanels extends JPanel{
 		this.add(spielBrett,BorderLayout.CENTER);
 		this.add(menueTafel, BorderLayout.EAST);
 		
+		spielBrett.setBorder(new EmptyBorder(0, 0, 50, 0));
+
+		
 		
 		
 		//Alle farben in der ArrayList hinzufuegen
@@ -381,8 +385,7 @@ public class JPanels extends JPanel{
 	
 	
 	
-	//Methode, um das Spielbrett mit den jeweiligen Werten zu erstellen
-	
+	//Methode, um das Spielbrett mit den jeweiligen Felder zu erstellen
 	public JPanel[][] spielBrettGenerieren() {
 		
 		int zeilen = gewaehlteZeilenAnzahl;
@@ -483,7 +486,7 @@ public class JPanels extends JPanel{
 			}
 		}
 		
-				
+
 
 			
 		revalidate();
@@ -613,6 +616,7 @@ public class JPanels extends JPanel{
 		alleMöglichenFarben.add(Color.pink);
 		alleMöglichenFarben.add(Color.red);
 
+		
 	}
 	
 	public String colorToString(Color color) {
@@ -669,7 +673,7 @@ public class JPanels extends JPanel{
 	}
 	
 	
-	public void play() {
+	public void setup1() {
 		
 		K1 = new ArrayList<JPanel>();
 		K2 = new ArrayList<JPanel>();
@@ -715,7 +719,6 @@ public class JPanels extends JPanel{
 						
 						public void mouseClicked(MouseEvent e) {
 							
-
 							
 							//Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
@@ -725,77 +728,156 @@ public class JPanels extends JPanel{
 								s1Farbe = geklickteFarbe;
 							}
 							
-							System.out.println("Spielzug: " + spielZuege);
 							
+							
+							
+						groeseK1 = komponenteAnpassen(K1, geklickteFarbe, groeseK1);
+						System.out.println("Groese K1(geklikt): " + groeseK1);
+//						System.out.println("Spielzug: " + spielZuege);
+
 							
 
-							for(int i = 0; i < K1.size(); i++) {
-								K1.get(i).setBackground(geklickteFarbe);
-								int zeile = getZeile(spielbrettArray, K1.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
-								int spalte = getSpalte(spielbrettArray, K1.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
-								
-								nachbarAufnehmen(geklickteFarbe, zeile, spalte);
-								groeseK1 = K1.size();
-								System.out.println("Groese K1: " + groeseK1);			
-										
-							}
-							
 
 						}
 					});
 					
-					this.setFocusable(true);
 					
-						addKeyListener(new KeyListener() {
-
-						@Override
-						public void keyTyped(KeyEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-
-						@Override
-						public void keyPressed(KeyEvent e) {
-							
-							if(e.getKeyCode() == 1) {
-//								System.out.println("1 gedrueckt!");
-							}
-							requestFocus();
-
-							
-						}
-
-						@Override
-						public void keyReleased(KeyEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						
-						
-						
-					});
 					
+					
+
 										
 				}
 				
 //			}
 				
-
-			
-			
 			
 		}
 			
 			
+			//Tastatureingaben sollen ebenfalls erkannt werden, um die jeweilige Farbe zu waehlen
+			spielBrett.grabFocus();
+			spielBrett.addKeyListener(new KeyAdapter() {
+				public void keyPressed(KeyEvent e) {
+					
+					alleMöglichenFarben.add(Color.red);
 
+					switch(e.getKeyChar()) {
+					
+					case '1': 
+						
+						groeseK1 = komponenteAnpassen(K1, Color.black, groeseK1);
+						
+						if(!(Color.black.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.black;
+						}						
+						break;
+						
+						
+					case '2':
+						groeseK1 = komponenteAnpassen(K1, Color.blue, groeseK1);
+						
+						if(!(Color.blue.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.blue;
+						}						
+						break;
+	              
+		                
+					
+					
+					case '3':
+						groeseK1 = komponenteAnpassen(K1, Color.gray, groeseK1);
+						
+						if(!(Color.gray.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.gray;
+						}						
+						break;
+						
+					case '4':
+						groeseK1 = komponenteAnpassen(K1, Color.green, groeseK1);
+						
+						if(!(Color.green.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.green;
+						}						
+						break;
+						
+					case '5':
+						groeseK1 = komponenteAnpassen(K1, Color.magenta, groeseK1);
+						
+						if(!(Color.magenta.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.magenta;
+						}						
+						break;
+						
+						
+					case '6':
+						groeseK1 = komponenteAnpassen(K1, Color.orange, groeseK1);
+						
+						if(!(Color.orange.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.orange;
+						}						
+						break;
+						
+					case '7':
+						groeseK1 = komponenteAnpassen(K1, Color.pink, groeseK1);
+						
+						if(!(Color.pink.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.pink;
+						}						
+						break;
+					
+					case '8':
+						groeseK1 = komponenteAnpassen(K1, Color.red, groeseK1);
+						
+						if(!(Color.red.equals(s1Farbe))) {
+							spielZuege++;
+							s1Farbe = Color.red;
+						}						
+						break;
+
+	            }
+	       
+			}
+				
+			});
 			
 			
 			
-		
+			
 		
 
 	}
 	
+	public int getGroeseK1() {
+		return groeseK1;
+	}
+
+
+
+	public void setGroeseK1(int groeseK1) {
+		this.groeseK1 = groeseK1;
+	}
+
+
+
+	public int getGroeseK2() {
+		return groeseK2;
+	}
+
+
+
+	public void setGroeseK2(int groeseK2) {
+		this.groeseK2 = groeseK2;
+	}
+
+
+
 	public boolean maximaleZuege(int x, boolean y) {
 		
 		if(x == 4 && y == false) {
@@ -829,194 +911,25 @@ public class JPanels extends JPanel{
 	}
 	
 	
-	public void nachbarAufnehmen() {
+	
+	
+	
+	
+	/*
+	 * In dieser Methode ueberprueft man die Umgebung des jeweiligen Feldes und fuegt diese bei gleicher
+	 * Farbe zur Komponente hinzu
+	 */
+	public void nachbarAufnehmen(ArrayList<JPanel> K,Color farbe, int zeile, int spalte) {
 		
-		for(int i = 0; i < K1.size(); i++) {
-			
-			
-			//Jedes Feld der Komponente angucken
-			JPanel feld = K1.get(i);
-			
-			int zeile = getZeile(spielbrettArray, feld, gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
-			int spalte = getSpalte(spielbrettArray, feld, gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
-			
-			
-			/*
-			 * Nun implementieren: Man prueft fuer jedes Feld zuerst, ob der Nachbar schon in K1 drinnen ist
-			 * Falls ja: ueberspringen, sonst auf gleiche Farbe pruefen. Bei gleicher Farbe: aufnehmen in K1
-			 */
+						
 			
 			if(zeile > 0) {
 				Color obererNachbar = spielbrettArray[zeile-1][spalte].getBackground();
-				if(obererNachbar.equals(s1Farbe)) {
+				if(obererNachbar.equals(farbe)) {
 					
-					if(K1.contains(spielbrettArray[zeile-1][spalte])) {
-						continue;
+					if(K.contains(spielbrettArray[zeile-1][spalte])) {
 					} else {
-						K1.add(spielbrettArray[zeile-1][spalte]);
-						i++;
-					}
-					
-					for(int ii = zeile-1; ii > 0; ii--) {
-						
-						if(spielbrettArray[ii-1][spalte].getBackground().equals(s1Farbe)) {
-							
-							if(K1.contains(spielbrettArray[ii-1][spalte])) {
-								continue;
-							} else {
-								K1.add(spielbrettArray[ii-1][spalte]);
-								i++;
-							}
-							
-							
-						} else  {
-							break;
-						}
-						
-					}
-					
-
-					
-				}
-					
-				
-			}
-			
-			if(zeile < gewaehlteZeilenAnzahl-1) {
-				
-				Color untererNachbar = spielbrettArray[zeile+1][spalte].getBackground();
-				if(untererNachbar.equals(s1Farbe)) {
-					
-					if(K1.contains(spielbrettArray[zeile+1][spalte])) {
-						continue;
-					} else {
-						K1.add(spielbrettArray[zeile+1][spalte]);
-						i++;
-
-					}
-					
-					for(int ii = zeile+1; ii < gewaehlteZeilenAnzahl-1; ii++) {
-						if(spielbrettArray[ii+1][spalte].getBackground().equals(s1Farbe)) {
-							
-							if(K1.contains(spielbrettArray[ii+1][spalte])) {
-								continue;
-							} else {
-								K1.add(spielbrettArray[ii+1][spalte]);
-								i++;
-
-							}
-							
-						} else {
-							break;
-						}
-					}
-
-					
-				}
-				
-			}
-			
-			if(spalte > 0) {
-				
-				Color rechterNachbar = spielbrettArray[zeile][spalte-1].getBackground();
-				if(rechterNachbar.equals(s1Farbe)) {
-					
-					if(K1.contains(spielbrettArray[zeile][spalte-1])) {
-						continue;
-					} else {
-						K1.add(spielbrettArray[zeile][spalte-1]);
-						i++;
-
-					}
-					
-					
-					for(int ii = spalte-1; ii > 0; ii--) {
-						if(spielbrettArray[zeile][ii-1].getBackground().equals(s1Farbe)) {
-							
-							if(K1.contains(spielbrettArray[zeile][ii])) {
-								continue;
-							} else {
-								K1.add(spielbrettArray[zeile][ii]);
-								i++;
-
-							}
-							
-						} else {
-							break;
-						}
-					}
-
-
-				
-			}
-			
-						
-					
-				
-			}
-			
-			if(spalte < gewaehlteSpaltenAnzahl-1) {
-				
-				Color linkerNachbar = spielbrettArray[zeile][spalte+1].getBackground();
-				if(linkerNachbar.equals(s1Farbe)) {
-					
-					if(K1.contains(spielbrettArray[zeile][spalte+1])) {
-						continue;
-					} else {
-						K1.add(spielbrettArray[zeile][spalte+1]);
-						i++;
-
-					}
-					
-				}
-				
-				for(int ii = 0; ii < gewaehlteSpaltenAnzahl-1; ii++) {
-					
-					if(spielbrettArray[zeile][ii+1].getBackground().equals(s1Farbe)) {
-						
-						if(K1.contains(spielbrettArray[zeile][ii+1])) {
-							continue;
-						} else {
-							K1.add(spielbrettArray[zeile][spalte+1]);
-							i++;
-
-						}
-						
-					}
-					
-				}
-				
-			}
-			
-			
-		}
-		
-			
-			
-		}
-	
-	
-	
-	public void nachbarAufnehmen(Color farbe, int zeile, int spalte) {
-		
-//		for(int i = 0; i < K1.size(); i++) {
-						
-		
-			
-			/*
-			 * Nun implementieren: Man prueft fuer jedes Feld zuerst, ob der Nachbar schon in K1 drinnen ist
-			 * Falls ja: ueberspringen, sonst auf gleiche Farbe pruefen. Bei gleicher Farbe: aufnehmen in K1
-			 */
-			
-			if(zeile > 0) {
-				Color obererNachbar = spielbrettArray[zeile-1][spalte].getBackground();
-				if(obererNachbar.equals(s1Farbe)) {
-					
-					if(K1.contains(spielbrettArray[zeile-1][spalte])) {
-//						continue;
-					} else {
-						K1.add(spielbrettArray[zeile-1][spalte]);
-//						i++;
+						K.add(spielbrettArray[zeile-1][spalte]);
 					}
 					
 					
@@ -1028,13 +941,11 @@ public class JPanels extends JPanel{
 			if(zeile < gewaehlteZeilenAnzahl-1) {
 				
 				Color untererNachbar = spielbrettArray[zeile+1][spalte].getBackground();
-				if(untererNachbar.equals(s1Farbe)) {
+				if(untererNachbar.equals(farbe)) {
 					
-					if(K1.contains(spielbrettArray[zeile+1][spalte])) {
-//						continue;
+					if(K.contains(spielbrettArray[zeile+1][spalte])) {
 					} else {
-						K1.add(spielbrettArray[zeile+1][spalte]);
-//						i++;
+						K.add(spielbrettArray[zeile+1][spalte]);
 
 					}
 							
@@ -1045,13 +956,11 @@ public class JPanels extends JPanel{
 			if(spalte > 0) {
 				
 				Color rechterNachbar = spielbrettArray[zeile][spalte-1].getBackground();
-				if(rechterNachbar.equals(s1Farbe)) {
+				if(rechterNachbar.equals(farbe)) {
 					
-					if(K1.contains(spielbrettArray[zeile][spalte-1])) {
-//						continue;
+					if(K.contains(spielbrettArray[zeile][spalte-1])) {
 					} else {
-						K1.add(spielbrettArray[zeile][spalte-1]);
-//						i++;
+						K.add(spielbrettArray[zeile][spalte-1]);
 
 					}
 					
@@ -1066,13 +975,11 @@ public class JPanels extends JPanel{
 			if(spalte < gewaehlteSpaltenAnzahl-1) {
 				
 				Color linkerNachbar = spielbrettArray[zeile][spalte+1].getBackground();
-				if(linkerNachbar.equals(s1Farbe)) {
+				if(linkerNachbar.equals(farbe)) {
 					
-					if(K1.contains(spielbrettArray[zeile][spalte+1])) {
-//						continue;
+					if(K.contains(spielbrettArray[zeile][spalte+1])) {
 					} else {
-						K1.add(spielbrettArray[zeile][spalte+1]);
-//						i++;
+						K.add(spielbrettArray[zeile][spalte+1]);
 
 					}
 					
@@ -1083,10 +990,26 @@ public class JPanels extends JPanel{
 			
 			
 		}
+	
+	
+	public int komponenteAnpassen(ArrayList<JPanel> K, Color geklickteFarbe, int groeseK) {
 		
+		for(int i = 0; i < K.size(); i++) {
+			K.get(i).setBackground(geklickteFarbe);
+			int zeile = getZeile(spielbrettArray, K.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+			int spalte = getSpalte(spielbrettArray, K.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+			
+			nachbarAufnehmen(K,geklickteFarbe, zeile, spalte);
+		}
+		groeseK = K.size();
+		return groeseK;
+
 		
-//	}
+
 		
+
+	}
+				
 		
 		
 	
