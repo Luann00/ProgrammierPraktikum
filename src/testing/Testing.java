@@ -1,5 +1,7 @@
 package testing;
 
+import java.util.ArrayList;
+
 /*
  * Siehe Hinweise auf dem Aufgabenblatt. 
  */
@@ -16,12 +18,67 @@ public class Testing {
 		
 	}
 
-	public boolean isStartklar() {
+	public boolean isStartklar() {		
+		
+		//Test, ob jedes Feld eine andere Farbe hat
+		for(int i = 0; i < board.length; i++) {
+			
+			for(int j = 0; j < board[i].length; j++) {
+				
+				int farbe = board[i][j].getColor();
+				
+				if(i < board.length-1) {
+					if(farbe == board[i+1][j].getColor()) {
+						return false;
+					}
+				}
+				
+				if(j < board[i].length-1) {
+					
+					if(farbe==board[i][j+1].getColor()) {
+						return false;
+					}
+					
+				}
 
-		return false;
+			}
+			
+		}
+		
+		
+		ArrayList<Integer> alleFarben = new ArrayList<Integer>();
+		
+		for(int i = 0; i < board.length; i++) {
+			
+			
+			for(int j = 0; j < board[i].length; j++) {
+				
+				if((alleFarben.contains(board[i][j].getColor()) == false)) {
+					alleFarben.add(board[i][j].getColor());
+				}
+				
+			}
+		}
+		//Gucken, ob alle 6 farben im Spiel sind
+		if(alleFarben.size() != 6) {
+			return false;
+		}
+				
+		
+		//Pruefen, ob untes linkeres Feld eine nanderen Wert hat als unteres rechtes Feld
+		if(board[board.length-1][0].getColor() == board[0][board[0].length-1].getColor()) {
+			return false;
+		}
+		
+		return true;
+		
+		
+
 	}
 
 	public boolean isEndConfig() {
+		
+		
 
 		return false;
 	}

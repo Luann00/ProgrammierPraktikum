@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,9 +29,13 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.util.Scanner;
 
+
+import javax.swing.*;
+import java.awt.*;
 
 public class JPanels extends JPanel{
 	
@@ -40,6 +46,8 @@ public class JPanels extends JPanel{
 	private JPanel spielBrett;
 	private JPanel spielEinstellungen;
 	private JPanel konfiguration;
+	JPanel farbenAnzeige = new JPanel();
+
 	
 	
 	
@@ -47,9 +55,406 @@ public class JPanels extends JPanel{
 	private ArrayList<Color> ausgewaehlteFarben;
 	private ArrayList<Color> aktuellVerfuegbareFarben;
 	private ArrayList<Color> benutzteFarben;
+	private Color removteFarbe;
+	
+	private JPanel blackPanel;
+	private JPanel bluePanel;
+	private JPanel cyanPanel;
+	private JPanel grayPanel;
+	private JPanel greenPanel;
+	private JPanel brownPanel;
+	private JPanel orangePanel;
+	private JPanel pinkPanel;
+	private JPanel redPanel;
+
 	
 	
 	
+	public MyFrame getMyFrame() {
+		return myFrame;
+	}
+
+	public void setMyFrame(MyFrame myFrame) {
+		this.myFrame = myFrame;
+	}
+
+	public JPanel getMenueTafel() {
+		return menueTafel;
+	}
+
+	public void setMenueTafel(JPanel menueTafel) {
+		this.menueTafel = menueTafel;
+	}
+
+	public JPanel getSpielBrett() {
+		return spielBrett;
+	}
+
+	public void setSpielBrett(JPanel spielBrett) {
+		this.spielBrett = spielBrett;
+	}
+
+	public JPanel getSpielEinstellungen() {
+		return spielEinstellungen;
+	}
+
+	public void setSpielEinstellungen(JPanel spielEinstellungen) {
+		this.spielEinstellungen = spielEinstellungen;
+	}
+
+	public JPanel getKonfiguration() {
+		return konfiguration;
+	}
+
+	public void setKonfiguration(JPanel konfiguration) {
+		this.konfiguration = konfiguration;
+	}
+
+	public JPanel getFarbenAnzeige() {
+		return farbenAnzeige;
+	}
+
+	public void setFarbenAnzeige(JPanel farbenAnzeige) {
+		this.farbenAnzeige = farbenAnzeige;
+	}
+
+	public ArrayList<Color> getAlleMöglichenFarben() {
+		return alleMöglichenFarben;
+	}
+
+	public void setAlleMöglichenFarben(ArrayList<Color> alleMöglichenFarben) {
+		this.alleMöglichenFarben = alleMöglichenFarben;
+	}
+
+	public ArrayList<Color> getAusgewaehlteFarben() {
+		return ausgewaehlteFarben;
+	}
+
+	public void setAusgewaehlteFarben(ArrayList<Color> ausgewaehlteFarben) {
+		this.ausgewaehlteFarben = ausgewaehlteFarben;
+	}
+
+	public ArrayList<Color> getAktuellVerfuegbareFarben() {
+		return aktuellVerfuegbareFarben;
+	}
+
+	public void setAktuellVerfuegbareFarben(ArrayList<Color> aktuellVerfuegbareFarben) {
+		this.aktuellVerfuegbareFarben = aktuellVerfuegbareFarben;
+	}
+
+	public ArrayList<Color> getBenutzteFarben() {
+		return benutzteFarben;
+	}
+
+	public void setBenutzteFarben(ArrayList<Color> benutzteFarben) {
+		this.benutzteFarben = benutzteFarben;
+	}
+
+	public Color getRemovteFarbe() {
+		return removteFarbe;
+	}
+
+	public void setRemovteFarbe(Color removteFarbe) {
+		this.removteFarbe = removteFarbe;
+	}
+
+	public JPanel getBlackPanel() {
+		return blackPanel;
+	}
+
+	public void setBlackPanel(JPanel blackPanel) {
+		this.blackPanel = blackPanel;
+	}
+
+	public JPanel getBluePanel() {
+		return bluePanel;
+	}
+
+	public void setBluePanel(JPanel bluePanel) {
+		this.bluePanel = bluePanel;
+	}
+
+	public JPanel getCyanPanel() {
+		return cyanPanel;
+	}
+
+	public void setCyanPanel(JPanel cyanPanel) {
+		this.cyanPanel = cyanPanel;
+	}
+
+	public JPanel getGrayPanel() {
+		return grayPanel;
+	}
+
+	public void setGrayPanel(JPanel grayPanel) {
+		this.grayPanel = grayPanel;
+	}
+
+	public JPanel getGreenPanel() {
+		return greenPanel;
+	}
+
+	public void setGreenPanel(JPanel greenPanel) {
+		this.greenPanel = greenPanel;
+	}
+
+	public JPanel getBrownPanel() {
+		return brownPanel;
+	}
+
+	public void setBrownPanel(JPanel brownPanel) {
+		this.brownPanel = brownPanel;
+	}
+
+	public JPanel getOrangePanel() {
+		return orangePanel;
+	}
+
+	public void setOrangePanel(JPanel orangePanel) {
+		this.orangePanel = orangePanel;
+	}
+
+	public JPanel getPinkPanel() {
+		return pinkPanel;
+	}
+
+	public void setPinkPanel(JPanel pinkPanel) {
+		this.pinkPanel = pinkPanel;
+	}
+
+	public JPanel getRedPanel() {
+		return redPanel;
+	}
+
+	public void setRedPanel(JPanel redPanel) {
+		this.redPanel = redPanel;
+	}
+
+	public JButton getStartButton() {
+		return startButton;
+	}
+
+	public void setStartButton(JButton startButton) {
+		this.startButton = startButton;
+	}
+
+	public JComboBox<String> getZeilenAuswahl() {
+		return zeilenAuswahl;
+	}
+
+	public void setZeilenAuswahl(JComboBox<String> zeilenAuswahl) {
+		this.zeilenAuswahl = zeilenAuswahl;
+	}
+
+	public JComboBox<String> getSpaltenAuswahl() {
+		return spaltenAuswahl;
+	}
+
+	public void setSpaltenAuswahl(JComboBox<String> spaltenAuswahl) {
+		this.spaltenAuswahl = spaltenAuswahl;
+	}
+
+	public String[] getZeilenAnzahl() {
+		return zeilenAnzahl;
+	}
+
+	public void setZeilenAnzahl(String[] zeilenAnzahl) {
+		this.zeilenAnzahl = zeilenAnzahl;
+	}
+
+	public String[] getSpaltenAnzahl() {
+		return spaltenAnzahl;
+	}
+
+	public void setSpaltenAnzahl(String[] spaltenAnzahl) {
+		this.spaltenAnzahl = spaltenAnzahl;
+	}
+
+	public String[] getStrat() {
+		return strat;
+	}
+
+	public void setStrat(String[] strat) {
+		this.strat = strat;
+	}
+
+	public String[] getFarben() {
+		return farben;
+	}
+
+	public void setFarben(String[] farben) {
+		this.farben = farben;
+	}
+
+	public JComboBox<String> getStratAuswahlListe() {
+		return stratAuswahlListe;
+	}
+
+	public void setStratAuswahlListe(JComboBox<String> stratAuswahlListe) {
+		this.stratAuswahlListe = stratAuswahlListe;
+	}
+
+	public JComboBox<String> getFarbenAnzahl() {
+		return farbenAnzahl;
+	}
+
+	public void setFarbenAnzahl(JComboBox<String> farbenAnzahl) {
+		this.farbenAnzahl = farbenAnzahl;
+	}
+
+	public int getGewaehlteZeilenAnzahl() {
+		return gewaehlteZeilenAnzahl;
+	}
+
+	public void setGewaehlteZeilenAnzahl(int gewaehlteZeilenAnzahl) {
+		this.gewaehlteZeilenAnzahl = gewaehlteZeilenAnzahl;
+	}
+
+	public int getGewaehlteSpaltenAnzahl() {
+		return gewaehlteSpaltenAnzahl;
+	}
+
+	public void setGewaehlteSpaltenAnzahl(int gewaehlteSpaltenAnzahl) {
+		this.gewaehlteSpaltenAnzahl = gewaehlteSpaltenAnzahl;
+	}
+
+	public String getGewaehlterBeginner() {
+		return gewaehlterBeginner;
+	}
+
+	public void setGewaehlterBeginner(String gewaehlterBeginner) {
+		this.gewaehlterBeginner = gewaehlterBeginner;
+	}
+
+	public int getGewaehlteStrategie() {
+		return gewaehlteStrategie;
+	}
+
+	public void setGewaehlteStrategie(int gewaehlteStrategie) {
+		this.gewaehlteStrategie = gewaehlteStrategie;
+	}
+
+	public int getFarbenImSpiel() {
+		return farbenImSpiel;
+	}
+
+	public void setFarbenImSpiel(int farbenImSpiel) {
+		this.farbenImSpiel = farbenImSpiel;
+	}
+
+	public ArrayList<JPanel> getK1() {
+		return K1;
+	}
+
+	public void setK1(ArrayList<JPanel> k1) {
+		K1 = k1;
+	}
+
+	public ArrayList<JPanel> getK2() {
+		return K2;
+	}
+
+	public void setK2(ArrayList<JPanel> k2) {
+		K2 = k2;
+	}
+
+	public Color getS1Farbe() {
+		return s1Farbe;
+	}
+
+	public void setS1Farbe(Color s1Farbe) {
+		this.s1Farbe = s1Farbe;
+	}
+
+	public Color getS2Farbe() {
+		return s2Farbe;
+	}
+
+	public void setS2Farbe(Color s2Farbe) {
+		this.s2Farbe = s2Farbe;
+	}
+
+	public Color getS1FarbeDavor() {
+		return s1FarbeDavor;
+	}
+
+	public void setS1FarbeDavor(Color s1FarbeDavor) {
+		this.s1FarbeDavor = s1FarbeDavor;
+	}
+
+	public Color getS2FarbeDavor() {
+		return s2FarbeDavor;
+	}
+
+	public void setS2FarbeDavor(Color s2FarbeDavor) {
+		this.s2FarbeDavor = s2FarbeDavor;
+	}
+
+	public int getSpielZuege() {
+		return spielZuege;
+	}
+
+	public void setSpielZuege(int spielZuege) {
+		this.spielZuege = spielZuege;
+	}
+
+	public boolean iskVergroesert() {
+		return kVergroesert;
+	}
+
+	public void setkVergroesert(boolean kVergroesert) {
+		this.kVergroesert = kVergroesert;
+	}
+
+	public Color getGeklickteFarbe() {
+		return geklickteFarbe;
+	}
+
+	public void setGeklickteFarbe(Color geklickteFarbe) {
+		this.geklickteFarbe = geklickteFarbe;
+	}
+
+	public JLabel getZeilenUndSpaltenAnzeige() {
+		return zeilenUndSpaltenAnzeige;
+	}
+
+	public void setZeilenUndSpaltenAnzeige(JLabel zeilenUndSpaltenAnzeige) {
+		this.zeilenUndSpaltenAnzeige = zeilenUndSpaltenAnzeige;
+	}
+
+	public JPanel[][] getSpielbrettArray() {
+		return spielbrettArray;
+	}
+
+	public void setSpielbrettArray(JPanel[][] spielbrettArray) {
+		this.spielbrettArray = spielbrettArray;
+	}
+
+	public int[][] getKoordinaten() {
+		return koordinaten;
+	}
+
+	public void setKoordinaten(int[][] koordinaten) {
+		this.koordinaten = koordinaten;
+	}
+
+	public JRadioButton getS1RadioButton() {
+		return s1RadioButton;
+	}
+
+	public void setS1RadioButton(JRadioButton s1RadioButton) {
+		this.s1RadioButton = s1RadioButton;
+	}
+
+	public JRadioButton getS2RadioButton() {
+		return s2RadioButton;
+	}
+
+	public void setS2RadioButton(JRadioButton s2RadioButton) {
+		this.s2RadioButton = s2RadioButton;
+	}
+
+
 	private JButton startButton;
 	private JComboBox<String> zeilenAuswahl;
 	private JComboBox<String> spaltenAuswahl;
@@ -67,18 +472,35 @@ public class JPanels extends JPanel{
 	private String gewaehlterBeginner;
 	private int gewaehlteStrategie;
 	private int farbenImSpiel;
-	private int anzahlBenutzteFarben = 0;
+//	private ArrayList<Color> waehlbareFarbenS1;
+	
 	
 	private ArrayList<JPanel> K1;
 	private ArrayList<JPanel> K2;
 	private Color s1Farbe;
 	private Color s2Farbe;
+	private Color s1FarbeDavor;
+	private Color s2FarbeDavor;
+	
+	
 	private int groeseK1;
 	private int groeseK2;
 	private int spielZuege;
 	private boolean kVergroesert;
 	private Color geklickteFarbe;
 	private JLabel zeilenUndSpaltenAnzeige;
+	
+	
+
+
+
+
+
+
+
+
+
+
 	
 	
 	
@@ -93,6 +515,7 @@ public class JPanels extends JPanel{
 		this.myFrame = myFrame;
 		
 		this.setLayout(new BorderLayout());
+		this.setMinimumSize(new Dimension(500,500));
 		
 		
 		
@@ -100,19 +523,22 @@ public class JPanels extends JPanel{
 		 * Beide wichtigsten Panel. In menueTafel kommen die Menueeinstellungen, 
 		 * in anzeigeTafel das Spielbrett
 		 */
-		menueTafel = new JPanel(new GridLayout(2,1));
+		menueTafel = new JPanel();
+		menueTafel.setLayout(new BoxLayout(menueTafel, BoxLayout.Y_AXIS));
 		spielBrett = new JPanel();
-
+		
+		
 		
 		
 		menueTafel.setPreferredSize(new Dimension(myFrame.getWidth()/4, myFrame.getHeight()));
-		spielBrett.setPreferredSize(new Dimension(myFrame.getWidth()/4*3, myFrame.getHeight()));
+		spielBrett.setPreferredSize(new Dimension(myFrame.getWidth()/4*3, myFrame.getHeight()/8*7));
 
 		
 		
 		startButton = new JButton("Start");
 		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startButton.setFocusPainted(false);
+		
 		
 		
 		
@@ -185,28 +611,6 @@ public class JPanels extends JPanel{
 		
 
 		
-		startButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if(startButton.getText().equals("Start")) {
-					
-					setup();				
-
-				
-				
-			}	else {
-					startButton.setText("Start");
-					zeilenAuswahl.setEnabled(true);
-					spaltenAuswahl.setEnabled(true);
-					zeilenUndSpaltenAnzeige.setText("");
-					spielBrett.removeAll();
-					spielBrett.repaint();
-				
-				
-			} 
-			}
-		});
 		
 		
 		
@@ -344,6 +748,8 @@ public class JPanels extends JPanel{
 					
 					
 					setup1();
+					
+				
 
 
 				
@@ -369,13 +775,51 @@ public class JPanels extends JPanel{
 		
 		menueTafel.add(spielEinstellungen, BorderLayout.CENTER);
 		
+		JPanel anzeige = new JPanel();
+		anzeige.setLayout(new BorderLayout());
+		anzeige.add(spielBrett, BorderLayout.CENTER);
+
+		anzeige.add(farbenAnzeige,BorderLayout.SOUTH);
 		
 		
-		this.add(spielBrett,BorderLayout.CENTER);
+		startButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(startButton.getText().equals("Start")) {
+					
+					setup();	
+					farbenAnzeige.setLayout(new GridLayout(1,gewaehlteSpaltenAnzahl));
+					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl-1][0].getBackground();
+					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl-1].getBackground();
+					farbenAnzeigeInit(farbenAnzeige, s1Farbe,s2Farbe);
+					
+				
+				
+			}	else {
+					startButton.setText("Start");
+					zeilenAuswahl.setEnabled(true);
+					spaltenAuswahl.setEnabled(true);
+					zeilenUndSpaltenAnzeige.setText("");
+					spielBrett.removeAll();
+					spielBrett.repaint();
+				
+					farbenAnzeige.removeAll();
+					farbenAnzeige.revalidate();
+					farbenAnzeige.repaint();
+				
+			} 
+			}
+		});
+		
+		
+		
+		
+		this.add(anzeige,BorderLayout.CENTER);
 		this.add(menueTafel, BorderLayout.EAST);
 		
-		spielBrett.setBorder(new EmptyBorder(0, 0, 50, 0));
-
+		
+		
 		
 		
 		
@@ -385,6 +829,321 @@ public class JPanels extends JPanel{
 			
 		
 	}
+	
+	public void farbenAnzeigeInit(JPanel panel, Color s1, Color s2) {
+		
+		if(startButton.getText().equals("Stop")) {
+		panel.setPreferredSize(new Dimension(getWidth(), getHeight()/8));
+		
+		redPanel = new JPanel(new GridLayout(2,1));
+		blackPanel = new JPanel(new GridLayout(2,1));
+		bluePanel =new JPanel(new GridLayout(2,1));
+		cyanPanel = new JPanel(new GridLayout(2,1));;
+		grayPanel = new JPanel(new GridLayout(2,1));
+		greenPanel = new JPanel(new GridLayout(2,1));
+		brownPanel = new JPanel(new GridLayout(2,1));
+		orangePanel = new JPanel(new GridLayout(2,1));
+		pinkPanel = new JPanel(new GridLayout(2,1));
+		
+		
+
+		
+		//Zuerst alle moeglichen Farben deklarieren
+		Color brownColour = new Color(153,102,0);
+		
+		
+		JLabel red = new JLabel("Red");
+		redPanel.add(red);
+		redPanel.add(new JLabel("9"));
+		redPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel black = new JLabel("Black");
+		blackPanel.add(black);
+		blackPanel.add(new JLabel("1"));
+		blackPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel blue = new JLabel("Blue");
+		bluePanel.add(blue);
+		bluePanel.add(new JLabel("2"));
+		bluePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel cyan = new JLabel("Cyan");
+		cyanPanel.add(cyan);
+		cyanPanel.add(new JLabel("3"));
+		cyanPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel gray = new JLabel("Gray");
+		grayPanel.add(gray);
+		grayPanel.add(new JLabel("4"));
+		grayPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel green = new JLabel("Green");
+		greenPanel.add(green);
+		greenPanel.add(new JLabel("5"));
+		greenPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel brown = new JLabel("Brown");
+		brownPanel.add(brown);
+		brownPanel.add(new JLabel("6"));
+		brownPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel orange = new JLabel("Orange");
+		orangePanel.add(orange);
+		orangePanel.add(new JLabel("7"));
+		orangePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+		JLabel pink = new JLabel("Pink");
+		pinkPanel.add(pink);
+		pinkPanel.add(new JLabel("8"));
+		pinkPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		
+
+		//Ersten Spielzug initialisieren
+		
+		if(farbenImSpiel == 4) {
+			if((s1.equals(Color.black) == false) && ((s2.equals(Color.black)) == false)) {
+				panel.add(blackPanel);
+
+			}
+			if((s1.equals(Color.blue) == false) && ((s2.equals(Color.blue)) == false)) {
+				panel.add(bluePanel);
+
+			}
+			if((s1.equals(Color.cyan) == false) && (s2.equals(Color.cyan)) == false) {
+				panel.add(cyanPanel);
+
+
+			}
+			if((s1.equals(Color.gray) == false) && (s2.equals(Color.gray)) == false) {
+				panel.add(grayPanel);
+
+
+			}
+			
+			
+		}
+		
+		if(farbenImSpiel == 5) {
+			
+			if((s1.equals(Color.black) == false) && ((s2.equals(Color.black)) == false)) {
+				panel.add(blackPanel);
+
+			}
+			if((s1.equals(Color.blue) == false) && ((s2.equals(Color.blue)) == false)) {
+				panel.add(bluePanel);
+
+			}
+			if((s1.equals(Color.cyan) == false) && (s2.equals(Color.cyan)) == false) {
+				panel.add(cyanPanel);
+
+
+			}
+			if((s1.equals(Color.gray) == false) && (s2.equals(Color.gray)) == false) {
+				panel.add(grayPanel);
+
+
+			}
+			
+			if((s1.equals(Color.green) == false) && (s2.equals(Color.green)) == false) {
+				panel.add(greenPanel);
+
+
+			}
+		}
+		
+		if(farbenImSpiel == 6) {
+			if((s1.equals(Color.black) == false) && ((s2.equals(Color.black)) == false)) {
+				panel.add(blackPanel);
+
+			}
+			if((s1.equals(Color.blue) == false) && ((s2.equals(Color.blue)) == false)) {
+				panel.add(bluePanel);
+
+			}
+			if((s1.equals(Color.cyan) == false) && (s2.equals(Color.cyan)) == false) {
+				panel.add(cyanPanel);
+
+
+			}
+			if((s1.equals(Color.gray) == false) && (s2.equals(Color.gray)) == false) {
+				panel.add(grayPanel);
+
+
+			}
+			
+			if((s1.equals(Color.green) == false) && (s2.equals(Color.green)) == false) {
+				panel.add(greenPanel);
+
+
+			}
+			if((s1.equals(brownColour) == false) && (s2.equals(brownColour)) == false) {
+				panel.add(brownPanel);
+
+
+			}
+			
+		}
+		
+		if(farbenImSpiel == 7) {
+			if((s1.equals(Color.black) == false) && ((s2.equals(Color.black)) == false)) {
+				panel.add(blackPanel);
+
+			}
+			if((s1.equals(Color.blue) == false) && ((s2.equals(Color.blue)) == false)) {
+				panel.add(bluePanel);
+
+			}
+			if((s1.equals(Color.cyan) == false) && (s2.equals(Color.cyan)) == false) {
+				panel.add(cyanPanel);
+
+
+			}
+			if((s1.equals(Color.gray) == false) && (s2.equals(Color.gray)) == false) {
+				panel.add(grayPanel);
+
+
+			}
+			
+			if((s1.equals(Color.green) == false) && (s2.equals(Color.green)) == false) {
+				panel.add(greenPanel);
+
+
+			}
+			if((s1.equals(brownColour) == false) && (s2.equals(brownColour)) == false) {
+				panel.add(brownPanel);
+
+
+			}
+			
+			if((s1.equals(Color.orange) == false) && (s2.equals(Color.orange)) == false) {
+
+				panel.add(orangePanel);
+
+			}
+		}
+		
+		if(farbenImSpiel == 8) {
+			if((s1.equals(Color.black) == false) && ((s2.equals(Color.black)) == false)) {
+				panel.add(blackPanel);
+
+			}
+			if((s1.equals(Color.blue) == false) && ((s2.equals(Color.blue)) == false)) {
+				panel.add(bluePanel);
+
+			}
+			if((s1.equals(Color.cyan) == false) && (s2.equals(Color.cyan)) == false) {
+				panel.add(cyanPanel);
+
+
+			}
+			if((s1.equals(Color.gray) == false) && (s2.equals(Color.gray)) == false) {
+				panel.add(grayPanel);
+
+
+			}
+			
+			if((s1.equals(Color.green) == false) && (s2.equals(Color.green)) == false) {
+				panel.add(greenPanel);
+
+
+			}
+			if((s1.equals(brownColour) == false) && (s2.equals(brownColour)) == false) {
+				panel.add(brownPanel);
+
+
+			}
+			
+			if((s1.equals(Color.orange) == false) && (s2.equals(Color.orange)) == false) {
+
+				panel.add(orangePanel);
+
+			}
+			
+			if((s1.equals(Color.pink) == false) && (s2.equals(Color.pink)) == false) {
+
+				panel.add(pinkPanel);
+
+			}
+			
+			
+			
+		}
+		
+		
+		
+		
+		if(farbenImSpiel == 9) {
+			if((s1.equals(Color.black) == false) && ((s2.equals(Color.black)) == false)) {
+				panel.add(blackPanel);
+				
+
+			}
+			if((s1.equals(Color.blue) == false) && ((s2.equals(Color.blue)) == false)) {
+				panel.add(bluePanel);
+
+			}
+			if((s1.equals(Color.cyan) == false) && (s2.equals(Color.cyan)) == false) {
+				panel.add(cyanPanel);
+
+
+			}
+			if((s1.equals(Color.gray) == false) && (s2.equals(Color.gray)) == false) {
+				panel.add(grayPanel);
+
+
+			}
+			
+			if((s1.equals(Color.green) == false) && (s2.equals(Color.green)) == false) {
+				panel.add(greenPanel);
+
+
+			}
+			if((s1.equals(brownColour) == false) && (s2.equals(brownColour)) == false) {
+				panel.add(brownPanel);
+
+
+			}
+			
+			if((s1.equals(Color.orange) == false) && (s2.equals(Color.orange)) == false) {
+
+				panel.add(orangePanel);
+
+			}
+			
+			if((s1.equals(Color.pink) == false) && (s2.equals(Color.pink)) == false) {
+
+				panel.add(pinkPanel);
+
+			}
+			
+			if((s1.equals(Color.red) == false) && (s2.equals(Color.red)) == false) {
+
+				panel.add(redPanel);
+				
+			}
+			
+			
+		}
+		
+
+		} 
+		
+	}
+	
+	
+
+		
+	
+	
 	
 	
 	
@@ -418,8 +1177,6 @@ public class JPanels extends JPanel{
 				
 				spielbrettArray[i][j] = feld;
 				
-	
-				
 				int zeile = i;
 				int spalte = j;
 					
@@ -428,19 +1185,12 @@ public class JPanels extends JPanel{
 				
 				
 				
-				Color randomFarbe = randomFarbeWaehlen(aktuellVerfuegbareFarben.size(), spielbrettArray, i, j);
+				Color randomFarbe = randomFarbeWaehlen(ausgewaehlteFarben.size(), spielbrettArray, i, j);
 				if(!(benutzteFarben.contains(randomFarbe))) {
 					benutzteFarben.add(randomFarbe);
 				}
 				
-				
-				
 				feld.setBackground(randomFarbe);
-				
-
-				
-				
-				
 				
 			}
 			
@@ -449,31 +1199,10 @@ public class JPanels extends JPanel{
 		}
 		
 		
-		for(int i = 0; i < zeilen; i++) {
-			for(int j = 0; j < spalten; j++) {
-				
-				int zeile = i;
-				int spalte = j;
-				
-				spielbrettArray[i][j].addMouseListener(new MouseAdapter() {
-					
-					
-					public void mouseClicked(MouseEvent e) {
-						
-						
-						Color aktuelleFarbe = spielbrettArray[zeile][spalte].getBackground();
-												
-						
-					}
-				});
-				
-				
-
-				
-			}
-		}
+    
 		
-
+		
+		
 
 			
 		revalidate();
@@ -500,7 +1229,7 @@ public class JPanels extends JPanel{
 		ArrayList<Color> nachbarFarben = new ArrayList<Color>();
 		
 		
-		ArrayList<Color> ausgewaehlteFarbenTemporaer = new ArrayList<Color>(aktuellVerfuegbareFarben);
+		ArrayList<Color> ausgewaehlteFarbenTemporaer = new ArrayList<Color>(ausgewaehlteFarben);
 		
 				
 		Color nachbarFarbeOben = null;
@@ -563,7 +1292,6 @@ public class JPanels extends JPanel{
 	 */
 	public void farbenUebernehmen(int farbenImSpiel) {
 
-		Random rand = new Random();
 		
 		ArrayList<Color> temp = new ArrayList<Color>(alleMöglichenFarben);
 		
@@ -572,19 +1300,17 @@ public class JPanels extends JPanel{
 		
 		
 		
-		/*
-		 * Fehler gefunden: x kann auch zufaelligerweise 2 mal vorkommen, sodass bei ausgewaehlteFarben 2 Farben
-		 * gleichzeitig vorkommen können!
-		 */
+		
+		
+		
 		
 		for(int i = 0; i < farbenImSpiel; i++) {
-			int x = rand.nextInt(temp.size());
-			ausgewaehlteFarben.add(temp.get(x));
-			temp.remove(x);
+			ausgewaehlteFarben.add(temp.get(i));
 		}
 		
 		
-		aktuellVerfuegbareFarben = new ArrayList<Color>(ausgewaehlteFarben);
+		aktuellVerfuegbareFarben = new ArrayList(ausgewaehlteFarben);
+		
 		
 		
 		
@@ -592,13 +1318,18 @@ public class JPanels extends JPanel{
 	
 	
 	
+	
+	
+	
+	
 	public void alleColorsAdden() {
+		Color brown = new Color(153,102,0);
 		alleMöglichenFarben.add(Color.black);
 		alleMöglichenFarben.add(Color.blue);
 		alleMöglichenFarben.add(Color.cyan);
 		alleMöglichenFarben.add(Color.gray);
 		alleMöglichenFarben.add(Color.green);
-		alleMöglichenFarben.add(Color.magenta);
+		alleMöglichenFarben.add(brown);
 		alleMöglichenFarben.add(Color.orange);
 		alleMöglichenFarben.add(Color.pink);
 		alleMöglichenFarben.add(Color.red);
@@ -607,7 +1338,7 @@ public class JPanels extends JPanel{
 	}
 	
 	public String colorToString(Color color) {
-		
+		Color brown = new Color(153,102,0);
 		if(color.equals(color.black)) return "Schwarz";
 		if(color.equals(color.blue)) return "Blau";
 		if(color.equals(color.yellow)) return "Gelb";
@@ -617,6 +1348,7 @@ public class JPanels extends JPanel{
 		if(color.equals(color.magenta)) return "Magenta";
 		if(color.equals(color.orange)) return "Orange";
 		if(color.equals(color.cyan)) return "Hellblau";
+		if(color.equals(brown)) return "Braun";
 		
 		return "Andere Farbe";
 
@@ -666,6 +1398,8 @@ public class JPanels extends JPanel{
 	
 	public void setup1() {
 		
+		
+		//Groese der beiden Komponenten
 		K1 = new ArrayList<JPanel>();
 		K2 = new ArrayList<JPanel>();
 		
@@ -683,8 +1417,17 @@ public class JPanels extends JPanel{
 		s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl-1].getBackground();
 
 		
+		aktuellVerfuegbareFarben.remove(s1Farbe);
+		removteFarbe = s1Farbe;
+		aktuellVerfuegbareFarben.remove(s2Farbe);
+
+		
+		
+
+		
 		spielZuege = 0;
 		kVergroesert = true;
+		
 		
 		
 		/*
@@ -693,11 +1436,10 @@ public class JPanels extends JPanel{
 		 */
 		
 		boolean max = maximaleZuege(spielZuege, kVergroesert);
-		boolean endKonf = alleFelderBesetzt(s1Farbe,s2Farbe);
+		boolean endKonf = alleFelderBesetzt();
 		
 		
 		
-//		while(max == false && endKonf == false) {
 			
 			for(int i = 0; i < gewaehlteZeilenAnzahl; i++) {
 				
@@ -714,136 +1456,265 @@ public class JPanels extends JPanel{
 							//Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
 							
-							if(!(geklickteFarbe.equals(s1Farbe))) {
+							if(aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
 								spielZuege++;
+								groeseK1 = komponenteAnpassen(K1, geklickteFarbe, groeseK1);
+								
+								s1FarbeDavor=s1Farbe;
 								s1Farbe = geklickteFarbe;
+
+
+								aktuellVerfuegbareFarben.add(removteFarbe);
+								
+								aktuellVerfuegbareFarben.remove(geklickteFarbe);
+								removteFarbe = geklickteFarbe;
+								
+								
+								
+								
+								
+
+								
+								
+								for(int i = 0; i < aktuellVerfuegbareFarben.size(); i++) {
+									colorToString(aktuellVerfuegbareFarben.get(i));
+								}
 							}
 							
 							
-							
-							
-						groeseK1 = komponenteAnpassen(K1, geklickteFarbe, groeseK1);
-						System.out.println("Groese K1(geklikt): " + groeseK1);
-//						System.out.println("Spielzug: " + spielZuege);
-
-							
-
 
 						}
 					});
 					
 					
-					
-					
-
-										
 				}
-				
-//			}
+			
 				
 			
 		}
-			
-			
-			//Tastatureingaben sollen ebenfalls erkannt werden, um die jeweilige Farbe zu waehlen
 			spielBrett.grabFocus();
 			spielBrett.addKeyListener(new KeyAdapter() {
+				
 				public void keyPressed(KeyEvent e) {
 					
-					alleMöglichenFarben.add(Color.red);
-
-					switch(e.getKeyChar()) {
-					
-					case '1': 
-						
-						groeseK1 = komponenteAnpassen(K1, Color.black, groeseK1);
-						
-						if(!(Color.black.equals(s1Farbe))) {
+					if(e.getKeyChar() == '1') {
+						if(Color.black.equals(s1Farbe) == false && Color.black.equals(s2Farbe) == false) {
 							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.black, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
 							s1Farbe = Color.black;
-						}						
-						break;
-						
-						
-					case '2':
-						groeseK1 = komponenteAnpassen(K1, Color.blue, groeseK1);
-						
-						if(!(Color.blue.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.blue;
-						}						
-						break;
-	              
-		                
-					
-					
-					case '3':
-						groeseK1 = komponenteAnpassen(K1, Color.gray, groeseK1);
-						
-						if(!(Color.gray.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.gray;
-						}						
-						break;
-						
-					case '4':
-						groeseK1 = komponenteAnpassen(K1, Color.green, groeseK1);
-						
-						if(!(Color.green.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.green;
-						}						
-						break;
-						
-					case '5':
-						groeseK1 = komponenteAnpassen(K1, Color.magenta, groeseK1);
-						
-						if(!(Color.magenta.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.magenta;
-						}						
-						break;
-						
-						
-					case '6':
-						groeseK1 = komponenteAnpassen(K1, Color.orange, groeseK1);
-						
-						if(!(Color.orange.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.orange;
-						}						
-						break;
-						
-					case '7':
-						groeseK1 = komponenteAnpassen(K1, Color.pink, groeseK1);
-						
-						if(!(Color.pink.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.pink;
-						}						
-						break;
-					
-					case '8':
-						groeseK1 = komponenteAnpassen(K1, Color.red, groeseK1);
-						
-						if(!(Color.red.equals(s1Farbe))) {
-							spielZuege++;
-							s1Farbe = Color.red;
-						}						
-						break;
 
-	            }
-	       
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.black);
+							removteFarbe = Color.black;
+							
+
+						}						
+					}
+					
+					
+					
+					if(e.getKeyChar() == '2') {
+						if(Color.blue.equals(s1Farbe) == false && Color.blue.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.blue, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.blue;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.blue);
+							removteFarbe = Color.blue;
+							
+							
+							
+						}						
+					}
+					
+					
+					
+
+					if(e.getKeyChar() == '3') {
+
+						if(Color.cyan.equals(s1Farbe) == false && Color.cyan.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.cyan, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.cyan;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.cyan);
+							removteFarbe = Color.cyan;
+
+							
+							
+						
+					}
+				}
+					
+					if(e.getKeyChar() == '4') {
+						if(Color.gray.equals(s1Farbe) == false && Color.gray.equals(s1Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.gray, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.gray;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.gray);
+							removteFarbe = Color.gray;
+							
+
+							
+							
+
+
+							
+						}		
+						
+					}
+						
+				
+					
+					if(e.getKeyChar() == '5' && farbenImSpiel >= 5) {
+						
+						if(Color.green.equals(s1Farbe) == false && Color.green.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.green, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.green;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.green);
+							removteFarbe = Color.green;
+							
+
+							
+							
+						
+					}
+				}
+					
+					if(e.getKeyChar() == '6' && farbenImSpiel >=6) {
+					
+						Color brown = new Color(153,102,0);
+
+						if(brown.equals(s1Farbe) == false && brown.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, brown, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = brown;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(brown);
+							removteFarbe = brown;
+							
+				}
+					
+			}
+					
+					if(e.getKeyChar() == '7' && farbenImSpiel >= 7) {
+						
+					
+						if(Color.orange.equals(s1Farbe) == false && Color.orange.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.orange, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.orange;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.orange);
+							removteFarbe = Color.orange;
+							
+							
+						}		
+						
+					}
+					
+					
+					
+					if(e.getKeyChar() == '8' && farbenImSpiel >=8) {
+						
+						if(Color.pink.equals(s1Farbe) == false && Color.pink.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.pink, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.pink;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.pink);
+							removteFarbe = Color.pink;
+
+							
+							
+
+					
+					
+				}
+						
+			}
+					
+					
+					if(e.getKeyChar() == '9' && farbenImSpiel == 9) {
+						
+						if(Color.red.equals(s1Farbe) == false && Color.red.equals(s2Farbe) == false) {
+							spielZuege++;
+							groeseK1 = komponenteAnpassen(K1, Color.red, groeseK1);
+							
+							s1FarbeDavor=s1Farbe;
+							s1Farbe = Color.red;
+
+
+							aktuellVerfuegbareFarben.add(removteFarbe);
+							
+							aktuellVerfuegbareFarben.remove(Color.red);
+							removteFarbe = Color.red;
+
+							
+
+						
+					}
+					
+				}
+					
+				
+						
+				
 			}
 				
 			});
+							
 			
-			
-			
-			
-		
 
 	}
+	
+	
+	
+	
+			
+	
 	
 	public int getGroeseK1() {
 		return groeseK1;
@@ -882,22 +1753,17 @@ public class JPanels extends JPanel{
 	
 	
 	
-	public boolean alleFelderBesetzt(Color s1, Color s2) {
+	public boolean alleFelderBesetzt() {
 		
-		for(int i = 0; i < spielbrettArray.length; i++) {
-			
-			for(int j = 0; j < spielbrettArray[i].length; j++) {
-				
-				Color feldFarbe = spielbrettArray[i][j].getBackground();
-				if(!(feldFarbe.equals(s1)) && !(feldFarbe.equals(s2)) ) {
-					return false;
-				}
-				
-			}
-			
+		int felderAnzahl = gewaehlteZeilenAnzahl*gewaehlteSpaltenAnzahl;
+		
+		if(felderAnzahl-K1.size()-K2.size() == 0) {
+			return true;
+		} else {
+			return false;
+
 		}
 		
-		return true;
 		
 	}
 	
@@ -911,8 +1777,6 @@ public class JPanels extends JPanel{
 	 * Farbe zur Komponente hinzu
 	 */
 	public void nachbarAufnehmen(ArrayList<JPanel> K,Color farbe, int zeile, int spalte) {
-		
-						
 			
 			if(zeile > 0) {
 				Color obererNachbar = spielbrettArray[zeile-1][spalte].getBackground();
@@ -1000,9 +1864,7 @@ public class JPanels extends JPanel{
 		
 
 	}
-				
-		
-		
+	
 	
 	
 	
@@ -1048,6 +1910,8 @@ public int getSpalte(JPanel[][] brett, JPanel panel, int zeilen, int spalten) {
 
 
 	public void strat1() {
+		
+		
 		
 		
 		
