@@ -7,16 +7,24 @@ import java.util.ArrayList;
  */
 
 import logic.Field;
+import logic.JPanels;
+import logic.MyFrame;
 
 public class Testing {
 
 	private Field[][] board;
+	private JPanels jPanel;
 
 	public Testing(Field[][] initBoard) {
 		this.board = initBoard;
 		
-		
 	}
+	
+	public void zugriffMyFrame(JPanels jPanel) {
+		this.jPanel = jPanel;
+	}
+	
+	
 
 	public boolean isStartklar() {		
 		
@@ -75,16 +83,88 @@ public class Testing {
 		
 
 	}
+	
+	
+	/*
+	 * Gucken, ob ich diese Methode hier in der Klasse testing implementieren kann
+	 * Durch diese Methode: Komponentengroese wird zuruecgegeben
+	 */
+//	public void getGroese() {
+//		jPanel = zugriffMyFrame(JPanels j);
+//		System.out.println(jPanel.getGroeseK1());
+//	}
+	
+	
 
 	public boolean isEndConfig() {
+		
+		
+		
+
 		
 		
 
 		return false;
 	}
+	
+	
+	
 
 	
 	public int testStrategy01() {
+		
+		//Kopie von dem Board, um auf diesem dann zu den Zug zu berechnen, wo die Veraenderung am kleinsten ist
+		Field[][] copyBoard = getBoard();
+		
+		
+		
+		//Zuerst alle verfuegbaren bzw waehlbaren Farben speichern
+		ArrayList<Integer> alleVerfuegbarenFarben = new ArrayList<Integer>();
+		
+		int zeilen = jPanel.getGewaehlteZeilenAnzahl();
+		int spalten = jPanel.getGewaehlteSpaltenAnzahl();
+
+		
+		for(int i = 0; i < zeilen; i++) {
+			for(int j = 0; j < spalten; j++) {
+				
+				if(alleVerfuegbarenFarben.contains(copyBoard[i][j].getColor()) == false) {
+					if((i == zeilen-1 && j == 0) || (i == 0 && j == spalten-1)) {
+						continue;
+					} else {
+						alleVerfuegbarenFarben.add(copyBoard[i][j].getColor());
+
+					}
+				}
+				
+			}
+		}
+		
+		
+		/*
+		 * Nun: berechnen, welcher naechster Zug die guenstigste Vergroeserung mit sich bringt
+		 * Dazu jede Farbe einmal angucken und gucken, wie gros komponente von s2 danach ist
+		 */
+		
+		
+		int color = 1;
+		for(int i = 0; i < alleVerfuegbarenFarben.size(); i++) {
+			color = alleVerfuegbarenFarben.get(i);
+		}
+		
+		
+		
+		int groeseK = 1;
+		
+		int colS1 = board[0][board[0].length-1].getColor();
+		
+		
+
+		
+		
+		
+		
+		
 
 		return 0;
 	}
