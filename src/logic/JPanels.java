@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
@@ -474,6 +475,7 @@ public class JPanels extends JPanel {
 	private ArrayList<JPanel> K1;
 	private ArrayList<JPanel> K2;
 	private ArrayList<JPanel> K2Copy;
+	private ArrayList<JPanel> K1Copy;
 	private Color s1Farbe;
 	private Color s2Farbe;
 	private Color s2FarbeCopy;
@@ -1006,7 +1008,6 @@ public class JPanels extends JPanel {
 		int spalten = gewaehlteSpaltenAnzahl;
 
 		spielBrett.setLayout(new GridLayout(zeilen, spalten));
-
 		spielbrettArray = new JPanel[zeilen][spalten];
 		spielBrettArrayField = new Field[zeilen][spalten];
 		spielbrettArrayCopy = new JPanel[zeilen][spalten];		
@@ -1319,15 +1320,36 @@ public class JPanels extends JPanel {
 
 						spielZuege++;
 						groeseK1 = komponenteAnpassen(K1, Color.black, groeseK1);
-
-												
+						
 						anzeigeAktualisierenKey(farbenAnzeige, 1);
 						
-//						strategy1(spielbrettArray);
 
+						Color c = null;
 
+						switch(gewaehlteStrategie) {
+						
+						case 1:
+							c = strategy1(spielbrettArray);
+							spielZugs2(c);
+
+							break;
+							
+						case 2:
+							c = strategy2(spielbrettArray);
+							spielZugs2(c);
+
+							break;
+						
+						case 3:
+							c = strategy3(spielbrettArray);
+							spielZugs2(c);
+							break;
+			
 						}
 					}
+				}
+					
+					
 				}
 
 				if (e.getKeyChar() == '2') {
@@ -1343,12 +1365,34 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.blue, groeseK1);
-
-													
+							
 							anzeigeAktualisierenKey(farbenAnzeige, 2);
 							
-//							strategy1(spielbrettArray);
 
+
+													
+							Color c = null;
+
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 
 					}
@@ -1369,13 +1413,33 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.cyan, groeseK1);
-
-													
+							
 							anzeigeAktualisierenKey(farbenAnzeige, 3);
 							
-//							strategy1(spielbrettArray);
 
 
+							Color c = null;
+
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 
 					}
@@ -1396,11 +1460,33 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.gray, groeseK1);
-
-													
+							
 							anzeigeAktualisierenKey(farbenAnzeige, 4);
 							
-//							strategy1(spielbrettArray);
+
+
+							Color c = null;
+
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 
 					}
@@ -1423,14 +1509,32 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.green, groeseK1);
-
-													
 							anzeigeAktualisierenKey(farbenAnzeige, 5);
 							
-//							strategy1(spielbrettArray);
 
 
+							Color c = null;
 
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 					}
 				}
 					
@@ -1451,11 +1555,31 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, brown, groeseK1);
-
-													
 							anzeigeAktualisierenKey(farbenAnzeige, 6);
 							
-//							strategy1(spielbrettArray);
+
+							Color c = null;
+
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 
 
@@ -1480,12 +1604,31 @@ public class JPanels extends JPanel {
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.orange, groeseK1);
 
-													
-							
 							anzeigeAktualisierenKey(farbenAnzeige, 7);
 							
-//							strategy1(spielbrettArray);
 
+							Color c = null;
+
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 
 					}
@@ -1512,8 +1655,28 @@ public class JPanels extends JPanel {
 													
 							anzeigeAktualisierenKey(farbenAnzeige, 8);
 							
-//							strategy1(spielbrettArray);
+							Color c = null;
 
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 
 					}
@@ -1540,7 +1703,28 @@ public class JPanels extends JPanel {
 													
 							anzeigeAktualisierenKey(farbenAnzeige, 9);
 							
-//							strategy1(spielbrettArray);
+							Color c = null;
+
+							switch(gewaehlteStrategie) {
+							
+							case 1:
+								c = strategy1(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+								
+							case 2:
+								c = strategy2(spielbrettArray);
+								spielZugs2(c);
+
+								break;
+							
+							case 3:
+								c = strategy3(spielbrettArray);
+								spielZugs2(c);
+								break;
+				
+							}
 
 							
 
@@ -1553,7 +1737,15 @@ public class JPanels extends JPanel {
 				
 
 				
-				
+				for(int i = 0; i < spielBrettArrayField.length ; i ++){
+
+		            System.out.println();
+		            for(int j = 0 ; j < spielBrettArrayField[i].length ; j++){
+		                System.out.print(" | " + spielBrettArrayField[i][j].getColor());
+		            }
+		            System.out.print(" |");
+		            System.out.println();
+		        }
 
 			}
 
@@ -1562,9 +1754,10 @@ public class JPanels extends JPanel {
 	}
 	
 	
-	public void strategy1(JPanel[][] board) {
+	public Color strategy2(JPanel[][] board) {
 		
-		aktuellVerfuegbareFarben= farbenAktualisieren();
+		
+aktuellVerfuegbareFarben= farbenAktualisieren();
 		
 		ArrayList<Color> aktuellVerfuegbareFarbenCopy = new ArrayList<Color>(aktuellVerfuegbareFarben);
 		
@@ -1580,8 +1773,44 @@ public class JPanels extends JPanel {
 		int k1Red = groeseK2;
 
 		
-		int zeilen = gewaehlteZeilenAnzahl;
-		int spalten = gewaehlteSpaltenAnzahl;
+		//Copyattribute, mit denen ich den naechsten Zug simuliere
+		K2Copy = new ArrayList<JPanel>(K2);
+		s2FarbeCopy = s2Farbe;
+		
+			
+			
+		Color col = farbeWaehlens2(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		
+		
+		return col;
+		
+		
+		
+		
+		
+		
+	}
+		
+		
+	
+	
+	
+	public Color strategy1(JPanel[][] board) {
+		
+		aktuellVerfuegbareFarben= farbenAktualisieren();
+		
+		
+		
+		int k1Black = groeseK2;
+		int k1Blue = groeseK2;
+		int k1Cyan = groeseK2;
+		int k1Brown = groeseK2;
+		int k1Gray = groeseK2;
+		int k1Green = groeseK2;
+		int k1Pink = groeseK2;
+		int k1Yellow = groeseK2;
+		int k1Red = groeseK2;
+
 		
 		
 		
@@ -1591,100 +1820,373 @@ public class JPanels extends JPanel {
 		
 		
 		
-		
-		
-		//Mit allen Farben das Board ausprobieren und gucken, welches die geringste vergroeserung gibt
-		Color c = Color.black;
-//		for(int i = 0; i < aktuellVerfuegbareFarben.size(); i++) {
-//			c = aktuellVerfuegbareFarben.get(i);	
-//		}
-		
-		
-		
-		
-		
-		/*
-		 * Idee: Copy Board wie das aktuelle Board erschaffen und dort die spielzuege durchfuehren
-		 */
-		
-		
-		if(c.equals(Color.black)) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if(s1Farbe.equals(Color.black) == false && s2FarbeCopy.equals(Color.black) == false) {
-				aktuellVerfuegbareFarbenCopy = farbenAktualisieren();
-				if(aktuellVerfuegbareFarbenCopy.contains(Color.black) == true) {
-					
-					s2FarbeDavorCopy = s2FarbeCopy;
-					s2FarbeCopy = Color.black;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarbenCopy = farbenAktualisieren();
-//					spielZuege++;
-					groeseK2Copy = komponenteAnpassen(K2Copy, Color.black, groeseK2Copy);
-					
-					
-					k1Black = groeseK2Copy;
-					
-			}
-			}
-			
-			/*
-			 * Groese von Copy wieder zuruecksetzen. GroeseK2 wurde nt veraendert, weswegen diese als
-			 * Backup dient
-			 */
-			groeseK2Copy = groeseK2;
 			
 			
-		}
+		Color col = farbeWaehlens1(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
 		
-		if(c.equals(Color.blue)) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if(s1Farbe.equals(Color.blue) == false && s2FarbeCopy.equals(Color.blue) == false) {
-				aktuellVerfuegbareFarbenCopy= farbenAktualisieren();
-				if(aktuellVerfuegbareFarbenCopy.contains(Color.blue) == true) {
-					
-					s2FarbeDavorCopy = s2FarbeCopy;
-					s2FarbeCopy = Color.blue;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarbenCopy = farbenAktualisieren();
-					groeseK2Copy = komponenteAnpassen(K2Copy, Color.blue, groeseK2Copy);
-					
-					
-					k1Blue = groeseK2Copy;
-					
-			}
-			}
+		return col;
+		
+
+		
+		
 			
-			/*
-			 * Groese von Copy wieder zuruecksetzen. GroeseK2 wurde nt veraendert, weswegen diese als
-			 * Backup dient
-			 */
-			groeseK2Copy = groeseK2;
 			
-		}
+						
+			
+		
+		//Eigentlicher Spielzug, bei der ich dann die jeweilige Farbe gemaes der Strategie zurueckgeben
 		
 		
+		
+	}
+	
+	
+public Color strategy3(JPanel[][] board) {
+		
+		aktuellVerfuegbareFarben= farbenAktualisieren();
+				
+		
+		int k1Black = groeseK2;
+		int k1Blue = groeseK2;
+		int k1Cyan = groeseK2;
+		int k1Brown = groeseK2;
+		int k1Gray = groeseK2;
+		int k1Green = groeseK2;
+		int k1Pink = groeseK2;
+		int k1Yellow = groeseK2;
+		int k1Red = groeseK2;
+
 				
 		
 		
-		//Eigentlicher Spielzug, bei der ich dann die jeweilige Farbe gemaes der Strategie zurueckgeben
-//		spielZugs2(c);
+		//Copyattribute, mit denen ich den naechsten Zug simuliere
+		K1Copy = new ArrayList<JPanel>(K1);
 		
 		
 		
+			
+			
+		Color col = farbeWaehlens3(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
 		
+		return col;
+				
 		
+		
+	}
+	
+	
+	
+	
+	
+	public Color farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+		
+		
+		ArrayList<Element> elemente = new ArrayList<Element>();
+		Color brown = new Color(153,102,0);
+
+						
+			if(aktuellVerfuegbareFarben.contains(Color.black)) {
+				k1 = komponentenZuwachs(K2Copy, Color.black, groeseK2);
+				Element black = new Element(Color.black,k1, 1);
+				elemente.add(black);
+				K2Copy = new ArrayList<>(K2);
+
+			}
+			
+
+			if(aktuellVerfuegbareFarben.contains(Color.blue)) {
+				k2 = komponentenZuwachs(K2Copy, Color.blue, groeseK2);
+				Element blue = new Element(Color.blue,k2, 2);
+				elemente.add(blue);
+				K2Copy = new ArrayList<>(K2);
+
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.cyan)) {
+				k3 = komponentenZuwachs(K2Copy, Color.cyan, groeseK2);
+				Element cyan = new Element(Color.cyan,k3,3);
+				elemente.add(cyan);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.gray)) {
+				k4 = komponentenZuwachs(K2Copy, Color.gray, groeseK2);
+				Element gray = new Element(Color.gray,k4,4);
+				elemente.add(gray);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.green)) {
+				k5 = komponentenZuwachs(K2Copy, Color.green, groeseK2);
+				Element green = new Element(Color.green,k5,5);
+				elemente.add(green);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(brown)) {
+				k6 = komponentenZuwachs(K2Copy, brown, groeseK2);
+				Element brown1 = new Element(brown,k6,6);
+				elemente.add(brown1);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.orange)) {
+				k7 = komponentenZuwachs(K2Copy, Color.orange, groeseK2);
+				Element orange = new Element(Color.orange,k7,7);
+				elemente.add(orange);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.pink)) {
+				k8 = komponentenZuwachs(K2Copy, Color.pink, groeseK2);
+				Element pink = new Element(Color.pink,k8,8);
+				elemente.add(pink);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.red)) {
+				k9 = komponentenZuwachs(K2Copy, Color.red, groeseK2);
+				Element red = new Element(Color.red,k9,9);
+				elemente.add(red);
+				K2Copy = new ArrayList<>(K2);
+
+			}
+			
+			
+			if(aktuellVerfuegbareFarben.size() > 0) {
+			Element c = elemente.get(0);
+			for(int i = 1; i < elemente.size(); i++) {
+				
+				if(elemente.get(i).getGroese() < c.getGroese()) {
+					c = elemente.get(i);
+				}
+				
+				
+			}
+			
+			return c.getCol();
+			} else {
+				return null;
+			}	
+		
+		
+	}
+	
+	
+public Color farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+		
+		
+		ArrayList<Element> elemente = new ArrayList<Element>();
+		Color brown = new Color(153,102,0);
+
+						
+			if(aktuellVerfuegbareFarben.contains(Color.black)) {
+				k1 = komponentenZuwachs(K2Copy, Color.black, groeseK2);
+				Element black = new Element(Color.black,k1, 1);
+				elemente.add(black);
+				K2Copy = new ArrayList<>(K2);
+
+			}
+			
+
+			if(aktuellVerfuegbareFarben.contains(Color.blue)) {
+				k2 = komponentenZuwachs(K2Copy, Color.blue, groeseK2);
+				Element blue = new Element(Color.blue,k2, 2);
+				elemente.add(blue);
+				K2Copy = new ArrayList<>(K2);
+
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.cyan)) {
+				k3 = komponentenZuwachs(K2Copy, Color.cyan, groeseK2);
+				Element cyan = new Element(Color.cyan,k3,3);
+				elemente.add(cyan);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.gray)) {
+				k4 = komponentenZuwachs(K2Copy, Color.gray, groeseK2);
+				Element gray = new Element(Color.gray,k4,4);
+				elemente.add(gray);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.green)) {
+				k5 = komponentenZuwachs(K2Copy, Color.green, groeseK2);
+				Element green = new Element(Color.green,k5,5);
+				elemente.add(green);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(brown)) {
+				k6 = komponentenZuwachs(K2Copy, brown, groeseK2);
+				Element brown1 = new Element(brown,k6,6);
+				elemente.add(brown1);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.orange)) {
+				k7 = komponentenZuwachs(K2Copy, Color.orange, groeseK2);
+				Element orange = new Element(Color.orange,k7,7);
+				elemente.add(orange);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.pink)) {
+				k8 = komponentenZuwachs(K2Copy, Color.pink, groeseK2);
+				Element pink = new Element(Color.pink,k8,8);
+				elemente.add(pink);
+				K2Copy = new ArrayList<>(K2);
+
+
+			}if(aktuellVerfuegbareFarben.contains(Color.red)) {
+				k9 = komponentenZuwachs(K2Copy, Color.red, groeseK2);
+				Element red = new Element(Color.red,k9,9);
+				elemente.add(red);
+				K2Copy = new ArrayList<>(K2);
+
+			}
+			
+			
+			//Nun groeste Farbe auswaehlen
+			if(aktuellVerfuegbareFarben.size() > 0) {
+			Element c = elemente.get(0);
+			for(int i = 1; i < elemente.size(); i++) {
+				
+				if(elemente.get(i).getGroese() > c.getGroese()) {
+					c = elemente.get(i);
+				}
+				
+				
+			}
+			
+			return c.getCol();
+			} else {
+				return null;
+			}	
+		
+		
+	}
+
+
+public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+	
+	
+	
+	ArrayList<Element> elemente = new ArrayList<Element>();
+	Color brown = new Color(153,102,0);
+
+					
+		if(aktuellVerfuegbareFarben.contains(Color.black)) {
+			k1 = komponentenZuwachs(K1Copy, Color.black, groeseK1);
+			Element black = new Element(Color.black,k1, 1);
+			elemente.add(black);
+			K1Copy = new ArrayList<>(K1);
+
+		}
+		
+
+		if(aktuellVerfuegbareFarben.contains(Color.blue)) {
+			k2 = komponentenZuwachs(K1Copy, Color.blue, groeseK1);
+			Element blue = new Element(Color.blue,k2, 2);
+			elemente.add(blue);
+			K1Copy = new ArrayList<>(K1);
+
+
+
+		}if(aktuellVerfuegbareFarben.contains(Color.cyan)) {
+			k3 = komponentenZuwachs(K1Copy, Color.cyan, groeseK1);
+			Element cyan = new Element(Color.cyan,k3,3);
+			elemente.add(cyan);
+			K1Copy = new ArrayList<>(K1);
+
+
+		}if(aktuellVerfuegbareFarben.contains(Color.gray)) {
+			k4 = komponentenZuwachs(K1Copy, Color.gray, groeseK1);
+			Element gray = new Element(Color.gray,k4,4);
+			elemente.add(gray);
+			K1Copy = new ArrayList<>(K1);
+
+
+		}if(aktuellVerfuegbareFarben.contains(Color.green)) {
+			k5 = komponentenZuwachs(K1Copy, Color.green, groeseK1);
+			Element green = new Element(Color.green,k5,5);
+			elemente.add(green);
+			K1Copy = new ArrayList<>(K1);
+
+
+		}if(aktuellVerfuegbareFarben.contains(brown)) {
+			k6 = komponentenZuwachs(K1Copy, brown, groeseK1);
+			Element brown1 = new Element(brown,k6,6);
+			elemente.add(brown1);
+			K1Copy = new ArrayList<>(K1);
+
+
+		}if(aktuellVerfuegbareFarben.contains(Color.orange)) {
+			k7 = komponentenZuwachs(K1Copy, Color.orange, groeseK1);
+			Element orange = new Element(Color.orange,k7,7);
+			elemente.add(orange);
+			K1Copy = new ArrayList<>(K1);
+
+
+		}if(aktuellVerfuegbareFarben.contains(Color.pink)) {
+			k8 = komponentenZuwachs(K1Copy, Color.pink, groeseK1);
+			Element pink = new Element(Color.pink,k8,8);
+			elemente.add(pink);
+			K1Copy = new ArrayList<>(K1);
+
+
+		}if(aktuellVerfuegbareFarben.contains(Color.red)) {
+			k9 = komponentenZuwachs(K1Copy, Color.red, groeseK1);
+			Element red = new Element(Color.red,k9,9);
+			elemente.add(red);
+			K1Copy = new ArrayList<>(K1);
+
+		}
+		
+		
+		//Nun groeste Farbe auswaehlen
+		if(aktuellVerfuegbareFarben.size() > 0) {
+		Element c = elemente.get(0);
+		for(int i = 1; i < elemente.size(); i++) {
+			
+			if(elemente.get(i).getGroese() > c.getGroese()) {
+				c = elemente.get(i);
+			}
+			
+			
+		}
+		
+		return c.getCol();
+		} else {
+			return null;
+		}	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+	
+	
+	
+	public int komponentenZuwachs(ArrayList<JPanel> K, Color c, int groeseK) {
+		
+		for (int i = 0; i < K.size(); i++) {
+			int zeile = getZeile(spielbrettArray, K.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+			int spalte = getSpalte(spielbrettArray, K.get(i), gewaehlteZeilenAnzahl, gewaehlteSpaltenAnzahl);
+			nachbarAufnehmen(K, c, zeile, spalte);
+		}
+		
+		
+		groeseK = K.size();
+		return groeseK;
 		
 	}
 	
@@ -1692,11 +2194,13 @@ public class JPanels extends JPanel {
 		
 		aktuellVerfuegbareFarben= farbenAktualisieren();
 		
-			
+		
+		
+		
+		try {	
 		if(c.equals(Color.black)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.black) == false && s2Farbe.equals(Color.black) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.black) == true) {
 					
@@ -1724,7 +2228,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.blue)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.blue) == false && s2Farbe.equals(Color.blue) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.blue) == true) {
 					
@@ -1752,7 +2255,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.cyan)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.cyan) == false && s2Farbe.equals(Color.cyan) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.cyan) == true) {
 					
@@ -1780,7 +2282,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.gray)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.gray) == false && s2Farbe.equals(Color.gray) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.gray) == true) {
 					
@@ -1808,7 +2309,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.green)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.green) == false && s2Farbe.equals(Color.green) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.green) == true) {
 					
@@ -1838,7 +2338,6 @@ public class JPanels extends JPanel {
 		if(c.equals(brown)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(brown) == false && s2Farbe.equals(brown) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(brown) == true) {
 					
@@ -1866,7 +2365,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.orange)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.orange) == false && s2Farbe.equals(Color.orange) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.orange) == true) {
 					
@@ -1894,7 +2392,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.pink)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.pink) == false && s2Farbe.equals(Color.pink) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.pink) == true) {
 					
@@ -1922,7 +2419,6 @@ public class JPanels extends JPanel {
 		if(c.equals(Color.red)) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
 			if(s1Farbe.equals(Color.red) == false && s2Farbe.equals(Color.red) == false) {
-				aktuellVerfuegbareFarben= farbenAktualisieren();
 
 				if(aktuellVerfuegbareFarben.contains(Color.red) == true) {
 					
@@ -1945,6 +2441,10 @@ public class JPanels extends JPanel {
 
 			}
 			}
+		}
+		
+		} catch(Exception e) {
+			System.out.println("Spiel zu Ende!");
 		}
 			
 			
@@ -2359,8 +2859,6 @@ public class JPanels extends JPanel {
 
 	}
 
-	public void strat1() {
-
-	}
+	
 
 }

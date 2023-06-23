@@ -14,7 +14,7 @@ import java.awt.*;
 
 public class MyFrame extends JFrame{
 	
-	JPanels panels;
+	JPanels jPanel;
 	
 	public MyFrame() {
 		
@@ -26,9 +26,9 @@ public class MyFrame extends JFrame{
 		
 		this.setLayout(new GridLayout());
 
-		panels = new JPanels(this);
+		jPanel = new JPanels(this);
 
-		this.add(panels);
+		this.add(jPanel);
 
 
 		
