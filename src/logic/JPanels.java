@@ -744,7 +744,6 @@ public class JPanels extends JPanel {
 			blackPanel = new JPanel(new GridLayout(2, 1));
 			bluePanel = new JPanel(new GridLayout(2, 1));
 			cyanPanel = new JPanel(new GridLayout(2, 1));
-			;
 			grayPanel = new JPanel(new GridLayout(2, 1));
 			greenPanel = new JPanel(new GridLayout(2, 1));
 			brownPanel = new JPanel(new GridLayout(2, 1));
@@ -1038,6 +1037,8 @@ public class JPanels extends JPanel {
 
 				feld.setBackground(randomFarbe);
 				
+				colorZahl = zahlFarbeWaehlen(randomFarbe);
+				
 				Field feld1 = new Field(zeile,spalte,colorZahl);
 				spielBrettArrayField[i][j] = feld1;
 
@@ -1056,6 +1057,46 @@ public class JPanels extends JPanel {
 		
 		return spielbrettArray;
 
+	}
+	
+	
+	public int zahlFarbeWaehlen(Color c) {
+		
+		Color brown = new Color(153, 102, 0);
+
+		
+		if(c.equals(Color.black)) {
+			return 1;
+		}
+		if(c.equals(Color.blue)) {
+			return 2;
+		}
+		if(c.equals(Color.cyan)) {
+			return 3;
+		}
+		if(c.equals(Color.gray)) {
+			return 4;
+		}
+		if(c.equals(Color.green)) {
+			return 5;
+		}
+		if(c.equals(brown)) {
+			return 6;
+		}
+		if(c.equals(Color.orange)) {
+			return 7;
+		}
+		if(c.equals(Color.pink)) {
+			return 8;
+		}
+		if(c.equals(Color.red)) {
+			return 9;
+		}
+		
+		return 0;
+		
+		
+		
 	}
 	
 	
@@ -1324,28 +1365,34 @@ public class JPanels extends JPanel {
 						anzeigeAktualisierenKey(farbenAnzeige, 1);
 						
 
-						Color c = null;
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
 
-						switch(gewaehlteStrategie) {
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+										break;
+										
+									case 2:
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+										break;
+									
+									case 3:
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
 						
-						case 1:
-							c = strategy1(spielbrettArray);
-							spielZugs2(c);
-
-							break;
-							
-						case 2:
-							c = strategy2(spielbrettArray);
-							spielZugs2(c);
-
-							break;
-						
-						case 3:
-							c = strategy3(spielbrettArray);
-							spielZugs2(c);
-							break;
-			
-						}
+									}								  }
+							});
+							timer.setRepeats(false); // Only execute once
+							timer.start(); // Go go go!
 					}
 				}
 					
@@ -1371,28 +1418,34 @@ public class JPanels extends JPanel {
 
 
 													
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 
 
 					}
@@ -1418,28 +1471,34 @@ public class JPanels extends JPanel {
 							
 
 
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 
 
 					}
@@ -1465,28 +1524,34 @@ public class JPanels extends JPanel {
 							
 
 
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 
 
 					}
@@ -1513,28 +1578,34 @@ public class JPanels extends JPanel {
 							
 
 
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 					}
 				}
 					
@@ -1558,28 +1629,34 @@ public class JPanels extends JPanel {
 							anzeigeAktualisierenKey(farbenAnzeige, 6);
 							
 
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 
 
 
@@ -1607,29 +1684,34 @@ public class JPanels extends JPanel {
 							anzeigeAktualisierenKey(farbenAnzeige, 7);
 							
 
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
-
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 
 					}
 
@@ -1655,28 +1737,34 @@ public class JPanels extends JPanel {
 													
 							anzeigeAktualisierenKey(farbenAnzeige, 8);
 							
-							Color c = null;
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
 
-							switch(gewaehlteStrategie) {
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!
 
 
 					}
@@ -1703,30 +1791,35 @@ public class JPanels extends JPanel {
 													
 							anzeigeAktualisierenKey(farbenAnzeige, 9);
 							
-							Color c = null;
 
-							switch(gewaehlteStrategie) {
+							Timer timer = new Timer(1000, new ActionListener() {
+								  @Override
+								  public void actionPerformed(ActionEvent arg0) {
+										Color c = null;
+
+									  switch(gewaehlteStrategie) {
+										
+										case 1:
+											c = strategy1(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+											
+										case 2:
+											c = strategy2(spielbrettArray);
+											spielZugs2(c);
+
+											break;
+										
+										case 3:
+											c = strategy3(spielbrettArray);
+											spielZugs2(c);
+											break;
 							
-							case 1:
-								c = strategy1(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-								
-							case 2:
-								c = strategy2(spielbrettArray);
-								spielZugs2(c);
-
-								break;
-							
-							case 3:
-								c = strategy3(spielbrettArray);
-								spielZugs2(c);
-								break;
-				
-							}
-
-							
+										}								  }
+								});
+								timer.setRepeats(false); // Only execute once
+								timer.start(); // Go go go!	
 
 					}
 
@@ -1734,23 +1827,34 @@ public class JPanels extends JPanel {
 					
 				}
 								
-				
+		
 
 				
-				for(int i = 0; i < spielBrettArrayField.length ; i ++){
-
-		            System.out.println();
-		            for(int j = 0 ; j < spielBrettArrayField[i].length ; j++){
-		                System.out.print(" | " + spielBrettArrayField[i][j].getColor());
-		            }
-		            System.out.print(" |");
-		            System.out.println();
-		        }
+//				for(int i = 0; i < spielBrettArrayField.length ; i ++){
+//
+//		            System.out.println();
+//		            for(int j = 0 ; j < spielBrettArrayField[i].length ; j++){
+//		                System.out.print(" | " + spielBrettArrayField[i][j].getColor());
+//		            }
+//		            System.out.print(" |");
+//		            System.out.println();
+//		        }
+				
+				test();
+				
+				
 
 			}
 
 		});
 
+	}
+	
+	
+	public void test() {
+		Testing t = new Testing(spielBrettArrayField);
+		int c = t.testStrategy01();
+		System.out.println("Zu waehlende Farbe: " + c);
 	}
 	
 	
@@ -1783,11 +1887,6 @@ aktuellVerfuegbareFarben= farbenAktualisieren();
 		
 		
 		return col;
-		
-		
-		
-		
-		
 		
 	}
 		
@@ -1828,13 +1927,6 @@ aktuellVerfuegbareFarben= farbenAktualisieren();
 		return col;
 		
 
-		
-		
-			
-			
-						
-			
-		
 		//Eigentlicher Spielzug, bei der ich dann die jeweilige Farbe gemaes der Strategie zurueckgeben
 		
 		

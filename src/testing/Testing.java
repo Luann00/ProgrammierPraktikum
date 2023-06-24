@@ -18,7 +18,6 @@ import logic.MyFrame;
 public class Testing {
 
 	private Field[][] board;
-	private JPanels jPanel;
 	private int groeseK1;
 	private int groeseK2;
 	private int s1Farbe;
@@ -28,8 +27,23 @@ public class Testing {
 	private ArrayList<Integer> aktuellVerfuegbareFarben;
 	
 	
+	
+	
+	
 	//Das hier sind die jeweiligen Felder der Kompnente von S1 bzw. S2
 	private ArrayList<Field> K1;
+	public ArrayList<Field> getK1() {
+		return K1;
+	}
+
+
+
+
+
+	public void setK1(ArrayList<Field> k1) {
+		K1 = k1;
+	}
+
 	private ArrayList<Field> K2;
 	private ArrayList<Field> K2Copy;
 	private ArrayList<Field> K1Copy;
@@ -37,12 +51,45 @@ public class Testing {
 
 	public Testing(Field[][] initBoard) {
 		this.board = initBoard;
+		init();
 		
 	}
 	
-	public void zugriffMyFrame(JPanels jPanel) {
-		this.jPanel = jPanel;
+	public void spielbrett() {
+		for(int i = 0; i < board.length ; i ++){
+
+            System.out.println();
+            for(int j = 0 ; j < board[i].length ; j++){
+                System.out.print(" | " + board[i][j].getColor());
+            }
+            System.out.print(" |");
+            System.out.println();
+        }
+		
+		System.out.println("S1 Farbe: " +s1Farbe);
+		System.out.println("S2 Farbe: " +s2Farbe);
+
 	}
+	
+	
+	public void init() {
+		K1 = new ArrayList<Field>();
+		K2 = new ArrayList<Field>();
+		
+		s1Farbe = board[board.length-1][0].getColor();
+		s2Farbe = board[0][board[0].length-1].getColor();
+		
+		K1.add(board[board.length-1][0]);
+		K2.add(board[0][board[0].length-1]);
+		
+		groeseK1 = 1;
+		groeseK2 = 1;
+		
+		
+
+	}
+	
+	
 	
 	
 
@@ -133,8 +180,6 @@ public class Testing {
 	
 	public int testStrategy01() {
 		
-		//Kopie von dem Board, um auf diesem dann zu den Zug zu berechnen, wo die Veraenderung am kleinsten ist
-		Field[][] copyBoard = getBoard();
 		
 		aktuellVerfuegbareFarben= farbenAktualisieren();
 		
@@ -157,6 +202,7 @@ public class Testing {
 		K2Copy = new ArrayList<Field>(K2);
 		s2FarbeCopy = s2Farbe;
 		
+		K1Berechnen();
 		
 		
 			
@@ -173,13 +219,16 @@ public ArrayList<Integer> farbenAktualisieren() {
 		
 		ArrayList<Integer> alleFarbenImSpiel = new ArrayList<Integer>();
 		
+		
+
+		
 
 		
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
 				
 				if(alleFarbenImSpiel.contains(board[i][j].getColor()) == false) {
-					if(board[i][j].getCol() == s1Farbe || board[i][j].getColor() == s2Farbe) {
+					if(board[i][j].getColor() == s1Farbe || board[i][j].getColor() == s2Farbe) {
 						continue;
 					}
 					alleFarbenImSpiel.add(board[i][j].getColor());
@@ -198,9 +247,10 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	ArrayList<Element> elemente = new ArrayList<Element>();
 	Color brown = new Color(153,102,0);
+	aktuellVerfuegbareFarben= farbenAktualisieren();
 
 					
-		if(aktuellVerfuegbareFarben.contains(Color.black)) {
+		if(aktuellVerfuegbareFarben.contains(1)) {
 			k1 = komponentenZuwachs(K2Copy, 1, groeseK2);
 			Element black = new Element(Color.black,k1, 1);
 			elemente.add(black);
@@ -209,7 +259,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		}
 		
 
-		if(aktuellVerfuegbareFarben.contains(Color.blue)) {
+		if(aktuellVerfuegbareFarben.contains(2)) {
 			k2 = komponentenZuwachs(K2Copy, 2, groeseK2);
 			Element blue = new Element(Color.blue,k2, 2);
 			elemente.add(blue);
@@ -217,49 +267,49 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 
 
-		}if(aktuellVerfuegbareFarben.contains(Color.cyan)) {
+		}if(aktuellVerfuegbareFarben.contains(3)) {
 			k3 = komponentenZuwachs(K2Copy, 3, groeseK2);
 			Element cyan = new Element(Color.cyan,k3,3);
 			elemente.add(cyan);
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(aktuellVerfuegbareFarben.contains(Color.gray)) {
+		}if(aktuellVerfuegbareFarben.contains(4)) {
 			k4 = komponentenZuwachs(K2Copy, 4, groeseK2);
 			Element gray = new Element(Color.gray,k4,4);
 			elemente.add(gray);
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(aktuellVerfuegbareFarben.contains(Color.green)) {
+		}if(aktuellVerfuegbareFarben.contains(5)) {
 			k5 = komponentenZuwachs(K2Copy, 5, groeseK2);
 			Element green = new Element(Color.green,k5,5);
 			elemente.add(green);
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(aktuellVerfuegbareFarben.contains(brown)) {
+		}if(aktuellVerfuegbareFarben.contains(6)) {
 			k6 = komponentenZuwachs(K2Copy, 6, groeseK2);
 			Element brown1 = new Element(brown,k6,6);
 			elemente.add(brown1);
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(aktuellVerfuegbareFarben.contains(Color.orange)) {
+		}if(aktuellVerfuegbareFarben.contains(7)) {
 			k7 = komponentenZuwachs(K2Copy, 7, groeseK2);
 			Element orange = new Element(Color.orange,k7,7);
 			elemente.add(orange);
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(aktuellVerfuegbareFarben.contains(Color.pink)) {
+		}if(aktuellVerfuegbareFarben.contains(8)) {
 			k8 = komponentenZuwachs(K2Copy, 8, groeseK2);
 			Element pink = new Element(Color.pink,k8,8);
 			elemente.add(pink);
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(aktuellVerfuegbareFarben.contains(Color.red)) {
+		}if(aktuellVerfuegbareFarben.contains(9)) {
 			k9 = komponentenZuwachs(K2Copy, 9, groeseK2);
 			Element red = new Element(Color.red,k9,9);
 			elemente.add(red);
@@ -278,8 +328,9 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			
 			
 		}
-		
+		System.out.println(aktuellVerfuegbareFarben);
 		return c.getName();
+		
 		} else {
 			return 0;
 		}	
@@ -362,6 +413,29 @@ public void nachbarAufnehmen(ArrayList<Field> K, int farbe, int zeile, int spalt
 
 	}
 
+}
+
+
+
+public void K1Berechnen() {
+	
+	K1.add(board[board.length-1][0]);
+	
+	
+	
+	int c = board[board.length-1][0].getColor();
+	
+	for (int i = 0; i < K1.size(); i++) {
+		nachbarAufnehmen(K1, c, K1.get(i).getRow(), K1.get(i).getCol());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 	
 	
