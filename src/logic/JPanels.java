@@ -1379,8 +1379,10 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
+										test();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
+
 
 										break;
 									
@@ -1432,9 +1434,10 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
-
+											
 											break;
 										
 										case 3:
@@ -1485,6 +1488,7 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1538,8 +1542,10 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
+
 
 											break;
 										
@@ -1588,12 +1594,13 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
-
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
+											
 
 											break;
 										
@@ -1643,8 +1650,10 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
+
 
 											break;
 										
@@ -1698,8 +1707,10 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
+
 
 											break;
 										
@@ -1751,6 +1762,7 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1806,8 +1818,10 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
+											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
+
 
 											break;
 										
@@ -1840,9 +1854,6 @@ public class JPanels extends JPanel {
 //		            System.out.println();
 //		        }
 				
-				test();
-				
-				
 
 			}
 
@@ -1853,17 +1864,16 @@ public class JPanels extends JPanel {
 	
 	public void test() {
 		Testing t = new Testing(spielBrettArrayField);
-		int c = t.testStrategy01();
-		System.out.println("Zu waehlende Farbe: " + c);
+		int i = t.minMoves(1, 2);
+		System.out.println("Groese: " + i);
 	}
 	
 	
 	public Color strategy2(JPanel[][] board) {
 		
 		
-aktuellVerfuegbareFarben= farbenAktualisieren();
+		aktuellVerfuegbareFarben= farbenAktualisieren();
 		
-		ArrayList<Color> aktuellVerfuegbareFarbenCopy = new ArrayList<Color>(aktuellVerfuegbareFarben);
 		
 		
 		int k1Black = groeseK2;
@@ -1884,7 +1894,7 @@ aktuellVerfuegbareFarben= farbenAktualisieren();
 			
 			
 		Color col = farbeWaehlens2(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
-		
+				
 		
 		return col;
 		
