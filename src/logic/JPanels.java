@@ -49,6 +49,7 @@ public class JPanels extends JPanel {
 	private JPanel spielEinstellungen;
 	private JPanel konfiguration;
 	JPanel farbenAnzeige = new JPanel();
+	Testing t;
 
 	private ArrayList<Color> alleMöglichenFarben = new ArrayList<Color>();
 	private ArrayList<Color> ausgewaehlteFarben;
@@ -414,13 +415,7 @@ public class JPanels extends JPanel {
 		this.geklickteFarbe = geklickteFarbe;
 	}
 
-	public JLabel getZeilenUndSpaltenAnzeige() {
-		return zeilenUndSpaltenAnzeige;
-	}
-
-	public void setZeilenUndSpaltenAnzeige(JLabel zeilenUndSpaltenAnzeige) {
-		this.zeilenUndSpaltenAnzeige = zeilenUndSpaltenAnzeige;
-	}
+	
 
 	public JPanel[][] getSpielbrettArray() {
 		return spielbrettArray;
@@ -490,7 +485,12 @@ public class JPanels extends JPanel {
 	private int spielZuege;
 	private boolean kVergroesert;
 	private Color geklickteFarbe;
-	private JLabel zeilenUndSpaltenAnzeige;
+	private JPanel zeilenUndSpaltenAnzeige;
+	private JLabel rows;
+	private JLabel cols;
+	
+	private boolean s1Dran;
+	private boolean s2Dran;
 
 	private JPanel[][] spielbrettArray;
 	private JPanel[][] spielbrettArrayCopy;
@@ -565,8 +565,13 @@ public class JPanels extends JPanel {
 		spalteAuswaehlen.add(spaltenAuswahl);
 
 		// Panel, wo man die Zeile angezeigt wird
-		zeilenUndSpaltenAnzeige = new JLabel();
-		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
+		zeilenUndSpaltenAnzeige = new JPanel();
+		zeilenUndSpaltenAnzeige.setLayout(new BoxLayout(zeilenUndSpaltenAnzeige,BoxLayout.Y_AXIS));
+		rows = new JLabel();
+		cols = new JLabel();
+		zeilenUndSpaltenAnzeige.add(rows);
+		zeilenUndSpaltenAnzeige.add(cols);
+
 
 		konfiguration.add(zeilenAuswaehlen);
 		konfiguration.add(spalteAuswaehlen);
@@ -658,14 +663,21 @@ public class JPanels extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				
+				
 				if (playButton.getText().equals("Play")) {
 
 					playButton.setText("Pause");
 					if (s2RadioButton.isSelected()) {
 						gewaehlterBeginner = s2RadioButton.getText();
+						s2Dran = true;
+						s1Dran = false;
 					} else {
 						gewaehlterBeginner = s1RadioButton.getText();
+						s2Dran = false;
+						s1Dran = true;
 					}
+					
 
 					beginnerLabel.setText("Es hat begonnen: " + gewaehlterBeginner);
 					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
@@ -706,12 +718,15 @@ public class JPanels extends JPanel {
 					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl - 1][0].getBackground();
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
+					brettAnzeigen();
+					
 
 				} else {
 					startButton.setText("Start");
 					zeilenAuswahl.setEnabled(true);
 					spaltenAuswahl.setEnabled(true);
-					zeilenUndSpaltenAnzeige.setText("");
+					rows.setText("");
+					cols.setText("");
 					spielBrett.removeAll();
 					spielBrett.repaint();
 
@@ -1040,7 +1055,8 @@ public class JPanels extends JPanel {
 				colorZahl = zahlFarbeWaehlen(randomFarbe);
 				
 				Field feld1 = new Field(zeile,spalte,colorZahl);
-				spielBrettArrayField[i][j] = feld1;
+				spielBrettArrayField[zeile][spalte] = feld1;
+
 
 
 
@@ -1051,6 +1067,7 @@ public class JPanels extends JPanel {
 		revalidate();
 		repaint();
 		
+		t = new Testing(spielBrettArrayField);
 		
 		
 		
@@ -1058,6 +1075,21 @@ public class JPanels extends JPanel {
 		return spielbrettArray;
 
 	}
+	
+	public void brettAnzeigen() {
+		Testing t = new Testing(spielBrettArrayField);
+		t.boardAnzeigen();
+		
+	}
+	
+	public void strat1() {
+		int a = t.testStrategy01();
+		System.out.println("Zahl: " + a);
+		
+	}
+	
+	
+	
 	
 	
 	public int zahlFarbeWaehlen(Color c) {
@@ -1256,7 +1288,8 @@ public class JPanels extends JPanel {
 		gewaehlteSpaltenAnzahl = Integer.parseInt((String) spaltenAuswahl.getSelectedItem());
 		farbenImSpiel = Integer.parseInt((String) farbenAnzahl.getSelectedItem());
 
-		zeilenUndSpaltenAnzeige.setText("<html>Das Brett hat aktuell 10 Zeilen und 10 Spalten</html>");
+		rows.setText("Current Rows: " + gewaehlteZeilenAnzahl);
+		cols.setText("Current Cols: " + gewaehlteSpaltenAnzahl);
 		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
 		konfiguration.add(zeilenUndSpaltenAnzeige);
 
@@ -1303,9 +1336,11 @@ public class JPanels extends JPanel {
 		 * Felder die Farbe von S1 oder S2 haben
 		 */
 
+		
 		boolean max = maximaleZuege(spielZuege, kVergroesert);
 		boolean endKonf = alleFelderBesetzt();
-
+		
+		if(s1Dran) {
 		for (int i = 0; i < gewaehlteZeilenAnzahl; i++) {
 
 			for (int j = 0; j < gewaehlteSpaltenAnzahl; j++) {
@@ -1342,15 +1377,18 @@ public class JPanels extends JPanel {
 			
 			
 		}
+		}
 		spielBrett.grabFocus();
 		spielBrett.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent e) {
+				
 
 				if (e.getKeyChar() == '1') {
 					if (Color.black.equals(s1Farbe) == false && Color.black.equals(s2Farbe) == false) {
 						
 						aktuellVerfuegbareFarben= farbenAktualisieren();
+						t.farbenAktualisierenStrats();
 
 						if(aktuellVerfuegbareFarben.contains(Color.black) == true) {
 							
@@ -1375,11 +1413,13 @@ public class JPanels extends JPanel {
 									case 1:
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
+										strat1();
+										t.farbenAktualisierenStrats1();
+
 
 										break;
 										
 									case 2:
-										test();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1391,7 +1431,8 @@ public class JPanels extends JPanel {
 										spielZugs2(c);
 										break;
 						
-									}								  }
+									}							
+								  }
 							});
 							timer.setRepeats(false); // Only execute once
 							timer.start(); // Go go go!
@@ -1410,6 +1451,8 @@ public class JPanels extends JPanel {
 							s1Farbe = Color.blue;
 								
 							aktuellVerfuegbareFarben= farbenAktualisieren();
+							t.farbenAktualisierenStrats();
+
 
 
 							spielZuege++;
@@ -1430,11 +1473,14 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
 
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 											
@@ -1484,11 +1530,14 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
 
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1538,11 +1587,14 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
 
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1594,10 +1646,13 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 											
@@ -1646,11 +1701,14 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
 
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1703,11 +1761,14 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
 
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1758,11 +1819,15 @@ public class JPanels extends JPanel {
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
+											t.farbenAktualisierenStrats1();
+
+
+
 
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1807,18 +1872,20 @@ public class JPanels extends JPanel {
 							Timer timer = new Timer(1000, new ActionListener() {
 								  @Override
 								  public void actionPerformed(ActionEvent arg0) {
-										Color c = null;
+									  Color c = null;
 
 									  switch(gewaehlteStrategie) {
 										
 										case 1:
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
+											strat1();
 
+
+											
 											break;
 											
 										case 2:
-											test();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1828,9 +1895,14 @@ public class JPanels extends JPanel {
 										case 3:
 											c = strategy3(spielbrettArray);
 											spielZugs2(c);
+											System.out.println("Groese K2: " + groeseK2);
+
 											break;
 							
-										}								  }
+										}	
+
+									  }
+
 								});
 								timer.setRepeats(false); // Only execute once
 								timer.start(); // Go go go!	
@@ -1840,33 +1912,25 @@ public class JPanels extends JPanel {
 				}
 					
 				}
-								
-		
-
 				
-//				for(int i = 0; i < spielBrettArrayField.length ; i ++){
-//
-//		            System.out.println();
-//		            for(int j = 0 ; j < spielBrettArrayField[i].length ; j++){
-//		                System.out.print(" | " + spielBrettArrayField[i][j].getColor());
-//		            }
-//		            System.out.print(" |");
-//		            System.out.println();
-//		        }
+				}
+				
 				
 
-			}
+			
 
 		});
 
 	}
 	
 	
-	public void test() {
-		Testing t = new Testing(spielBrettArrayField);
-		int i = t.minMoves(1, 2);
-		System.out.println("Groese: " + i);
+	public void s1Play() {
+		
 	}
+	
+	
+	
+	
 	
 	
 	public Color strategy2(JPanel[][] board) {
@@ -1932,6 +1996,7 @@ public class JPanels extends JPanel {
 			
 			
 		Color col = farbeWaehlens1(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		
 		
 		
 		return col;
@@ -2319,6 +2384,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					spielZuege++;
 					groeseK2 = komponenteAnpassen(K2, Color.black, groeseK2);
+					
 
 											
 					anzeigeAktualisierenKey(farbenAnzeige, 1);
@@ -2544,6 +2610,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 			}
 			}
 		}
+		
 		
 		} catch(Exception e) {
 			System.out.println("Spiel zu Ende!");
@@ -2802,6 +2869,10 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 		return alleFarbenImSpiel;
 		
 	}
+	
+	
+	
+	
 
 	public boolean alleFelderBesetzt() {
 
