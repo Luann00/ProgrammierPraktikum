@@ -28,10 +28,38 @@ public class Testing {
 	private int s2FarbeCopy;
 	private ArrayList<Integer> aktuellVerfuegbareFarben;
 	
+	private ArrayList<Field> K2;
+	public ArrayList<Field> getK2() {
+		return K2;
+	}
+
+
+
+
+
+	public void setK2(ArrayList<Field> k2) {
+		K2 = k2;
+	}
+
+	private ArrayList<Field> K2Copy;
+	private ArrayList<Field> K1Copy;
 	
 	
 	
 	
+	
+	public ArrayList<Field> getK1Copy() {
+		return K1Copy;
+	}
+
+
+
+
+
+	public void setK1Copy(ArrayList<Field> k1Copy) {
+		K1Copy = k1Copy;
+	}
+
 	//Das hier sind die jeweiligen Felder der Kompnente von S1 bzw. S2
 	private ArrayList<Field> K1;
 	public ArrayList<Field> getK1() {
@@ -46,18 +74,16 @@ public class Testing {
 		K1 = k1;
 	}
 
-	private ArrayList<Field> K2;
-	private ArrayList<Field> K2Copy;
-	private ArrayList<Field> K1Copy;
+
 
 
 	public Testing(Field[][] initBoard) {
 		this.board = initBoard;
 		init();
 		boardAnzeigen();
-		aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
+		aktuellVerfuegbareFarben= farbenAktualisierenStrats();		
 		
+
 	}
 	
 	public void spielbrett() {
@@ -79,11 +105,14 @@ public class Testing {
 		this.aktuellVerfuegbareFarben = aktuellVerfuegbareFarben;
 	}
 	
+	
+	
+	
 
 
 
 
-
+	//In dieser Methode werdne alle Startwerte initialisiert und von dort aus wird alles Aktuelle berechnet
 	public void init() {
 		K1 = new ArrayList<Field>();
 		K2 = new ArrayList<Field>();
@@ -94,15 +123,27 @@ public class Testing {
 		K1.add(board[board.length-1][0]);
 		K2.add(board[0][board[0].length-1]);
 		
+				
 		aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 		
-
 		
-		groeseK1 = 1;
-		groeseK2 = 1;
+	
+		//Nehme alle Nachbarn von S1 auf, falls diese die gleiche Farbe haben
+		
+		for(int i = 0; i < K1.size(); i++) {
+			nachbarAufnehmen(K1,K1.get(i).getColor(), K1.get(i).getRow(), K1.get(i).getCol());
+		}
 		
 		
-
+		//Nehme alle Nachbarn von S2 auf, falls diese die gleiche Farbe haebn
+		for(int i = 0; i < K2.size(); i++) {
+			nachbarAufnehmen(K2,K2.get(i).getColor(), K2.get(i).getRow(), K2.get(i).getCol());
+		}
+		
+		groeseK1 = K1.size();
+		groeseK2 = K2.size();
+		
+		
 	}
 	
 	
@@ -220,17 +261,12 @@ public class Testing {
 		K2Copy = new ArrayList<Field>(K2);
 		s2FarbeCopy = s2Farbe;
 		
-		
-		
-		
-		
 			
 			
 		int col = farbeWaehlens1(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
-		spielZugPC(col);
+//		spielZugPC(col);
 		
-
 				
 		
 		return col;
@@ -239,23 +275,85 @@ public class Testing {
 	
 	
 	
+public int getGroeseK1() {
+		return groeseK1;
+	}
+
+
+
+
+
+	public void setGroeseK1(int groeseK1) {
+		this.groeseK1 = groeseK1;
+	}
+
+
+
+
+
+	public int getGroeseK2() {
+		return groeseK2;
+	}
+
+
+
+
+
+	public void setGroeseK2(int groeseK2) {
+		this.groeseK2 = groeseK2;
+	}
+
+
+
+
+
+	public int getS1Farbe() {
+		return s1Farbe;
+	}
+
+
+
+
+
+	public void setS1Farbe(int s1Farbe) {
+		this.s1Farbe = s1Farbe;
+	}
+
+
+
+
+
+	public int getS2Farbe() {
+		return s2Farbe;
+	}
+
+
+
+
+
+	public void setS2Farbe(int s2Farbe) {
+		this.s2Farbe = s2Farbe;
+	}
+
+
+
+
+
 //In dieser Methode wird die jeweilige Farbe uebernommen	
-public void spielZugPC(int c) {
+public void spielZugPC(int c, ArrayList<Integer> aktuellVerfuegbareFarben,int s1FarbeDavor, int s1Farbe, int groeseK1, ArrayList<Field>K1, int spielZuege) {
 		
 		aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-		
-		
 		
 		
 		try {	
 		if(c == 1) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 1) == false && (s2Farbe == 1) == false) {
+			if((s1Farbe == 1)) {
 
 				if(aktuellVerfuegbareFarben.contains(1) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 1;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 1;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -265,8 +363,8 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 1, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 1, groeseK1);
 
 											
 
@@ -276,12 +374,12 @@ public void spielZugPC(int c) {
 		
 		if(c == 2) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 2) == false && (s2Farbe == 2) == false) {
+			if((s1Farbe == 2)) {
 
 				if(aktuellVerfuegbareFarben.contains(2) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 2;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 2;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -291,24 +389,22 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 2, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 2, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 2);
 
 			}
 			}
 		}
-		
 		if(c == 3) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 3) == false && (s2Farbe == 3) == false) {
+			if((s1Farbe == 3)) {
 
 				if(aktuellVerfuegbareFarben.contains(3) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 3;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 3;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -318,11 +414,10 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 3, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 3, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 3);
 
 			}
 			}
@@ -330,12 +425,12 @@ public void spielZugPC(int c) {
 		
 		if(c == 4) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 4) == false && (s2Farbe == 4) == false) {
+			if((s1Farbe == 4)) {
 
 				if(aktuellVerfuegbareFarben.contains(4) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 4;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 4;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -345,11 +440,10 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 4, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 4, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 4);
 
 			}
 			}
@@ -357,12 +451,12 @@ public void spielZugPC(int c) {
 		
 		if(c == 5) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 5) == false && (s2Farbe == 5) == false) {
+			if((s1Farbe == 5)) {
 
 				if(aktuellVerfuegbareFarben.contains(5) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 5;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 5;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -372,26 +466,24 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 5, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 5, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 5);
 
 			}
 			}
 		}
 		
-		Color brown = new Color(153,102,0);
 
 		if(c == 6) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 6) == false && (s2Farbe == 6) == false) {
+			if((s1Farbe == 6)) {
 
-				if(aktuellVerfuegbareFarben.contains(brown) == true) {
+				if(aktuellVerfuegbareFarben.contains(6) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 6;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 6;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -401,11 +493,10 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 6, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 6, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 6);
 
 			}
 			}
@@ -413,12 +504,12 @@ public void spielZugPC(int c) {
 		
 		if(c == 7) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 7) == false && (s2Farbe == 7) == false) {
+			if((s1Farbe == 7)) {
 
 				if(aktuellVerfuegbareFarben.contains(7) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 7;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 7;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -428,11 +519,10 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 7, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 7, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 7);
 
 			}
 			}
@@ -440,12 +530,12 @@ public void spielZugPC(int c) {
 		
 		if(c == 8) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 8) == false && (s2Farbe == 8) == false) {
+			if((s1Farbe == 8)) {
 
 				if(aktuellVerfuegbareFarben.contains(8) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 8;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 8;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -455,11 +545,10 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 8, groeseK2);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 8, groeseK1);
 
 											
-//					anzeigeAktualisierenKey(farbenAnzeige, 8);
 
 			}
 			}
@@ -467,12 +556,12 @@ public void spielZugPC(int c) {
 		
 		if(c == 9) {
 			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 9) == false && (s2Farbe == 9) == false) {
+			if((s1Farbe == 9)) {
 
 				if(aktuellVerfuegbareFarben.contains(9) == true) {
 					
-					s2FarbeDavor = s2Farbe;
-					s2Farbe = 9;
+					s1FarbeDavor = s1Farbe;
+					s1Farbe = 9;
 					
 					/*
 					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
@@ -482,11 +571,8 @@ public void spielZugPC(int c) {
 					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
 
 
-//					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, 9, groeseK2);
-
-											
-//					anzeigeAktualisierenKey(farbenAnzeige, 9);
+					spielZuege++;
+					groeseK1 = komponenteAnpassen(K1, 9, groeseK1);
 
 			}
 			}
@@ -703,7 +789,7 @@ public void nachbarAufnehmen(ArrayList<Field> K, int farbe, int zeile, int spalt
 		if (obererNachbar == farbe) {
 
 			if (K.contains(board[zeile - 1][spalte])) {
-				
+
 			} else {
 				K.add(board[zeile - 1][spalte]);
 			}
@@ -760,21 +846,6 @@ public void nachbarAufnehmen(ArrayList<Field> K, int farbe, int zeile, int spalt
 }
 
 
-
-public void K1Berechnen() {
-	
-	
-	
-	int c = board[board.length-1][0].getColor();
-	
-	for (int i = 0; i < K1.size(); i++) {
-		nachbarAufnehmen(K1, c, K1.get(i).getRow(), K1.get(i).getCol());
-	}
-	
-	
-	
-	
-}
 	
 	
 	
@@ -909,9 +980,133 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	}
 
 	public int testStrategy03() {
+		
+		aktuellVerfuegbareFarben= farbenAktualisierenStrats();
+				
+		
+		int k1Black = groeseK2;
+		int k1Blue = groeseK2;
+		int k1Cyan = groeseK2;
+		int k1Brown = groeseK2;
+		int k1Gray = groeseK2;
+		int k1Green = groeseK2;
+		int k1Pink = groeseK2;
+		int k1Yellow = groeseK2;
+		int k1Red = groeseK2;
 
-		return 0;
+				
+		
+		
+		//Copyattribute, mit denen ich den naechsten Zug simuliere
+		K1Copy = new ArrayList<Field>(K1);
+		
+		
+		
+			
+			
+		int col = farbeWaehlens3(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		
+		
+		return col;
+
 	}
+	
+	public int farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+		
+		
+		
+		ArrayList<Element> elemente = new ArrayList<Element>();
+		Color brown = new Color(153,102,0);
+
+						
+			if(aktuellVerfuegbareFarben.contains(1)) {
+				k1 = komponentenZuwachs(K1Copy, 1, groeseK1);
+				Element black = new Element(Color.black,k1, 1);
+				elemente.add(black);
+				K1Copy = new ArrayList<>(K1);
+
+			}
+			
+
+			if(aktuellVerfuegbareFarben.contains(2)) {
+				k2 = komponentenZuwachs(K1Copy, 2, groeseK1);
+				Element blue = new Element(Color.blue,k2, 2);
+				elemente.add(blue);
+				K1Copy = new ArrayList<>(K1);
+
+
+
+			}if(aktuellVerfuegbareFarben.contains(3)) {
+				k3 = komponentenZuwachs(K1Copy, 3, groeseK1);
+				Element cyan = new Element(Color.cyan,k3,3);
+				elemente.add(cyan);
+				K1Copy = new ArrayList<>(K1);
+
+
+			}if(aktuellVerfuegbareFarben.contains(4)) {
+				k4 = komponentenZuwachs(K1Copy,4, groeseK1);
+				Element gray = new Element(Color.gray,k4,4);
+				elemente.add(gray);
+				K1Copy = new ArrayList<>(K1);
+
+
+			}if(aktuellVerfuegbareFarben.contains(5)) {
+				k5 = komponentenZuwachs(K1Copy, 5, groeseK1);
+				Element green = new Element(Color.green,k5,5);
+				elemente.add(green);
+				K1Copy = new ArrayList<>(K1);
+
+
+			}if(aktuellVerfuegbareFarben.contains(6)) {
+				k6 = komponentenZuwachs(K1Copy, 6, groeseK1);
+				Element brown1 = new Element(brown,k6,6);
+				elemente.add(brown1);
+				K1Copy = new ArrayList<>(K1);
+
+
+			}if(aktuellVerfuegbareFarben.contains(7)) {
+				k7 = komponentenZuwachs(K1Copy, 7, groeseK1);
+				Element orange = new Element(Color.orange,k7,7);
+				elemente.add(orange);
+				K1Copy = new ArrayList<>(K1);
+
+
+			}if(aktuellVerfuegbareFarben.contains(8)) {
+				k8 = komponentenZuwachs(K1Copy, 8, groeseK1);
+				Element pink = new Element(Color.pink,k8,8);
+				elemente.add(pink);
+				K1Copy = new ArrayList<>(K1);
+
+
+			}if(aktuellVerfuegbareFarben.contains(9)) {
+				k9 = komponentenZuwachs(K1Copy, 9, groeseK1);
+				Element red = new Element(Color.red,k9,9);
+				elemente.add(red);
+				K1Copy = new ArrayList<>(K1);
+
+			}
+			
+			
+			//Nun groeste Farbe auswaehlen
+			if(aktuellVerfuegbareFarben.size() > 0) {
+			Element c = elemente.get(0);
+			for(int i = 1; i < elemente.size(); i++) {
+				
+				if(elemente.get(i).getGroese() > c.getGroese()) {
+					c = elemente.get(i);
+				}
+				
+				
+			}
+			
+			return c.getName();
+			
+			}
+			
+			return 0;
+			
+	}
+		
 
 	
 	public boolean toBoard(Field[][] anotherBoard, int moves) {
@@ -921,17 +1116,15 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 	public int minMoves(int row, int col) { 
 		
-		//In dieser ArrayList werden alle Felder vom Spieler gepackt
+		//In dieser ArrayList werden alle aktuellen Felder, die sich in der Komponene vom Spieler befinden, gepackt
 		ArrayList<Field> K1neu = new ArrayList<Field>();
 		K1neu.add(board[board.length-1][0]);
 		int groeseKNeu = 1;
 
 		
+		//Aktuelle Farbe vom Spieler speichern
 		int farbe = board[board.length-1][0].getCol();
-		
-		//Zuerst die Nachbarn vom Spieler pruefen und ggf aufnehmen
-		komponentenZuwachs(K1neu, farbe, groeseKNeu); 
-		
+				
 		
 
 		return K1neu.size();
@@ -939,18 +1132,93 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 	public int minMovesFull() {
 		
+		//Alle wichtigen Variablen deklarieren
+		
+		
 		//In dieser ArrayList werden alle Felder vom Spieler gepackt
-				ArrayList<Field> K1neu = new ArrayList<Field>();
-				K1neu.add(board[board.length-1][0]);
-				int groeseKNeu = 1;
+		ArrayList<Field> K1neu = new ArrayList<Field>();
+		K1neu.add(board[board.length-1][0]);
+		int groeseK1Neu = 1;
+		
+		int farbe = board[board.length-1][0].getColor();
+		int farbeDavor = 0;
+		
+		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
+		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
+		verfuegbareFarben = farbenAktualisierenMoves();
+		System.out.println("Farben: " + verfuegbareFarben);
+		
+		
+		int moves1 = 0;
+		int moves2 = 0;
+		int moves3 = 0;
+		int moves4 = 0;
+		int moves5 = 0;
+		int moves6 = 0;
+		int moves7 = 0;
+		int moves8 = 0;
+		int moves9 = 0;
+
+		
+						
+		//Zuerst die Nachbarn vom Spieler pruefen und ggf aufnehmen
+		for(int i = 0; i < K1neu.size(); i++) {
+			nachbarAufnehmen(K1neu,K1neu.get(i).getColor(), K1neu.get(i).getRow(), K1neu.get(i).getCol());
+		}	
+		groeseK1Neu = K1neu.size();
+		
+		
+		/*
+		 * Ansatz: Waehle alle der 6 Farben als die Anfangsfarbe. Dann: Fuer jede Farbe jeweils Zyklisch board faerben, so lange
+		 * bis man nicht mehr erhoehen kann. Dann spielzug in der jeweiligen spielZug Variable speichern
+		 * Die Farben dann so auswaehlen, indem man fuer jede Farbe 1-6 in einer jeweiligen Schleife immer wieder
+		 * die Farben durchgeht
+		 */
+		
+	
+		//Fuer farbe 1 Farben zyklisch waehlen
+		while(verfuegbareFarben.size() > 0) {
+			
+			for(int i = 0; i < verfuegbareFarben.size(); i++) {
+				
+				if(i == 0) {
+					i++;
+				}
+				
+				if(i < 6 && verfuegbareFarben.contains(i)) {
+				spielZugPC(i, verfuegbareFarben,farbeDavor, farbe, groeseK1Neu, K1neu, moves1);
+				}
+				
+				if(i == 6) {
+					spielZugPC(i, verfuegbareFarben,farbeDavor, farbe, groeseK1Neu, K1neu, moves1);
+					i = 1;
+
+				}
+				
+				
+			}
+			
+			//Bei 1 anfangen
+			int i = 1;
+			if(verfuegbareFarben.contains(i)) {
+					spielZugPC(i, verfuegbareFarben,farbeDavor, farbe, groeseK1Neu, K1neu, moves1);
+				}
+			
+			if(i < 6) {
+				i++;
+			}
+			
+			
+			
+			
 
 				
-				int farbe = board[board.length-1][0].getCol();
-				
-				//Zuerst die Nachbarn vom Spieler pruefen und ggf aufnehmen
-				komponentenZuwachs(K1neu, farbe, groeseKNeu); 
-
-		return 0;
+			}
+			
+			
+		
+		
+		return groeseK1Neu;
 	}
 
 	
