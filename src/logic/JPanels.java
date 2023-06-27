@@ -718,7 +718,7 @@ public class JPanels extends JPanel {
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
 					brettAnzeigen();
-					minMovesTest();
+//					minMovesTest();
 
 					
 
@@ -1372,6 +1372,8 @@ public class JPanels extends JPanel {
 
 							anzeigeAktualisierenMouse(geklickteFarbe);
 //						}
+							
+							
 
 					}
 				});
@@ -1914,13 +1916,6 @@ public class JPanels extends JPanel {
 					
 			}
 				
-				
-				if(spielZuege >= 8) {
-				Testing t = new Testing(spielBrettArrayField);
-				int zahl = t.minMovesFull();
-				System.out.println("Groese K1: " + zahl);
-				
-				}
 			
 		}
 						
@@ -2383,7 +2378,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 		
 		aktuellVerfuegbareFarben= farbenAktualisieren();
 		
+		kVergroesert = false;
 		
+		int k2Davor = groeseK2;
 		
 		
 		try {	
@@ -2405,10 +2402,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 
 					spielZuege++;
-					groeseK2 = komponenteAnpassen(K2, Color.black, groeseK2);
-					
-
-											
+					groeseK2 = komponenteAnpassen(K2, Color.black, groeseK2);						
 					anzeigeAktualisierenKey(farbenAnzeige, 1);
 
 			}
@@ -2631,6 +2625,12 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 			}
 			}
+		}
+		
+		if(groeseK2 > k2Davor) {
+			System.out.println("Vergroesert: " + "True");
+		} else {
+			System.out.println("Vergroesert: " + "false");
 		}
 		
 		
