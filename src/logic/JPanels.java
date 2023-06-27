@@ -718,6 +718,8 @@ public class JPanels extends JPanel {
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
 					brettAnzeigen();
+					minMovesTest();
+
 					
 
 				} else {
@@ -1076,7 +1078,7 @@ public class JPanels extends JPanel {
 	
 	public void brettAnzeigen() {
 		Testing t = new Testing(spielBrettArrayField);
-		t.boardAnzeigen();
+//		t.boardAnzeigen();
 		
 	}
 	
@@ -1299,6 +1301,12 @@ public class JPanels extends JPanel {
 		}
 
 	}
+	
+	public void minMovesTest() {
+		Testing t = new Testing(spielBrettArrayField);
+		int m = t.minMovesFull();
+		
+	}
 
 	public void setup1() {
 
@@ -1348,12 +1356,14 @@ public class JPanels extends JPanel {
 						// Farbe des geklickten Feldes der Komponente zuweisen
 						geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
 
-						if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
+//						if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, geklickteFarbe, groeseK1);
 
 							s1FarbeDavor = s1Farbe;
 							s1Farbe = geklickteFarbe;
+							
+
 
 							aktuellVerfuegbareFarben.add(removteFarbe);
 
@@ -1361,7 +1371,7 @@ public class JPanels extends JPanel {
 							removteFarbe = geklickteFarbe;
 
 							anzeigeAktualisierenMouse(geklickteFarbe);
-						}
+//						}
 
 					}
 				});

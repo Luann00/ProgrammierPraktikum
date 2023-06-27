@@ -80,9 +80,7 @@ public class Testing {
 	public Testing(Field[][] initBoard) {
 		this.board = initBoard;
 		init();
-		boardAnzeigen();
-		aktuellVerfuegbareFarben= farbenAktualisierenStrats();		
-		
+		aktuellVerfuegbareFarben= farbenAktualisierenStrats();				
 
 	}
 	
@@ -142,7 +140,6 @@ public class Testing {
 		
 		groeseK1 = K1.size();
 		groeseK2 = K2.size();
-		
 		
 	}
 	
@@ -261,7 +258,7 @@ public class Testing {
 		K2Copy = new ArrayList<Field>(K2);
 		s2FarbeCopy = s2Farbe;
 		
-			
+		
 			
 		int col = farbeWaehlens1(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
@@ -340,251 +337,273 @@ public int getGroeseK1() {
 
 
 //In dieser Methode wird die jeweilige Farbe uebernommen	
-public void spielZugPC(int c, ArrayList<Integer> aktuellVerfuegbareFarben,int s1FarbeDavor, int s1Farbe, int groeseK1, ArrayList<Field>K1, int spielZuege) {
-		
-		aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-		
-		
-		try {	
-		if(c == 1) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 1)) {
-
-				if(aktuellVerfuegbareFarben.contains(1) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 1;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 1, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 2) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 2)) {
-
-				if(aktuellVerfuegbareFarben.contains(2) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 2;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 2, groeseK1);
-
-											
-
-			}
-			}
-		}
-		if(c == 3) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 3)) {
-
-				if(aktuellVerfuegbareFarben.contains(3) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 3;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 3, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 4) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 4)) {
-
-				if(aktuellVerfuegbareFarben.contains(4) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 4;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 4, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 5) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 5)) {
-
-				if(aktuellVerfuegbareFarben.contains(5) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 5;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 5, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-
-		if(c == 6) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 6)) {
-
-				if(aktuellVerfuegbareFarben.contains(6) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 6;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 6, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 7) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 7)) {
-
-				if(aktuellVerfuegbareFarben.contains(7) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 7;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 7, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 8) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 8)) {
-
-				if(aktuellVerfuegbareFarben.contains(8) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 8;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 8, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 9) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 9)) {
-
-				if(aktuellVerfuegbareFarben.contains(9) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 9;
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenStrats();
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 9, groeseK1);
-
-			}
-			}
-		}
-		
-		} catch(Exception e) {
-			System.out.println("Spiel zu Ende!");
-		}
-			
-			
-		
-	}
+//public void spielZugMovesFull(int c, ArrayList<Integer> aktuellVerfuegbareFarben,int s1FarbeDavor, int s1Farbe, int groeseK1, ArrayList<Field>K1, int spielZuege) {
+//				
+//		
+//		try {	
+//		if(c == 1) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 1) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(1) == true) {
+//					
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 1;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 1, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//		if(c == 2) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 2) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(2) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 2;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 2, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		if(c == 3) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 3) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(3) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 3;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 3, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//		if(c == 4) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 4) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(4) == true) {
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 4;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 4, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//		if(c == 5) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 5) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(5) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 5;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 5, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//
+//		if(c == 6) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 6) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(6) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 6;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 6, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//		if(c == 7) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 7) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(7) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 7;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 7, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//		if(c == 8) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 8) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(8) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 8;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 8, groeseK1);
+//
+//											
+//
+//			}
+//			}
+//		}
+//		
+//		if(c == 9) {
+//			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
+//			if((s1Farbe == 9) == false) {
+//
+//				if(aktuellVerfuegbareFarben.contains(9) == true) {
+//					
+//
+//					s1FarbeDavor = s1Farbe;
+//					s1Farbe = 9;
+//					aktuellVerfuegbareFarben.remove(s1Farbe);
+//					aktuellVerfuegbareFarben.add(s1FarbeDavor);
+//					
+//					/*
+//					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
+//					 * zurueckgegeben
+//					 */
+//					
+//					aktuellVerfuegbareFarben= farbenAktualisierenMoves();
+//
+//
+//					spielZuege++;
+//					groeseK1 = komponenteAnpassen(K1, 9, groeseK1);
+//
+//			}
+//			}
+//		}
+//		
+//		} catch(Exception e) {
+//			System.out.println("Spiel zu Ende!");
+//		}
+//			
+//			
+//		
+	
 
 public int komponenteAnpassen(ArrayList<Field> K, int geklickteFarbe, int groeseK) {
 	
@@ -593,9 +612,6 @@ public int komponenteAnpassen(ArrayList<Field> K, int geklickteFarbe, int groese
 	//Alle Komponente von S2 bzw vom PC mit der jeweiligen Farbe faerben
 	for (int i = 0; i < K.size(); i++) {
 		K.get(i).setColor(geklickteFarbe);
-		
-
-//		spielBrettArrayField[zeile][spalte].setColor(farbe);
 		nachbarAufnehmen(K, geklickteFarbe, K.get(i).getRow(), K.get(i).getCol());
 	}
 	groeseK = K.size();
@@ -620,10 +636,7 @@ public int komponenteAnpassen(ArrayList<Field> K, int geklickteFarbe, int groese
 		
 	}
 	
-	
-	public void farbenAktualisierenStrats1() {
-		aktuellVerfuegbareFarben = farbenAktualisierenStrats();
-	}
+
 	
 	
 public ArrayList<Integer> farbenAktualisierenStrats() {
@@ -648,10 +661,10 @@ public ArrayList<Integer> farbenAktualisierenStrats() {
 		
 	}
 
-public ArrayList<Integer> farbenAktualisierenMoves() {
+public ArrayList<Integer> farbenAktualisierenMoves(int s1Farbe) {
 	
 	ArrayList<Integer> alleFarbenImSpiel = new ArrayList<Integer>();
-	
+
 	for(int i = 0; i < board.length; i++) {
 		for(int j = 0; j < board[i].length; j++) {
 			
@@ -664,7 +677,6 @@ public ArrayList<Integer> farbenAktualisierenMoves() {
 			
 		}
 	}
-	
 	
 	
 	
@@ -1136,17 +1148,14 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		
 		//In dieser ArrayList werden alle Felder vom Spieler gepackt
-		ArrayList<Field> K1neu = new ArrayList<Field>();
-		K1neu.add(board[board.length-1][0]);
-		int groeseK1Neu = 1;
+		ArrayList<Field> K1neu = new ArrayList<Field>(K1);
+		
 		
 		int farbe = board[board.length-1][0].getColor();
-		int farbeDavor = 0;
 		
 		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
 		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
-		verfuegbareFarben = farbenAktualisierenMoves();
-		System.out.println("Farben: " + verfuegbareFarben);
+		verfuegbareFarben = farbenAktualisierenMoves(farbe);
 		
 		
 		int moves1 = 0;
@@ -1165,7 +1174,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		for(int i = 0; i < K1neu.size(); i++) {
 			nachbarAufnehmen(K1neu,K1neu.get(i).getColor(), K1neu.get(i).getRow(), K1neu.get(i).getCol());
 		}	
-		groeseK1Neu = K1neu.size();
+
 		
 		
 		/*
@@ -1177,48 +1186,91 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 	
 		//Fuer farbe 1 Farben zyklisch waehlen
-		while(verfuegbareFarben.size() > 0) {
-			
-			for(int i = 0; i < verfuegbareFarben.size(); i++) {
-				
-				if(i == 0) {
-					i++;
-				}
-				
-				if(i < 6 && verfuegbareFarben.contains(i)) {
-				spielZugPC(i, verfuegbareFarben,farbeDavor, farbe, groeseK1Neu, K1neu, moves1);
-				}
-				
-				if(i == 6) {
-					spielZugPC(i, verfuegbareFarben,farbeDavor, farbe, groeseK1Neu, K1neu, moves1);
-					i = 1;
+		int m = move1(moves1);
 
-				}
-				
-				
-			}
-			
-			//Bei 1 anfangen
-			int i = 1;
-			if(verfuegbareFarben.contains(i)) {
-					spielZugPC(i, verfuegbareFarben,farbeDavor, farbe, groeseK1Neu, K1neu, moves1);
-				}
-			
-			if(i < 6) {
-				i++;
-			}
-			
-			
-			
-			
 
 				
-			}
-			
 			
 		
 		
-		return groeseK1Neu;
+		return m;
+	}
+	
+	
+	public int move1(int moves1) {
+		
+		//Alle wichtigen Variablen deklarieren
+		
+		
+		//In dieser ArrayList werden alle Felder vom Spieler gepackt
+		ArrayList<Field> K1Copy = new ArrayList<Field>(K1);
+		
+		for(int i = 0; i < K1Copy.size(); i++) {
+			nachbarAufnehmen(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
+		}	
+
+		
+		int groeseK1Neu = K1Copy.size();
+		
+
+		int farbe = board[board.length-1][0].getColor();
+
+
+		
+		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
+		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
+		verfuegbareFarben = farbenAktualisierenMoves(farbe);
+
+		
+		
+		//So lange mit den jeweiligen Farben vergroesern, bis Feld komplett eingenommen ist
+		
+		
+		while(K1Copy.size() < board.length*board[0].length) {
+			for(int i = 1; i <= 6; i++) {
+
+				if(verfuegbareFarben.contains(i)) {
+					farbe = i;
+					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
+					verfuegbareFarben = farbenAktualisierenMoves(farbe);
+					moves1++;
+
+				}
+
+					
+			}
+			
+		}
+		
+		System.out.println("Moves: " + moves1);
+
+
+			
+
+									
+			
+		
+		return moves1;
+		
+	}
+	
+	
+	public void spielZug(int col, ArrayList<Integer> verfuegbareFarben, ArrayList<Field> K1Copy,int groeseK1Neu) {
+		
+		
+		if(verfuegbareFarben.contains(col)) {
+			
+			
+			//Alle Komponente von S mit der jeweiligen Farbe faerben und weitere Nachbarn bei gleicher Farbe aufnehmen
+			for (int i = 0; i < K1Copy.size(); i++) {
+				K1Copy.get(i).setColor(col);
+				nachbarAufnehmen(K1Copy, col, K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
+			}
+			
+		}
+		groeseK1Neu = K1Copy.size();
+		
+		
 	}
 
 	
