@@ -1231,6 +1231,8 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 				if(verfuegbareFarben.contains(i)) {
 					farbe = i;
+					System.out.println("Farben: " + verfuegbareFarben);
+
 					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 					moves1++;
