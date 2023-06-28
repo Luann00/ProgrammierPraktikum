@@ -718,7 +718,7 @@ public class JPanels extends JPanel {
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
 					brettAnzeigen();
-//					minMovesTest();
+					minMovesTest();
 
 					
 
