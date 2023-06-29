@@ -1343,14 +1343,10 @@ public int move2(int moves2) {
 //		System.out.println("Board am Anfang:");
 //		boardAnzeigen();
 
-		
-
 		for(int i = 0; i < K1Copy.size(); i++) {
 			nachbarAufnehmenMoves(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol(), copyBoard);
 		}
-		
-		System.out.println("Groese am Anfang: " + K1Copy.size() + " mit farben: " + K1Copy.get(0).getColor());
-		
+				
 		
 		int groeseK1Neu = K1Copy.size();
 		
