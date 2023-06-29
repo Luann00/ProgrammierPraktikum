@@ -2,6 +2,7 @@ package testing;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
@@ -18,6 +19,7 @@ import logic.MyFrame;
 public class Testing {
 
 	private Field[][] board;
+	Field[][] copyBoard;
 	private int groeseK1;
 	private int groeseK2;
 	private int s1Farbe;
@@ -141,6 +143,16 @@ public class Testing {
 		groeseK1 = K1.size();
 		groeseK2 = K2.size();
 		
+		
+		copyBoard = new Field[board.length][board[0].length];
+		for (int i = 0; i < board.length; i++) {
+			for(int j = 0; j < board[0].length; j++) {
+				
+				copyBoard[i][j] = board[i][j].copy();
+
+			}
+		}
+		
 	}
 	
 	
@@ -262,7 +274,6 @@ public class Testing {
 			
 		int col = farbeWaehlens1(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
-//		spielZugPC(col);
 		
 				
 		
@@ -624,16 +635,29 @@ public int komponenteAnpassen(ArrayList<Field> K, int geklickteFarbe, int groese
 	
 	public void boardAnzeigen() {
 		
-		 for(int i = 0; i < board.length ; i ++){
+		 for(int i = 0; i < copyBoard.length ; i ++){
 
 	            System.out.println();
 	            for(int j = 0 ; j < board[i].length ; j++){
-	                System.out.print(" | " + board[i][j].getColor()  );
+	                System.out.print(" | " + copyBoard[i][j].getColor()  );
 	            }
 	            System.out.print(" |");
 	            System.out.println();
 	        }
 		
+	}
+	
+	public void copyBoardAnzeigen() {
+		for(int i = 0; i < board.length ; i ++){
+
+            System.out.println();
+            for(int j = 0 ; j < copyBoard[i].length ; j++){
+                System.out.print(" | " + copyBoard[i][j].getColor()  );
+            }
+            System.out.print(" |");
+            System.out.println();
+        }
+	
 	}
 	
 
@@ -856,6 +880,73 @@ public void nachbarAufnehmen(ArrayList<Field> K, int farbe, int zeile, int spalt
 	}
 
 }
+
+
+public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int spalte, Field[][] brett) {
+	
+
+	if (zeile > 0) {
+		int obererNachbar = brett[zeile - 1][spalte].getColor();
+		if (obererNachbar == farbe) {
+
+			if (K.contains(brett[zeile - 1][spalte])) {
+
+			} else {
+				K.add(brett[zeile - 1][spalte]);
+			}
+
+		}
+
+	}
+
+	if (zeile < brett.length - 1) {
+
+		int untererNachbar = brett[zeile + 1][spalte].getColor();
+		if (untererNachbar == farbe) {
+
+			if (K.contains(brett[zeile + 1][spalte])) {
+			} else {
+				K.add(brett[zeile + 1][spalte]);
+
+			}
+
+		}
+
+	}
+
+	if (spalte > 0) {
+
+		int rechterNachbar = brett[zeile][spalte - 1].getColor();
+		if (rechterNachbar == farbe) {
+
+			if (K.contains(brett[zeile][spalte - 1])) {
+			} else {
+				K.add(brett[zeile][spalte - 1]);
+
+			}
+
+		}
+
+	}
+
+	if (spalte < brett[0].length - 1) {
+
+		int linkerNachbar = brett[zeile][spalte + 1].getColor();
+		if (linkerNachbar == farbe) {
+
+			if (K.contains(brett[zeile][spalte + 1])) {
+			} else {
+				K.add(brett[zeile][spalte + 1]);
+
+			}
+
+		}
+
+	}
+	
+	
+}
+
 
 
 	
@@ -1118,8 +1209,6 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			return 0;
 			
 	}
-		
-
 	
 	public boolean toBoard(Field[][] anotherBoard, int moves) {
 		
@@ -1149,13 +1238,16 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		//In dieser ArrayList werden alle Felder vom Spieler gepackt
 		ArrayList<Field> K1neu = new ArrayList<Field>(K1);
+				
+		
+		Field[][] copyBoard = new Field[board.length][];
+		for (int i = 0; i < board.length; i++) {
+		copyBoard[i] = Arrays.copyOf(board[i], board[i].length);
+		}
 		
 		
-		int farbe = board[board.length-1][0].getColor();
+		 
 		
-		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
-		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
-		verfuegbareFarben = farbenAktualisierenMoves(farbe);
 		
 		
 		int moves1 = 0;
@@ -1183,16 +1275,18 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 	
 		//Fuer farbe 1 Farben zyklisch waehlen
-		int m1 = move1(moves1);
+//		int m1 = move1(moves1);		
+		boardZuweisen();
 		int m2 = move2(moves2);
-		int m3 = move2(moves3);
-		int m4 = move2(moves4);
-		int m5 = move2(moves5);
-		int m6 = move2(moves6);
+//		int m3 = move2(moves3);
+//		int m4 = move2(moves4);
+//		int m5 = move2(moves5);
+//		int m6 = move2(moves6);
 		
 		
 
-		System.out.println("Moves, wenn man mit blau anfaengt: " + m3);
+		System.out.println("Moves, wenn man mit Blau anfaengt: " + m2);
+
 
 				
 			
@@ -1201,21 +1295,38 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		return m2;
 	}
 	
+	public void boardZuweisen() {
+		
+		
+		board = new Field[copyBoard.length][copyBoard[0].length];
+		for (int i = 0; i < copyBoard.length; i++) {
+			for(int j = 0; j < board[0].length; j++) {
+
+			board[i][j] = copyBoard[i][j].copy();
+		
+		}
+		}
+		
+		
+	}
+	
 	
 	public int move1(int moves1) {
-				
-		//In dieser ArrayList werden alle Felder vom Spieler gepackt
-		ArrayList<Field> K1Copy = new ArrayList<Field>(K1);
+			
+		ArrayList<Field> K1Copy = new ArrayList<Field>();
+		for(int i = 0; i < K1.size(); i++) {
+			K1Copy.add(K1.get(i));
+		}
 		
 		for(int i = 0; i < K1Copy.size(); i++) {
-			nachbarAufnehmen(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
+			nachbarAufnehmenMoves(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol(), copyBoard);
 		}	
 
-		
+
 		int groeseK1Neu = K1Copy.size();
 		
 
-		int farbe = board[board.length-1][0].getColor();
+		int farbe = copyBoard[board.length-1][0].getColor();
 		
 		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
 		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
@@ -1224,114 +1335,161 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		//So lange mit den jeweiligen Farben vergroesern, bis Feld komplett eingenommen ist
 		
-		
-		while(K1Copy.size() < board.length*board[0].length) {
+		while(K1Copy.size() < copyBoard.length*board[0].length) {
 			for(int i = 1; i <= 6; i++) {
-
+				
 				if(verfuegbareFarben.contains(i)) {
 					farbe = i;
 					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 					moves1++;
-
 				}
 		
-			}
-			
+			}	
+
 		}
 		
-		System.out.println("Moves: " + moves1);	
+		
+		
 		
 		return moves1;
 		
+		
 	}
 	
-	public int move2(int moves2) {
+public int move2(int moves2) {
 		
 		//In dieser ArrayList werden alle Felder vom Spieler gepackt
-		ArrayList<Field> K1Copy = new ArrayList<Field>(K1);
+		ArrayList<Field> K1Copy = new ArrayList<Field>();
+		for(int i = 0; i < K1.size(); i++) {
+			K1Copy.add(K1.get(i));
+		}
 		
 		for(int i = 0; i < K1Copy.size(); i++) {
 			nachbarAufnehmen(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
 		}	
-
+		
 		
 		int groeseK1Neu = K1Copy.size();
 		
 
-		int farbe = board[board.length-1][0].getColor();
+		int farbe = copyBoard[board.length-1][0].getColor();
 		
 		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
 		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
 		verfuegbareFarben = farbenAktualisierenMoves(farbe);
+		System.out.println("Farben am anfang: " + verfuegbareFarben);
 
 		
 		//So lange mit den jeweiligen Farben vergroesern, bis Feld komplett eingenommen ist
 		
+		boolean erstesMal = true;
 		
-		while(K1Copy.size() < board.length*board[0].length) {
-			for(int i = 2; i <= 6; i++) {
+		while(K1Copy.size() < copyBoard.length*copyBoard[0].length) {
 
+			for(int i = 1; i <= 6; i++) {
+				if(i == 1 && erstesMal == true) {
+					erstesMal = false;
+					continue;
+				}
+				
+
+				if(i == 6 && K1Copy.size() < board.length*board[0].length) {
+					if(verfuegbareFarben.contains(i)) {
+						farbe = i;
+						spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
+						verfuegbareFarben = farbenAktualisierenMoves(farbe);
+						if(K1Copy.size() == board.length*board[0].length) {
+							break;
+						}
+						moves2++;
+					}
+					
+					if(K1Copy.size() == board.length*board[0].length) {
+						break;
+					}
+				}
+				
+				
+				
 				if(verfuegbareFarben.contains(i)) {
 					farbe = i;
 					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 					moves2++;
-
 				}
-		
-			}
+				
 			
 		}
+		}
 		
-		System.out.println("Moves: " + moves2);	
+		
+		
 		
 		return moves2;
 		
+		
+		
 	}
+	
 	
 public int move3(int moves3) {
 		
-		//In dieser ArrayList werden alle Felder vom Spieler gepackt
-		ArrayList<Field> K1Copy = new ArrayList<Field>(K1);
-		
-		for(int i = 0; i < K1Copy.size(); i++) {
-			nachbarAufnehmen(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
-		}	
-
-		
-		int groeseK1Neu = K1Copy.size();
-		
-
-		int farbe = board[board.length-1][0].getColor();
-		
-		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
-		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
-		verfuegbareFarben = farbenAktualisierenMoves(farbe);
-
-		
-		//So lange mit den jeweiligen Farben vergroesern, bis Feld komplett eingenommen ist
-		
-		
-		while(K1Copy.size() < board.length*board[0].length) {
-			for(int i = 3; i <= 6; i++) {
-
-				if(verfuegbareFarben.contains(i)) {
-					farbe = i;
-					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
-					verfuegbareFarben = farbenAktualisierenMoves(farbe);
-					moves3++;
-
-				}
-		
+	//In dieser ArrayList werden alle Felder vom Spieler gepackt
+			ArrayList<Field> K1Copy = new ArrayList<Field>();
+			for(int i = 0; i < K1.size(); i++) {
+				K1Copy.add(K1.get(i));
 			}
 			
-		}
-		
-		System.out.println("Moves: " + moves3);	
-		
-		return moves3;
-		
+			boardAnzeigen();
+			for(int i = 0; i < K1Copy.size(); i++) {
+				nachbarAufnehmen(K1Copy,K1Copy.get(i).getColor(), K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
+			}	
+			
+			
+			int groeseK1Neu = K1Copy.size();
+			
+
+			int farbe = copyBoard[board.length-1][0].getColor();
+			
+			//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
+			ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
+			verfuegbareFarben = farbenAktualisierenMoves(farbe);
+
+			
+			//So lange mit den jeweiligen Farben vergroesern, bis Feld komplett eingenommen ist
+			
+
+				for(int i = 3; i <= 6; i++) {
+					if(i == 6 && K1Copy.size() < board.length*board[0].length) {
+						if(verfuegbareFarben.contains(i)) {
+							farbe = i;
+							spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
+							verfuegbareFarben = farbenAktualisierenMoves(farbe);
+							moves3++;
+						}
+						i = 1;
+					}
+					
+					if(i == 6 && K1Copy.size() == board.length*board[0].length) {
+						break;
+					}
+					
+					if(verfuegbareFarben.contains(i)) {
+						farbe = i;
+						spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
+						verfuegbareFarben = farbenAktualisierenMoves(farbe);
+						moves3++;
+					}
+					
+					System.out.println("Farben: " + verfuegbareFarben);
+					
+				
+			}
+			
+			
+			
+			return moves3;
 	}
 
 public int move4(int moves4) {
@@ -1477,7 +1635,9 @@ public int move6(int moves6) {
 			for (int i = 0; i < K1Copy.size(); i++) {
 				K1Copy.get(i).setColor(col);
 				nachbarAufnehmen(K1Copy, col, K1Copy.get(i).getRow(), K1Copy.get(i).getCol());
+				
 			}
+			
 			
 		}
 		groeseK1Neu = K1Copy.size();

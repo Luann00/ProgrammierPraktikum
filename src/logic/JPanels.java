@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 import testing.Testing;
 
@@ -46,8 +47,6 @@ public class JPanels extends JPanel {
 	private MyFrame myFrame;
 	private JPanel menueTafel;
 	private JPanel spielBrett;
-	private JPanel spielEinstellungen;
-	private JPanel konfiguration;
 	JPanel farbenAnzeige = new JPanel();
 
 	private ArrayList<Color> alleMöglichenFarben = new ArrayList<Color>();
@@ -94,21 +93,6 @@ public class JPanels extends JPanel {
 		this.spielBrett = spielBrett;
 	}
 
-	public JPanel getSpielEinstellungen() {
-		return spielEinstellungen;
-	}
-
-	public void setSpielEinstellungen(JPanel spielEinstellungen) {
-		this.spielEinstellungen = spielEinstellungen;
-	}
-
-	public JPanel getKonfiguration() {
-		return konfiguration;
-	}
-
-	public void setKonfiguration(JPanel konfiguration) {
-		this.konfiguration = konfiguration;
-	}
 
 	public JPanel getFarbenAnzeige() {
 		return farbenAnzeige;
@@ -510,11 +494,11 @@ public class JPanels extends JPanel {
 		 * anzeigeTafel das Spielbrett
 		 */
 		menueTafel = new JPanel();
-		menueTafel.setLayout(new BoxLayout(menueTafel, BoxLayout.Y_AXIS));
+		menueTafel.setLayout(new GridLayout(8,1));
 		spielBrett = new JPanel();
 
-		menueTafel.setPreferredSize(new Dimension(myFrame.getWidth() / 4, myFrame.getHeight()));
-		spielBrett.setPreferredSize(new Dimension(myFrame.getWidth() / 4 * 3, myFrame.getHeight() / 8 * 7));
+		menueTafel.setPreferredSize(new Dimension(myFrame.getWidth() / 3, myFrame.getHeight()));
+		spielBrett.setPreferredSize(new Dimension(myFrame.getWidth() / 3 * 2, myFrame.getHeight() / 8 * 7));
 
 		startButton = new JButton("Start");
 		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -525,122 +509,75 @@ public class JPanels extends JPanel {
 		 * Titel hinzufuegen mit dem Button
 		 */
 
-		konfiguration = new JPanel();
-		konfiguration.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight() / 4));
 
 		/*
 		 * Flow Layout fuer Konfiguration, um alle Auswahlmoeglichkeiten direkt
 		 * nebeneinander anzeigen zu lassen
 		 */
-
-		konfiguration.setLayout(new BoxLayout(konfiguration, BoxLayout.Y_AXIS));
-		JLabel ueberSchrift1 = new JLabel("<HTML><U>Spielbrett Einstellungen</U></HTML>", JLabel.CENTER);
-		ueberSchrift1.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-		ueberSchrift1.setFont(new Font("Arial", 1, 12));
-
-		konfiguration.add(ueberSchrift1);
-		konfiguration.add(startButton);
-
-		// Panel, wo man die Zeile auswaehlt
-
-		JPanel zeilenAuswaehlen = new JPanel();
-		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilenanzahl: ", JLabel.LEFT);
-		Font f = zeilenanzahlAuswaehlen.getFont();
-		zeilenanzahlAuswaehlen.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
-		zeilenAuswaehlen.add(zeilenanzahlAuswaehlen);
-		zeilenAuswahl = new JComboBox<String>(zeilenAnzahl);
-		zeilenAuswahl.setSelectedItem("6");
-		zeilenAuswaehlen.add(zeilenAuswahl);
-
-		// Panel, wo man die Spalte auswaehlt
-		JPanel spalteAuswaehlen = new JPanel();
-		JLabel spaltenanzahlAuswaehlen = new JLabel("Spaltenanzahl: ");
-		Font g = zeilenanzahlAuswaehlen.getFont();
-		spaltenanzahlAuswaehlen.setFont(g.deriveFont(g.getStyle() & ~Font.BOLD));
-		spalteAuswaehlen.add(spaltenanzahlAuswaehlen);
-		spaltenAuswahl = new JComboBox<String>(spaltenAnzahl);
-		spaltenAuswahl.setSelectedItem("6");
-		spalteAuswaehlen.add(spaltenAuswahl);
-
-		// Panel, wo man die Zeile angezeigt wird
-		zeilenUndSpaltenAnzeige = new JPanel();
-		zeilenUndSpaltenAnzeige.setLayout(new BoxLayout(zeilenUndSpaltenAnzeige,BoxLayout.Y_AXIS));
-		rows = new JLabel();
-		cols = new JLabel();
-		zeilenUndSpaltenAnzeige.add(rows);
-		zeilenUndSpaltenAnzeige.add(cols);
-
-
-		konfiguration.add(zeilenAuswaehlen);
-		konfiguration.add(spalteAuswaehlen);
-
-		konfiguration.add(zeilenUndSpaltenAnzeige);
-
-		konfiguration.setBorder(BorderFactory.createLineBorder(Color.black));
-
-		spielEinstellungen = new JPanel();
-
-		spielEinstellungen.setPreferredSize(new Dimension(myFrame.getWidth(), myFrame.getHeight() / 4 * 3));
-
-		spielEinstellungen.setLayout(new BoxLayout(spielEinstellungen, BoxLayout.Y_AXIS));
-
-		JLabel ueberSchrift = new JLabel("<HTML><U>Spiel Einstellungen</U></HTML>", JLabel.CENTER);
-		ueberSchrift.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JPanel buttons = new JPanel();
+		buttons.setBorder(new TitledBorder("Spielbrett erstellen"));
+		
+		
 		JButton playButton = new JButton("Play");
 		playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		playButton.setFocusPainted(false);
-		spielEinstellungen.add(ueberSchrift);
-		spielEinstellungen.add(playButton);
 
-		JLabel beginnerFrage = new JLabel("<html><u>Beginner auswählen</u></html>", JLabel.LEFT);
-		Font f2 = beginnerFrage.getFont();
-		beginnerFrage.setFont(f2.deriveFont(f2.getStyle() & ~Font.BOLD));
-		spielEinstellungen.add(beginnerFrage);
 
-		JPanel beginnerUndStrat = new JPanel();
+		buttons.add(startButton);
+		buttons.add(playButton);
+
+
+		menueTafel.add(buttons);
+		
+		
+		//JPanel fuer die Zeilen und Spaltenauswahl
+		JPanel brettGroese = new JPanel();
+		brettGroese.setBorder(new TitledBorder("Spielbrettgroese waehlen"));
+		JLabel zeilenanzahlAuswaehlen = new JLabel("Rows: ", JLabel.LEFT);
+		Font f = zeilenanzahlAuswaehlen.getFont();
+		zeilenanzahlAuswaehlen.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
+		brettGroese.add(zeilenanzahlAuswaehlen);
+		zeilenAuswahl = new JComboBox<String>(zeilenAnzahl);
+		zeilenAuswahl.setSelectedItem("6");
+		brettGroese.add(zeilenAuswahl);
+		JLabel spaltenanzahlAuswaehlen = new JLabel("Cols: ");
+		Font g = zeilenanzahlAuswaehlen.getFont();
+		spaltenanzahlAuswaehlen.setFont(g.deriveFont(g.getStyle() & ~Font.BOLD));
+		brettGroese.add(spaltenanzahlAuswaehlen);
+		spaltenAuswahl = new JComboBox<String>(spaltenAnzahl);
+		spaltenAuswahl.setSelectedItem("6");
+		brettGroese.add(spaltenAuswahl);
+
+		menueTafel.add(brettGroese);
+
+		
+
+		
+		
+
+		
+		//JPanel fuer den Beginner mit den radioButtons
+		JPanel beginnerFrage = new JPanel();
+		beginnerFrage.setBorder(new TitledBorder("Spielbrettgroese waehlen"));
 		s1RadioButton = new JRadioButton("S1");
 		s1RadioButton.setSelected(true);
 		s2RadioButton = new JRadioButton("S2");
-		beginnerUndStrat.add(beginnerFrage);
-		beginnerUndStrat.add(s1RadioButton);
-		beginnerUndStrat.add(s2RadioButton);
+		beginnerFrage.add(s1RadioButton);
+		beginnerFrage.add(s2RadioButton);
 
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(s1RadioButton);
 		bg.add(s2RadioButton);
+		
+		menueTafel.add(beginnerFrage);
 
-		JLabel beginnerLabel = new JLabel();
-		Font f3 = beginnerLabel.getFont();
-		beginnerLabel.setFont(f3.deriveFont(f3.getStyle() & ~Font.BOLD));
-		beginnerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		beginnerUndStrat.add(beginnerLabel);
-
-		JLabel strategieLabel = new JLabel("<html><u>Spielstrategie für S2</u></html>", JLabel.LEFT);
-		Font f4 = beginnerFrage.getFont();
-		strategieLabel.setFont(f4.deriveFont(f4.getStyle() & ~Font.BOLD));
-		beginnerUndStrat.add(strategieLabel);
-
-		JLabel stratFrage = new JLabel("Spielstrategie S2:", JLabel.LEFT);
-		Font f1 = stratFrage.getFont();
-		stratFrage.setFont(f1.deriveFont(f1.getStyle() & ~Font.BOLD));
-
-		beginnerUndStrat.add(stratFrage);
-
-		stratAuswahlListe = new JComboBox<String>(strat);
-		beginnerUndStrat.add(stratAuswahlListe);
-		JLabel stratAnzeige = new JLabel();
-		Font f5 = stratFrage.getFont();
-		stratAnzeige.setFont(f5.deriveFont(f5.getStyle() & ~Font.BOLD));
-		stratAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
-		beginnerUndStrat.add(stratAnzeige);
-
+		
+		
+		//JPanel fuer Auswahl der Farben
 		JPanel farbenPanel = new JPanel();
-		farbenPanel.setLayout(new BoxLayout(farbenPanel, BoxLayout.Y_AXIS));
-		JLabel farbEinst = new JLabel("<html><u>Farbeinstellungen</u></html>", JLabel.CENTER);
-		farbEinst.setAlignmentX(Component.CENTER_ALIGNMENT);
-		farbenPanel.add(farbEinst);
+		farbenPanel.setBorder(new TitledBorder("Farbenanzahl waehlen"));
 		JLabel farbenFrage = new JLabel("Farbenanzahl:", JLabel.LEFT);
 		farbenFrage.setAlignmentX(Component.CENTER_ALIGNMENT);
 		farbenPanel.add(farbenFrage);
@@ -648,22 +585,34 @@ public class JPanels extends JPanel {
 		farbenAnzahl.setSelectedItem("5");
 		farbenPanel.add(farbenAnzahl);
 
-		beginnerUndStrat.add(farbenPanel);
+		menueTafel.add(farbenPanel);
+		
+		
+		
+		//JPanel fuer Auswahl der Strategien
+		JPanel strategiePanel = new JPanel();
+		strategiePanel.setBorder(new TitledBorder("Strategie fuer PC waehlen"));
+		JLabel strategieLabel = new JLabel("Strategie PC: ", JLabel.LEFT);
+		strategieLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		strategiePanel.add(strategieLabel);
+		stratAuswahlListe = new JComboBox<String>(strat);
+		stratAuswahlListe.setSelectedItem("1");
+		strategiePanel.add(stratAuswahlListe);
+		
+		
+		menueTafel.add(strategiePanel);
 
-		JPanel komponentenPanel = new JPanel();
-		JLabel k1 = new JLabel("S1 Komponentengröße: " + "10");
-		k1.setFont(new Font("Arial", 1, 11));
-		JLabel k2 = new JLabel("S2 Komponentengröße: " + "10");
-		k2.setFont(new Font("Arial", 1, 11));
-		komponentenPanel.add(k1);
-		komponentenPanel.add(k2);
+		
+
+		
+
+
+
 
 		playButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
-				
 				if (playButton.getText().equals("Play")) {
 
 					playButton.setText("Pause");
@@ -677,28 +626,19 @@ public class JPanels extends JPanel {
 						s1Dran = true;
 					}
 					
-
-					beginnerLabel.setText("Es hat begonnen: " + gewaehlterBeginner);
 					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
 
-					stratAnzeige.setText("Verfolgte Strategie PC: " + gewaehlteStrategie);
 
 					setup1();
 
 				} else {
 					playButton.setText("Play");
-					beginnerLabel.setText("");
-					stratAnzeige.setText("");
 
 				}
 			}
 		});
 
-		spielEinstellungen.add(beginnerUndStrat);
 
-		menueTafel.add(konfiguration, BorderLayout.NORTH);
-
-		menueTafel.add(spielEinstellungen, BorderLayout.CENTER);
 
 		JPanel anzeige = new JPanel();
 		anzeige.setLayout(new BorderLayout());
@@ -717,19 +657,17 @@ public class JPanels extends JPanel {
 					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl - 1][0].getBackground();
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
-					brettAnzeigen();
 					minMovesTest();
 
-					
 
 				} else {
 					startButton.setText("Start");
 					zeilenAuswahl.setEnabled(true);
 					spaltenAuswahl.setEnabled(true);
-					rows.setText("");
-					cols.setText("");
 					spielBrett.removeAll();
 					spielBrett.repaint();
+					
+
 
 					farbenAnzeige.removeAll();
 					farbenAnzeige.revalidate();
@@ -738,7 +676,44 @@ public class JPanels extends JPanel {
 				}
 			}
 		});
+		
+		JPanel timer = new JPanel();
+		JLabel timerLabel = new JLabel("0:00:00", SwingConstants.CENTER);
+        timerLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        timer.add(new JLabel("Timer: "));
+        timer.add(timerLabel);
+        
+		
+		
+		//JPanel fuer den Timer
+		JPanel spieldauer = new JPanel();
+		spieldauer.setBorder(new TitledBorder("Spieldauer"));
+		spieldauer.add(timer);
+		menueTafel.add(spieldauer);
+		
+		
+		
+		JPanel bedienungsanleitung = new JPanel();
+		bedienungsanleitung.setBorder(new TitledBorder("Bedienungsanleitung"));
+		menueTafel.add(bedienungsanleitung);
+		
+		
+		JPanel groese = new JPanel();
+		groese.setBorder(new TitledBorder("Groese der Komponenten"));
+		menueTafel.add(groese);
 
+		
+		
+
+
+		
+
+
+		
+		
+        
+        
+        
 		this.add(anzeige, BorderLayout.CENTER);
 		this.add(menueTafel, BorderLayout.EAST);
 
@@ -1283,16 +1258,13 @@ public class JPanels extends JPanel {
 		gewaehlteSpaltenAnzahl = Integer.parseInt((String) spaltenAuswahl.getSelectedItem());
 		farbenImSpiel = Integer.parseInt((String) farbenAnzahl.getSelectedItem());
 
-		rows.setText("Current Rows: " + gewaehlteZeilenAnzahl);
-		cols.setText("Current Cols: " + gewaehlteSpaltenAnzahl);
-		zeilenUndSpaltenAnzeige.setAlignmentX(Component.CENTER_ALIGNMENT);
-		konfiguration.add(zeilenUndSpaltenAnzeige);
-
+		
 		spielbrettArray = new JPanel[gewaehlteZeilenAnzahl][gewaehlteSpaltenAnzahl];
 
 		farbenUebernehmen(farbenImSpiel);
 
 		spielbrettArray = spielBrettGenerieren();
+		
 
 		while (benutzteFarben.size() != farbenImSpiel) {
 			spielBrett.removeAll();

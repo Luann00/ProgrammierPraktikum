@@ -17,6 +17,18 @@ public class Field {
 	
 	
 	}
+	
+	public Field copy() {
+		
+		Field field = new Field(this.row,this.col,this.color);
+		field.setRow(this.row);
+		field.setCol(this.col);
+		field.setColor(this.color);
+		
+		return field;
+
+		
+	}
 
 	
 	
