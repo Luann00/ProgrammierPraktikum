@@ -1235,7 +1235,6 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
 		int farbe = board[board.length-1][0].getColor();
 		verfuegbareFarben = farbenAktualisierenMoves(farbe);
-		System.out.println("Farben am Anfang: " + verfuegbareFarben);
 
 		
 		/*
@@ -1247,7 +1246,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			int m1 = move1neu(row,col,moves1);		
 			boardZuweisen();
 			alleZahlen.add(m1);
-//			System.out.println("Schwarz: " + m1);
+			System.out.println("Schwarz: " + m1);
 
 
 		}
@@ -1255,28 +1254,28 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			int m2 = move2neu(row,col,moves2);
 			boardZuweisen();
 			alleZahlen.add(m2);
-//			System.out.println("Blau: " + m2);
+			System.out.println("Blau: " + m2);
 
 		}
 		if(verfuegbareFarben.contains(3)) {
 			int m3 = move3neu(row,col,moves3);
 			boardZuweisen();
 			alleZahlen.add(m3);
-//			System.out.println("Hellblau: " + m3);
+			System.out.println("Hellblau: " + m3);
 
 		}
 		if(verfuegbareFarben.contains(4)) {
 			int m4 = move4neu(row,col,moves4);
 			boardZuweisen();
 			alleZahlen.add(m4);
-//			System.out.println("Grau: " + m4);
+			System.out.println("Grau: " + m4);
 
 		}
 		if(verfuegbareFarben.contains(5)) {
 			int m5 = move5neu(row,col,moves5);		
 			boardZuweisen();
 			alleZahlen.add(m5);
-//			System.out.println("Gruen: " + m5);
+			System.out.println("Gruen: " + m5);
 
 		}
 		if(verfuegbareFarben.contains(6)) {
@@ -1430,7 +1429,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 				
 				if(verfuegbareFarben.contains(i) && K1Copy.contains(board[row][col])==false) {
 					farbe = i;
-					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
+					spielZugMoves(i, verfuegbareFarben, K1Copy);
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 					moves1++;
 				}
@@ -1497,7 +1496,7 @@ ArrayList<Field> K1Copy;
 
 				if(verfuegbareFarben.contains(i) && K1Copy.contains(board[row][col]) == false) {
 					farbe = i;
-					spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+					spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 					moves2++;
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 				}
@@ -1568,7 +1567,7 @@ public int move3neu(int moves3, int row, int col) {
 
 			if(verfuegbareFarben.contains(i) && K1Copy.contains(board[row][col])==false) {
 				farbe = i;
-				spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+				spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 				moves3++;
 				verfuegbareFarben = farbenAktualisierenMoves(farbe);
 			}	
@@ -1626,12 +1625,12 @@ public int move3neu(int moves3, int row, int col) {
 				
 				if(verfuegbareFarben.contains(i)) {
 					farbe = i;
-					spielZug(i, verfuegbareFarben, K1Copy, groeseK1Neu);
+					spielZugMoves(i, verfuegbareFarben, K1Copy);
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 					moves1++;
 				}
 				
-			}	
+			}
 
 		}	
 	
@@ -1702,7 +1701,7 @@ public int move3neu(int moves3, int row, int col) {
 
 				if(verfuegbareFarben.contains(i) && K1Copy.contains(board[row][col])==false) {
 					farbe = i;
-					spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+					spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 					moves4++;
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 				}	
@@ -1790,7 +1789,7 @@ public int move5neu(int moves5, int row, int col) {
 
 				if(verfuegbareFarben.contains(i) && K1Copy.contains(board[row][col])==false) {
 					farbe = i;
-					spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+					spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 					moves5++;
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 				}	
@@ -1849,7 +1848,6 @@ public int move6neu(int moves6, int row, int col) {
 	boolean erstesMal5 = true;
 	
 
-	int z = 1;
 	while(K1Copy.contains(board[row][col]) == false) {
 
 		for(int i = 1; i <= 6; i++) {
@@ -1885,8 +1883,6 @@ public int move6neu(int moves6, int row, int col) {
 				farbe = i;
 				spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 				verfuegbareFarben = farbenAktualisierenMoves(farbe);
-				System.out.println("Farben nach Zug " + z + ": " + verfuegbareFarben);
-				z++;
 				moves6++;
 				if(K1Copy.contains(board[row][col])) {
 					break;
@@ -1957,7 +1953,7 @@ public int move2(int moves2) {
 
 				if(verfuegbareFarben.contains(i)) {
 					farbe = i;
-					spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+					spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 					moves2++;
 					verfuegbareFarben = farbenAktualisierenMoves(farbe);
 				}	
@@ -2058,7 +2054,7 @@ public int move3(int moves3) {
 
 			if(verfuegbareFarben.contains(i)) {
 				farbe = i;
-				spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+				spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 				moves3++;
 				verfuegbareFarben = farbenAktualisierenMoves(farbe);
 			}	
@@ -2132,7 +2128,7 @@ public int move4(int moves4) {
 
 			if(verfuegbareFarben.contains(i)) {
 				farbe = i;
-				spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+				spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 				moves4++;
 				verfuegbareFarben = farbenAktualisierenMoves(farbe);
 			}	
@@ -2212,7 +2208,7 @@ public int move5(int moves5) {
 
 			if(verfuegbareFarben.contains(i)) {
 				farbe = i;
-				spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+				spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 				moves5++;
 				verfuegbareFarben = farbenAktualisierenMoves(farbe);
 			}	
@@ -2297,7 +2293,7 @@ public int move6(int moves6) {
 			verfuegbareFarben = farbenAktualisierenMoves(farbe);
 			if(verfuegbareFarben.contains(i)) {
 				farbe = i;
-				spielZug(farbe, verfuegbareFarben, K1Copy, groeseK1Neu);
+				spielZugMoves(farbe, verfuegbareFarben, K1Copy);
 				moves6++;
 				verfuegbareFarben = farbenAktualisierenMoves(farbe);
 			}	

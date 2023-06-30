@@ -1321,7 +1321,7 @@ public class JPanels extends JPanel {
 	public void minMovesTest() {
 		Testing t = new Testing(spielBrettArrayField);
 		System.out.println("Neu");
-		int m = t.minMovesFull();
+		int m = t.minMoves(0,0);
 		
 	}
 
