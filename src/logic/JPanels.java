@@ -1320,8 +1320,8 @@ public class JPanels extends JPanel {
 	
 	public void minMovesTest() {
 		Testing t = new Testing(spielBrettArrayField);
+		System.out.println("Neu");
 		int m = t.minMovesFull();
-		System.out.println("Verbleibende Zuege: " + m);
 		
 	}
 
@@ -1389,16 +1389,15 @@ public class JPanels extends JPanel {
 
 							anzeigeAktualisierenMouse(geklickteFarbe);
 //						}
-							if(spielZuege == 5) {
-								minMovesTest();
-							}
 							
+							if(spielZuege == 5) {
+								minMovesTest();	
+							}
 
 					}
 				});
 
 			}
-			
 			
 		}
 		}
