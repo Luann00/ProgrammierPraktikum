@@ -657,7 +657,6 @@ public class JPanels extends JPanel {
 					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl - 1][0].getBackground();
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
-					minMovesTest();
 
 
 				} else {
@@ -1277,6 +1276,7 @@ public class JPanels extends JPanel {
 	public void minMovesTest() {
 		Testing t = new Testing(spielBrettArrayField);
 		int m = t.minMovesFull();
+		System.out.println("Verbleibende Zuege: " + m);
 		
 	}
 
@@ -1344,7 +1344,9 @@ public class JPanels extends JPanel {
 
 							anzeigeAktualisierenMouse(geklickteFarbe);
 //						}
-							
+							if(spielZuege == 5) {
+								minMovesTest();
+							}
 							
 
 					}
