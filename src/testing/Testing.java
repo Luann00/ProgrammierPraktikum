@@ -1255,9 +1255,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
 		int farbe = board[board.length-1][0].getColor();
 		verfuegbareFarben = farbenAktualisierenMoves(farbe);
-		
-		System.out.println("Alle Farben: " + verfuegbareFarben);
-		
+				
 		
 		/*
 		 * Hier werden alle Zuege fuer jede Farbe gespeichert und anschliesend mit collections sort aufsteigen sortiert,
@@ -1316,7 +1314,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		Collections.sort(alleZahlen);
 
-			
+					
 		
 		
 		return alleZahlen.get(0);
@@ -1372,7 +1370,11 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 				
 			}	
 
-		}		
+		}	
+		
+//		System.out.println("Farben: " + verfuegbareFarben);
+		System.out.println("Groese Schwarz: " + K1Copy.size());
+
 				
 		
 		return moves1;
@@ -1427,7 +1429,9 @@ public int move2(int moves2) {
 
 			}
 		}
-		
+//		System.out.println("Farben: " + verfuegbareFarben);
+		System.out.println("Groese Blau: " + K1Copy.size());
+
 		
 		return moves2;
 		
@@ -1509,6 +1513,9 @@ public int move3(int moves3) {
 
 	}
 	
+//	System.out.println("Farben: " + verfuegbareFarben);
+	System.out.println("Groese Hellblau: " + K1Copy.size());
+
 
 	return moves3;
 	
@@ -1579,7 +1586,10 @@ public int move4(int moves4) {
 
 		}
 	}
-		
+//	System.out.println("Farben: " + verfuegbareFarben);
+	System.out.println("Groese Grau: " + K1Copy.size());
+
+
 	
 	return moves4;
 	
@@ -1654,7 +1664,10 @@ public int move5(int moves5) {
 
 		}
 	}
-		
+//	System.out.println("Farben: " + verfuegbareFarben);
+	System.out.println("Groese Gruen: " + K1Copy.size());
+
+
 	return moves5;
 	
 	
@@ -1734,7 +1747,10 @@ public int move6(int moves6) {
 		}
 	}
 	
-	
+//	System.out.println("Farben: " + verfuegbareFarben);
+	System.out.println("Groese Braun: " + K1Copy.size());
+
+
 	return moves6;
 	
 	

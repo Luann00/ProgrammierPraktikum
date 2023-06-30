@@ -437,6 +437,12 @@ public class JPanels extends JPanel {
 	private JComboBox<String> spaltenAuswahl;
 	private String[] zeilenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
 	private String[] spaltenAnzahl = { "3", "4", "5", "6", "7", "8", "9", "10" };
+	private int hours;
+	private int minutes;
+	private int seconds;
+	private Timer timer;
+	private JLabel timerLabel;
+	
 
 	private String[] strat = { "1", "2", "3" };
 	private String[] farben = { "4", "5", "6", "7", "8", "9" };
@@ -448,8 +454,8 @@ public class JPanels extends JPanel {
 	private String gewaehlterBeginner;
 	private int gewaehlteStrategie;
 	private int farbenImSpiel;
-//	private ArrayList<Color> waehlbareFarbenS1;
 
+	
 	private ArrayList<JPanel> K1;
 	private ArrayList<JPanel> K2;
 	private ArrayList<JPanel> K2Copy;
@@ -603,7 +609,9 @@ public class JPanels extends JPanel {
 		menueTafel.add(strategiePanel);
 
 		
-
+		hours = 0;
+		minutes = 0;
+		seconds = 0;
 		
 
 
@@ -630,9 +638,11 @@ public class JPanels extends JPanel {
 
 
 					setup1();
+					startTimer();
 
 				} else {
 					playButton.setText("Play");
+					startTimer();
 
 				}
 			}
@@ -677,8 +687,8 @@ public class JPanels extends JPanel {
 		});
 		
 		JPanel timer = new JPanel();
-		JLabel timerLabel = new JLabel("0:00:00", SwingConstants.CENTER);
-        timerLabel.setFont(new Font("Arial", Font.BOLD, 12));
+		timerLabel = new JLabel("0:00:00", SwingConstants.CENTER);
+        timerLabel.setFont(new Font("Arial", Font.BOLD, 15));
         timer.add(new JLabel("Timer: "));
         timer.add(timerLabel);
         
@@ -988,6 +998,41 @@ public class JPanels extends JPanel {
 
 		}
 
+	}
+	
+	
+	public void startTimer() {
+		
+		
+		if(timer != null && timer.isRunning()) {
+			timer.stop();
+			return;
+		}
+		
+		
+		timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				seconds++;
+				if(seconds == 60) {
+					minutes++;
+					seconds = 0;
+				}
+				
+				if(minutes == 60) {
+					hours++;
+					minutes = 0;
+				}
+				
+				String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+				timerLabel.setText(time);
+				
+				
+			}
+		});
+		timer.start();
+		
 	}
 
 	// Methode, um das Spielbrett mit den jeweiligen Felder zu erstellen
