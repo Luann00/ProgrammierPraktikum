@@ -1209,9 +1209,30 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	public boolean toBoard(Field[][] anotherBoard, int moves) {
 		
+		
+		//Wenn Zeilen und Spalten der beiden Boards anders ist, so koennen diese niemals gleiche Farbverteilung haben
 		if(board.length*board[0].length != anotherBoard.length*anotherBoard[0].length) {
 			return false;
 		}
+		
+		
+		//Pruefen, ob beide boards die gleichen sind. falls ja, wird am Ende true ausgegeben
+		boolean gleichesBoard = true;
+		for(int i = 0; i < board.length; i++) {
+			for(int j = 0; j < board[0].length; j++) {
+				
+				if(board[i][j].getColor() != anotherBoard[i][j].getColor()) {
+					gleichesBoard = false;
+				}
+				
+			}
+		}
+		
+		
+		
+		
+		
+		
 		
 		return true;
 	}

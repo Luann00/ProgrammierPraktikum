@@ -68,6 +68,11 @@ public class JPanels extends JPanel {
 	private JPanel orangePanel;
 	private JPanel pinkPanel;
 	private JPanel redPanel;
+	
+	private JLabel K1Info = new JLabel();
+	private JLabel K2Info = new JLabel();
+
+
 
 	public MyFrame getMyFrame() {
 		return myFrame;
@@ -633,12 +638,14 @@ public class JPanels extends JPanel {
 						s2Dran = false;
 						s1Dran = true;
 					}
-					
 					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
-
 
 					setup1();
 					startTimer();
+					
+					infoKAendern();
+
+					
 
 				} else {
 					playButton.setText("Play");
@@ -721,6 +728,11 @@ public class JPanels extends JPanel {
 		
 		JPanel groese = new JPanel();
 		groese.setBorder(new TitledBorder("Groese der Komponenten"));
+		groese.setLayout(new BoxLayout(groese,BoxLayout.Y_AXIS));
+		K1Info = new JLabel();
+		K2Info = new JLabel();
+		groese.add(K1Info);
+		groese.add(K2Info);
 		menueTafel.add(groese);
 
 		this.add(anzeige, BorderLayout.CENTER);
@@ -731,6 +743,13 @@ public class JPanels extends JPanel {
 		
 		
 
+	}
+	
+	
+	public void infoKAendern() {
+
+		K1Info.setText("Size of S1: " + Integer.toString(groeseK1));
+		K2Info.setText("Size of S2: " + Integer.toString(groeseK2));
 	}
 	
 	
@@ -1320,8 +1339,8 @@ public class JPanels extends JPanel {
 	
 	public void minMovesTest() {
 		Testing t = new Testing(spielBrettArrayField);
-		System.out.println("Neu");
 		int m = t.minMoves(0,0);
+		System.out.println(m);
 		
 	}
 
@@ -1373,7 +1392,7 @@ public class JPanels extends JPanel {
 						// Farbe des geklickten Feldes der Komponente zuweisen
 						geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
 
-//						if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
+						if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, geklickteFarbe, groeseK1);
 
@@ -1388,12 +1407,10 @@ public class JPanels extends JPanel {
 							removteFarbe = geklickteFarbe;
 
 							anzeigeAktualisierenMouse(geklickteFarbe);
-//						}
 							
-							if(spielZuege == 5) {
-								minMovesTest();	
-							}
-
+							infoKAendern();
+						}
+							
 					}
 				});
 
@@ -1423,6 +1440,10 @@ public class JPanels extends JPanel {
 						
 						anzeigeAktualisierenKey(farbenAnzeige, 1);
 						
+						setGroeseK1(groeseK1);
+						
+						infoKAendern();
+
 
 						Timer timer = new Timer(1000, new ActionListener() {
 							  @Override
@@ -1481,7 +1502,9 @@ public class JPanels extends JPanel {
 							
 							anzeigeAktualisierenKey(farbenAnzeige, 2);
 							
+							setGroeseK1(groeseK1);
 
+							infoKAendern();
 
 													
 							Timer timer = new Timer(1000, new ActionListener() {
@@ -1540,7 +1563,9 @@ public class JPanels extends JPanel {
 							
 							anzeigeAktualisierenKey(farbenAnzeige, 3);
 							
+							setGroeseK1(groeseK1);
 
+							infoKAendern();
 
 							Timer timer = new Timer(1000, new ActionListener() {
 								  @Override
@@ -1597,8 +1622,10 @@ public class JPanels extends JPanel {
 							groeseK1 = komponenteAnpassen(K1, Color.gray, groeseK1);
 							
 							anzeigeAktualisierenKey(farbenAnzeige, 4);
-							
+							setGroeseK1(groeseK1);
 
+
+							infoKAendern();
 
 							Timer timer = new Timer(1000, new ActionListener() {
 								  @Override
@@ -1657,7 +1684,9 @@ public class JPanels extends JPanel {
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.green, groeseK1);
 							anzeigeAktualisierenKey(farbenAnzeige, 5);
-							
+							setGroeseK1(groeseK1);
+
+							infoKAendern();
 
 
 							Timer timer = new Timer(1000, new ActionListener() {
@@ -1714,7 +1743,9 @@ public class JPanels extends JPanel {
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, brown, groeseK1);
 							anzeigeAktualisierenKey(farbenAnzeige, 6);
-							
+							setGroeseK1(groeseK1);
+
+							infoKAendern();
 
 							Timer timer = new Timer(1000, new ActionListener() {
 								  @Override
@@ -1774,7 +1805,9 @@ public class JPanels extends JPanel {
 							groeseK1 = komponenteAnpassen(K1, Color.orange, groeseK1);
 
 							anzeigeAktualisierenKey(farbenAnzeige, 7);
+							setGroeseK1(groeseK1);
 							
+							infoKAendern();
 
 							Timer timer = new Timer(1000, new ActionListener() {
 								  @Override
@@ -1829,8 +1862,10 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.pink, groeseK1);
+							setGroeseK1(groeseK1);
 
-													
+							infoKAendern();
+			
 							anzeigeAktualisierenKey(farbenAnzeige, 8);
 							
 							Timer timer = new Timer(1000, new ActionListener() {
@@ -1886,8 +1921,10 @@ public class JPanels extends JPanel {
 
 							spielZuege++;
 							groeseK1 = komponenteAnpassen(K1, Color.red, groeseK1);
+							setGroeseK1(groeseK1);
 
-													
+							infoKAendern();
+				
 							anzeigeAktualisierenKey(farbenAnzeige, 9);
 							
 
@@ -1939,6 +1976,7 @@ public class JPanels extends JPanel {
 						
 
 		});
+		
 
 	}
 	
@@ -2369,11 +2407,11 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 	
 	
 	
-	
-	
-	
-	
 }
+
+	
+	
+
 
 	
 	
