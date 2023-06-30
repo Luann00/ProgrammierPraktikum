@@ -1212,7 +1212,11 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	public boolean toBoard(Field[][] anotherBoard, int moves) {
 		
-		return false;
+		if(board.length*board[0].length != anotherBoard.length*anotherBoard[0].length) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	public int minMoves(int row, int col) { 
@@ -1220,7 +1224,6 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		//In dieser ArrayList werden alle aktuellen Felder, die sich in der Komponene vom Spieler befinden, gepackt
 		ArrayList<Field> K1neu = new ArrayList<Field>();
 		K1neu.add(board[board.length-1][0]);
-		int groeseKNeu = 1;
 
 		
 		//Aktuelle Farbe vom Spieler speichern

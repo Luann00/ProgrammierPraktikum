@@ -694,25 +694,25 @@ public class JPanels extends JPanel {
 		
 		JPanel bedienungsanleitung = new JPanel();
 		bedienungsanleitung.setBorder(new TitledBorder("Bedienungsanleitung"));
+		JButton bedienung = new JButton("Bedienungsanleitung");
+		bedienungsanleitung.add(bedienung);
 		menueTafel.add(bedienungsanleitung);
+		
+		
+		
+		bedienung.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Bedienungsanleitung bd = new Bedienungsanleitung();
+			}
+		});
 		
 		
 		JPanel groese = new JPanel();
 		groese.setBorder(new TitledBorder("Groese der Komponenten"));
 		menueTafel.add(groese);
 
-		
-		
-
-
-		
-
-
-		
-		
-        
-        
-        
 		this.add(anzeige, BorderLayout.CENTER);
 		this.add(menueTafel, BorderLayout.EAST);
 
