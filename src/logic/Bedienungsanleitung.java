@@ -8,7 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JPanel.*;
-
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -46,6 +46,11 @@ public class Bedienungsanleitung extends JFrame{
 		JLabel regel3 = new JLabel();
 		regel1.setText("<html><body>1. The next color can be selected in two ways: Either by a mouse click<br> on the respective color or by pressing a key on one of the digits 1-9,<br>where each digit repsents one of the 9 numbers.<br></body></html>");
 		regel3.setText("<html><body>3. The current selectable colors are displayed below the playing field<br><br><br></body></html>");
+		
+		
+		JPanel farben = new JPanel();
+		farben.setLayout(new BoxLayout(farben, BoxLayout.Y_AXIS));
+		
 
 		Infos.add(regel1);
 		Infos.add(regel3);
