@@ -890,6 +890,7 @@ public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int 
 
 			} else {
 				K.add(brett[zeile - 1][spalte]);
+				System.out.println("Es wurde aufgenommen: " + "Feld in Zeile " + zeile + " und Spalte " + spalte);
 			}
 
 		}
@@ -904,6 +905,7 @@ public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int 
 			if (K.contains(brett[zeile + 1][spalte])) {
 			} else {
 				K.add(brett[zeile + 1][spalte]);
+				System.out.println("Es wurde aufgenommen: " + "Feld in Zeile " + zeile + " und Spalte " + spalte);
 
 			}
 
@@ -919,6 +921,7 @@ public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int 
 			if (K.contains(brett[zeile][spalte - 1])) {
 			} else {
 				K.add(brett[zeile][spalte - 1]);
+				System.out.println("Es wurde aufgenommen: " + "Feld in Zeile " + zeile + " und Spalte " + spalte);
 
 			}
 
@@ -934,6 +937,7 @@ public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int 
 			if (K.contains(brett[zeile][spalte + 1])) {
 			} else {
 				K.add(brett[zeile][spalte + 1]);
+				System.out.println("Es wurde aufgenommen: " + "Feld in Zeile " + zeile + " und Spalte " + spalte);
 
 			}
 
@@ -1239,6 +1243,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 	public int minMoves(int row, int col) { 
 		
+		System.out.println("Ziel: Feld in Zeile " + row + " und Spalte " + col + ", was die Farbe " + board[row][col].getColor() + " hat");
 		
 		
 		///Pruefen, ob Feld schon eingenommen wurde. Falls ja, 0 zurueckgeben
@@ -1256,6 +1261,8 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		ArrayList<Integer> verfuegbareFarben = new ArrayList<Integer>();
 		int farbe = board[board.length-1][0].getColor();
 		verfuegbareFarben = farbenAktualisierenMoves(farbe);
+		
+		
 
 		
 		/*
