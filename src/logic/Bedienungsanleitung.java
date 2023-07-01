@@ -42,10 +42,14 @@ public class Bedienungsanleitung extends JFrame{
 		
 		JPanel Infos = new JPanel();
 		Infos.setLayout(new FlowLayout());
-		JLabel farbenWaehlen = new JLabel();
-		farbenWaehlen.setText("<html><body>1. The next color can be selected in two ways: Either by a mouse click<br> on the respective color or by pressing a key on one of the digits 1-9,<br>where each digit repsents one of the 9 numbers.<br></body></html>");
-//		The next color can be selected in two ways: Either by a mouse click on the respective color or by pressing a key on one of the digits 1-9, where each digit represents a number
-		Infos.add(farbenWaehlen);
+		JLabel regel1 = new JLabel();
+		JLabel regel3 = new JLabel();
+		regel1.setText("<html><body>1. The next color can be selected in two ways: Either by a mouse click<br> on the respective color or by pressing a key on one of the digits 1-9,<br>where each digit repsents one of the 9 numbers.<br></body></html>");
+		regel3.setText("<html><body>3. The current selectable colors are displayed below the playing field<br><br><br></body></html>");
+
+		Infos.add(regel1);
+		Infos.add(regel3);
+
 		this.add(Infos);
 		
 		

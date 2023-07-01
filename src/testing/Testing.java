@@ -84,6 +84,8 @@ public class Testing {
 		this.board = initBoard;
 		init();
 		aktuellVerfuegbareFarben= farbenAktualisierenStrats();	
+		
+		
 
 	}
 	
@@ -232,20 +234,20 @@ public class Testing {
 
 	public boolean isEndConfig() {
 		
-		
-		
+		int felderAnzahl = board.length * board[0].length;
 
-		
-		
+		if (felderAnzahl - K1.size() - K2.size() == 0) {
+			return true;
+		} else {
+			return false;
 
-		return false;
+		}
+		
+		
+		
 	}
 	
 	
-	
-	
-	
-
 	
 	public int testStrategy01() {
 		
@@ -1212,6 +1214,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	}
 	
 	public boolean toBoard(Field[][] anotherBoard, int moves) {
+	
 		
 		
 		//Wenn Zeilen und Spalten der beiden Boards anders ist, so koennen diese niemals gleiche Farbverteilung haben
@@ -1232,7 +1235,36 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			}
 		}
 		
+		//Pruefen, ob beide Boards gleich viele farben haben
 		
+		ArrayList<Integer> alleFarbenBoard1 = farbenAktualisierenStrats();
+		
+		
+		ArrayList<Integer> alleFarbenBoard2 = new ArrayList<Integer>();
+
+		
+		int colorS1Board2 = anotherBoard[anotherBoard.length-1][0].getColor();		
+		int colorS2Board2 = anotherBoard[0][anotherBoard[0].length-1].getColor();		
+		
+		for(int i = 0; i < anotherBoard.length; i++) {
+			for(int j = 0; j < anotherBoard[0].length; j++) {
+				
+				if(alleFarbenBoard2.contains(anotherBoard[i][j].getColor()) == false) {
+					if(anotherBoard[i][j].getColor() == colorS1Board2 || anotherBoard[i][j].getColor() == colorS2Board2) {
+						continue;
+					}
+					alleFarbenBoard2.add(anotherBoard[i][j].getColor());
+				}
+				
+			}
+		}
+		
+		
+	
+		if(gleichesBoard) {
+			return true;
+		}
+
 		
 		
 		
