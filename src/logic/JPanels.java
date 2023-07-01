@@ -48,8 +48,10 @@ public class JPanels extends JPanel {
 	
 	private boolean max;
 	private boolean endKonf;
+	private JButton playButton;
 	
 	private boolean erstesMalGedrueckt = true;
+	private boolean playGeklickt = false;
 	
 	
 
@@ -524,7 +526,7 @@ public class JPanels extends JPanel {
 		buttons.setBorder(new TitledBorder("Spielbrett erstellen"));
 		
 		
-		JButton playButton = new JButton("Play");
+		playButton = new JButton("Play");
 		playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		playButton.setFocusPainted(false);
 
@@ -622,6 +624,8 @@ public class JPanels extends JPanel {
 
 				boolean playClicked = true;
 
+				
+				//Wenn Play zum ersten Mal gedrueckt wird
 				if (playButton.getText().equals("Play") && erstesMalGedrueckt) {
 
 					playButton.setText("Pause"); 
@@ -635,6 +639,17 @@ public class JPanels extends JPanel {
 						s1Dran = true;
 					}
 					gewaehlteStrategie = Integer.parseInt((String) stratAuswahlListe.getSelectedItem());
+					
+					
+					//Alle Einstellungen ausgrauen
+					zeilenAuswahl.setEnabled(false);
+					spaltenAuswahl.setEnabled(false);
+					s1RadioButton.setEnabled(false);
+					s2RadioButton.setEnabled(false);
+					farbenAnzahl.setEnabled(false);
+					stratAuswahlListe.setEnabled(false);
+
+
 
 					startTimer();					
 					infoKAendern();
@@ -644,15 +659,15 @@ public class JPanels extends JPanel {
 					
 					erstesMalGedrueckt = false;
 					
-					playClicked = true;
-					
-					play1(playClicked);
+					playGeklickt = true;
+										
+					play1();
 					
 				}else if(playButton.getText().equals("Play") && erstesMalGedrueckt == false) {
 					playButton.setText("Pause");
+					playGeklickt = true;
 					startTimer();
-					playClicked = false;
-					play1(playClicked);
+					play1();
 					infoKAendern();
 
 					
@@ -660,6 +675,8 @@ public class JPanels extends JPanel {
 					}  else if(playButton.getText().equals("Pause")){
 						playButton.setText("Play");
 						startTimer();
+						playGeklickt = false;
+
 
 				}
 			}
@@ -690,11 +707,26 @@ public class JPanels extends JPanel {
 					spielBrett.removeAll();
 					spielBrett.repaint();
 					
+					zeilenAuswahl.setEnabled(true);
+					spaltenAuswahl.setEnabled(true);
+					s1RadioButton.setEnabled(true);
+					s2RadioButton.setEnabled(true);
+					farbenAnzahl.setEnabled(true);
+					stratAuswahlListe.setEnabled(true);					
 
 
 					farbenAnzeige.removeAll();
 					farbenAnzeige.revalidate();
 					farbenAnzeige.repaint();
+					
+					seconds = 0;
+					minutes = 0;
+					hours = 0;
+					
+					startTimer();
+					
+					String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+					timerLabel.setText(time);
 					
 					//Alle Einstellungen zuruecksenden
 					
@@ -1429,7 +1461,7 @@ public class JPanels extends JPanel {
 	
 	
 	
-	public void play1(boolean playClicked) {
+	public void play1() {
 
 		
 		
@@ -1494,7 +1526,7 @@ public class JPanels extends JPanel {
 							// Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
 							
-							if(s1Dran && (max == false && endKonf == false) && playClicked) {
+							if(s1Dran && (max == false && endKonf == false) && playGeklickt == true) {
 
 
 							if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
@@ -1522,6 +1554,9 @@ public class JPanels extends JPanel {
 								s1Dran = false;
 								s2Dran = true;
 								
+								infoKAendern();
+
+								
 
 								max = maximaleZuege();
 								endKonf = alleFelderBesetzt();
@@ -1542,6 +1577,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -1601,7 +1637,6 @@ public class JPanels extends JPanel {
 			spielBrett.addKeyListener(new KeyAdapter() {
 
 				public void keyPressed(KeyEvent e) {
-											
 					int groeseK1Davor = groeseK1;
 					if(s1Dran && (max == false && endKonf == false)) {
 					
@@ -1636,6 +1671,8 @@ public class JPanels extends JPanel {
 							s1Dran = false;
 							s2Dran = true;
 							
+							infoKAendern();
+							
 							if(max == true || endKonf == true) {
 								spielZugS2OhneVergroeserung = 0;
 								if(max) {
@@ -1652,6 +1689,7 @@ public class JPanels extends JPanel {
 									}
 									
 								}
+								spielEnde();
 								return;
 							}
 					
@@ -1729,6 +1767,9 @@ public class JPanels extends JPanel {
 								s1Dran = false;
 								s2Dran = true;
 								
+								infoKAendern();
+
+								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
@@ -1745,9 +1786,9 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
-
 														
 								Timer timer = new Timer(1000, new ActionListener() {
 									  @Override
@@ -1819,6 +1860,8 @@ public class JPanels extends JPanel {
 								s1Dran = false;
 								s2Dran = true;
 
+								infoKAendern();
+
 								max = maximaleZuege();
 								endKonf = alleFelderBesetzt();
 								
@@ -1838,6 +1881,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -1915,6 +1959,9 @@ public class JPanels extends JPanel {
 								s1Dran = false;
 								s2Dran = true;
 								
+								
+								infoKAendern();
+
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
@@ -1931,6 +1978,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -2008,6 +2056,9 @@ public class JPanels extends JPanel {
 								max = maximaleZuege();
 								endKonf = alleFelderBesetzt();
 								
+								infoKAendern();
+
+								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
@@ -2024,6 +2075,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -2097,6 +2149,9 @@ public class JPanels extends JPanel {
 								max = maximaleZuege();
 								endKonf = alleFelderBesetzt();
 								
+								infoKAendern();
+
+								
 								s1Dran = false;
 								s2Dran = true;
 								
@@ -2116,6 +2171,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -2196,6 +2252,9 @@ public class JPanels extends JPanel {
 								max = maximaleZuege();
 								endKonf = alleFelderBesetzt();
 								
+								infoKAendern();
+
+								
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
@@ -2213,6 +2272,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -2288,6 +2348,9 @@ public class JPanels extends JPanel {
 								s1Dran = false;
 								s2Dran = true;
 								
+								infoKAendern();
+
+								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
@@ -2304,6 +2367,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 														
@@ -2382,6 +2446,9 @@ public class JPanels extends JPanel {
 								s1Dran = false;
 								s2Dran = true;
 								
+								infoKAendern();
+
+								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
@@ -2398,6 +2465,7 @@ public class JPanels extends JPanel {
 										}
 										
 									}
+									spielEnde();
 									return;
 								}
 								
@@ -2480,54 +2548,60 @@ public class JPanels extends JPanel {
 	}
 	
 	
-	
-	public void s2Zug() {
+	public void spielEnde() {
 		
-		int groeseK2Davor = groeseK2;
+		startButton.setText("Start");
+		spielBrett.removeAll();
+		spielBrett.repaint();
 		
-		Timer timer = new Timer(1000, new ActionListener() {
-			  @Override
-			  public void actionPerformed(ActionEvent arg0) {
-					Color c = null;
-
-				  switch(gewaehlteStrategie) {
-					
-					case 1:
-						strat1Testing();
-						c = strategy1(spielbrettArray);
-						spielZugs2(c);
-
-
-						break;
-						
-					case 2:
-						strat2Testing();
-						c = strategy2(spielbrettArray);
-						spielZugs2(c);
-
-
-						break;
-					
-					case 3:
-						strat3Testing();
-						c = strategy3(spielbrettArray);
-						spielZugs2(c);
-						break;
+		seconds = 0;
+		minutes = 0;
+		hours = 0;
 		
-					}							
-				  }
-			});
-			timer.setRepeats(false); // Only execute once
-			timer.start(); // Go go go!
-			
-			if(groeseK2 > groeseK2Davor) {
+		String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+		timerLabel.setText(time);
+		
+		zeilenAuswahl.setEnabled(true);
+		spaltenAuswahl.setEnabled(true);
+		s1RadioButton.setEnabled(true);
+		s2RadioButton.setEnabled(true);
+		farbenAnzahl.setEnabled(true);
+		stratAuswahlListe.setEnabled(true);
+
+		
+		playButton.setText("Play");
+		startTimer();
+
+
+		farbenAnzeige.removeAll();
+		farbenAnzeige.revalidate();
+		farbenAnzeige.repaint();
+		
+		farbenAnzeige.removeAll();
+		farbenAnzeige.revalidate();
+		farbenAnzeige.repaint();
+		
+		seconds = 0;
+		minutes = 0;
+		hours = 0;
+		
+		startButton.setText("Start");
+		
+		
+		
+		K1Info.setText("Size of S1: ");
+		K2Info.setText("Size of S2: ");
+
 				
-				spielZugS2OhneVergroeserung = 0;
-			} else {
-				spielZugS2OhneVergroeserung++;
-			}
+		
+		//Komponentengroese anpassen bzw. zuruecksetzen
+		
 		
 	}
+	
+	
+	
+	
 	
 	
 	public void s1Zug() {
@@ -3324,6 +3398,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3340,6 +3417,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3384,6 +3462,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3400,6 +3481,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3441,6 +3523,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3457,6 +3542,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3497,6 +3583,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
+					
+					infoKAendern();
+
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3513,6 +3602,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3554,6 +3644,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3570,6 +3663,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3613,6 +3707,8 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3629,6 +3725,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3670,6 +3767,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3686,9 +3786,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
-					
 
 			}
 			}
@@ -3727,6 +3827,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3743,6 +3846,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 					
@@ -3784,6 +3888,9 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
 					
+					infoKAendern();
+
+					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
@@ -3800,6 +3907,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 							}
 							
 						}
+						spielEnde();
 						return;
 					}
 
