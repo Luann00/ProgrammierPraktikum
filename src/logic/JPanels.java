@@ -620,10 +620,11 @@ public class JPanels extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
+				boolean playClicked = true;
+
 				if (playButton.getText().equals("Play") && erstesMalGedrueckt) {
 
-					playButton.setText("Pause");
+					playButton.setText("Pause"); 
 					if (s2RadioButton.isSelected()) {
 						gewaehlterBeginner = s2RadioButton.getText();
 						s2Dran = true;
@@ -638,13 +639,27 @@ public class JPanels extends JPanel {
 					startTimer();					
 					infoKAendern();
 					
+//					zeilenAuswahl.setEnabled(false);
+//					spaltenAuswahl.setEnabled(false);
+					
 					erstesMalGedrueckt = false;
 					
-					setup1();					
-
-				} else {
-					playButton.setText("Play");
+					playClicked = true;
+					
+					play1(playClicked);
+					
+				}else if(playButton.getText().equals("Play") && erstesMalGedrueckt == false) {
+					playButton.setText("Pause");
 					startTimer();
+					playClicked = false;
+					play1(playClicked);
+					infoKAendern();
+
+					
+						
+					}  else if(playButton.getText().equals("Pause")){
+						playButton.setText("Play");
+						startTimer();
 
 				}
 			}
@@ -669,14 +684,9 @@ public class JPanels extends JPanel {
 					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl - 1][0].getBackground();
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
-					
-					
-
-
+										
 				} else {
 					startButton.setText("Start");
-					zeilenAuswahl.setEnabled(true);
-					spaltenAuswahl.setEnabled(true);
 					spielBrett.removeAll();
 					spielBrett.repaint();
 					
@@ -685,6 +695,9 @@ public class JPanels extends JPanel {
 					farbenAnzeige.removeAll();
 					farbenAnzeige.revalidate();
 					farbenAnzeige.repaint();
+					
+					//Alle Einstellungen zuruecksenden
+					
 
 				}
 			}
@@ -1366,15 +1379,12 @@ public class JPanels extends JPanel {
 	public void setup() {
 
 		startButton.setText("Stop");
-		// Zuerst alle Einstellungsmoeglichkeiten deaktivieren
-		zeilenAuswahl.setEnabled(false);
-		spaltenAuswahl.setEnabled(false);
 
 		// Ausgewaehlte Werte uebertragen
 		gewaehlteZeilenAnzahl = Integer.parseInt((String) zeilenAuswahl.getSelectedItem());
 		gewaehlteSpaltenAnzahl = Integer.parseInt((String) spaltenAuswahl.getSelectedItem());
 		farbenImSpiel = Integer.parseInt((String) farbenAnzahl.getSelectedItem());
-
+		
 		
 		spielbrettArray = new JPanel[gewaehlteZeilenAnzahl][gewaehlteSpaltenAnzahl];
 
@@ -1408,32 +1418,18 @@ public class JPanels extends JPanel {
 		aktuellVerfuegbareFarben.remove(s2Farbe);
 
 		spielZuege = 0;
-				
+		
 		max = maximaleZuege();
 		endKonf = alleFelderBesetzt();
 		
 		spielZugS2OhneVergroeserung = 0;
-		
-		
-
-	}
-	
-	public void minMovesTest() {
-		Testing t = new Testing(spielBrettArrayField);
-		
-//		int zeilen = gewaehlteZeilenAnzahl-1;
-//		int spalten = gewaehlteSpaltenAnzahl-1;
-//		
-//		System.out.println("Spalten: " + spalten);
-//		System.out.println("Zeilen: " +zeilen );
-		
-		int m = t.minMoves(1,0);
-		System.out.println(m);
+		erstesMalGedrueckt = true;
 		
 	}
 	
 	
-	public void setup1() {
+	
+	public void play1(boolean playClicked) {
 
 		
 		
@@ -1447,7 +1443,7 @@ public class JPanels extends JPanel {
 					  switch(gewaehlteStrategie) {
 						
 						case 1:
-							strat1Testing();
+//							strat1Testing();
 							c = strategy1(spielbrettArray);
 							spielZugs2(c);
 
@@ -1455,7 +1451,7 @@ public class JPanels extends JPanel {
 							break;
 							
 						case 2:
-							strat2Testing();
+//							strat2Testing();
 							c = strategy2(spielbrettArray);
 							spielZugs2(c);
 
@@ -1463,7 +1459,7 @@ public class JPanels extends JPanel {
 							break;
 						
 						case 3:
-							strat3Testing();
+//							strat3Testing();
 							c = strategy3(spielbrettArray);
 							spielZugs2(c);
 							break;
@@ -1473,8 +1469,8 @@ public class JPanels extends JPanel {
 				});
 				timer.setRepeats(false);; // Only execute once
 				timer.start(); // Go go go!
-				s2Dran = false;
 				s1Dran = true;
+				s2Dran = false;
 			
 		}
 		
@@ -1491,13 +1487,15 @@ public class JPanels extends JPanel {
 
 						public void mouseClicked(MouseEvent e) {
 							
+							
 							int groeseK1Davor = groeseK1;
 
 
 							// Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
 							
-							if(s1Dran && (max == false && endKonf == false)) {
+							if(s1Dran && (max == false && endKonf == false) && playClicked) {
+
 
 							if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
 								spielZuege++;
@@ -1530,6 +1528,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -1541,7 +1553,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1549,7 +1561,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -1557,7 +1569,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -1626,7 +1638,20 @@ public class JPanels extends JPanel {
 							
 							if(max == true || endKonf == true) {
 								spielZugS2OhneVergroeserung = 0;
-								System.out.println("Vorbei!");
+								if(max) {
+									System.out.println("Spiel zu Ende! Unentschieden!");
+								} else {
+									if(K1.size() > K2.size()) {
+										System.out.println("Spiel zu Ende! Gewinner: S1");
+									} else if(K1.size() < K2.size()) {
+										System.out.println("Spiel zu Ende! Gewinner: S2");
+
+									} else {
+										System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+									}
+									
+								}
 								return;
 							}
 					
@@ -1640,7 +1665,7 @@ public class JPanels extends JPanel {
 									  switch(gewaehlteStrategie) {
 										
 										case 1:
-											strat1Testing();
+//											strat1Testing();
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
 
@@ -1648,7 +1673,7 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
-											strat2Testing();
+//											strat2Testing();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1656,7 +1681,7 @@ public class JPanels extends JPanel {
 											break;
 										
 										case 3:
-											strat3Testing();
+//											strat3Testing();
 											c = strategy3(spielbrettArray);
 											spielZugs2(c);
 											break;
@@ -1706,7 +1731,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 
@@ -1719,7 +1757,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1728,14 +1766,14 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 												
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -1786,7 +1824,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -1800,7 +1851,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1809,14 +1860,14 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -1866,7 +1917,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -1879,7 +1943,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1888,7 +1952,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -1896,7 +1960,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -1946,7 +2010,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -1960,7 +2037,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1968,7 +2045,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 												
@@ -1976,7 +2053,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2025,7 +2102,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -2038,7 +2128,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -2046,7 +2136,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2054,7 +2144,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2109,7 +2199,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -2123,14 +2226,14 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2138,7 +2241,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2187,7 +2290,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 														
@@ -2201,21 +2317,21 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2268,7 +2384,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
-									System.out.println("Vorbei!");
+									if(max) {
+										System.out.println("Spiel zu Ende! Unentschieden!");
+									} else {
+										if(K1.size() > K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S1");
+										} else if(K1.size() < K2.size()) {
+											System.out.println("Spiel zu Ende! Gewinner: S2");
+
+										} else {
+											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+										}
+										
+									}
 									return;
 								}
 								
@@ -2295,14 +2424,14 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
+//												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 												
 												break;
 												
 											case 2:
-												strat2Testing();
+//												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2310,7 +2439,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
+//												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 
@@ -2319,7 +2448,7 @@ public class JPanels extends JPanel {
 											}	
 										  
 										  s1Dran = true;
-											s2Dran = false;
+										  s2Dran = false;
 
 										  }
 
@@ -2710,21 +2839,21 @@ public class JPanels extends JPanel {
 	public void strat2Testing() {
 		Testing t = new Testing(spielBrettArrayField);
 		int zahl = t.testStrategy02();
-//		System.out.println("Naechste Zahl: " + zahl);
+		System.out.println("Naechste Zahl: " + zahl);
 		
 	}
 	
 	public void strat1Testing() {
 		Testing t = new Testing(spielBrettArrayField);
 		int zahl = t.testStrategy01();
-//		System.out.println("Naechste Zahl: " + zahl);
+		System.out.println("Naechste Zahl: " + zahl);
 		
 	}
 	
 	public void strat3Testing() {
 		Testing t = new Testing(spielBrettArrayField);
 		int zahl = t.testStrategy03();
-//		System.out.println("Naechste Zahl: " + zahl);
+		System.out.println("Naechste Zahl: " + zahl);
 		
 	}
 	
@@ -3197,7 +3326,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3244,7 +3386,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3288,7 +3443,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3329,10 +3497,22 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					max = maximaleZuege();
 					endKonf = alleFelderBesetzt();
-					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3376,7 +3556,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3422,7 +3615,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3466,7 +3672,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3510,7 +3729,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 					
@@ -3554,13 +3786,29 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
-						System.out.println("Vorbei!");
+						if(max) {
+							System.out.println("Spiel zu Ende! Unentschieden!");
+						} else {
+							if(K1.size() > K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S1");
+							} else if(K1.size() < K2.size()) {
+								System.out.println("Spiel zu Ende! Gewinner: S2");
+
+							} else {
+								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+							}
+							
+						}
 						return;
 					}
 
 			}
 			}
 		}
+		
+		s2Dran = false;
+		s1Dran = true;
 				
 			
 		

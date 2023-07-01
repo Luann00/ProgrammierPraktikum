@@ -1243,7 +1243,6 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 	public int minMoves(int row, int col) { 
 		
-		System.out.println("Ziel: Feld in Zeile " + row + " und Spalte " + col + ", was die Farbe " + board[row][col].getColor() + " hat");
 		
 		
 		///Pruefen, ob Feld schon eingenommen wurde. Falls ja, 0 zurueckgeben
@@ -1422,7 +1421,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	}
 	
 	
-	public int move1neu(int moves1, int row, int col) {
+	public int move1neu(int row, int col, int moves1) {
 		
 		ArrayList<Field> K1Copy;
 
@@ -1478,7 +1477,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 	}
 	
-public int move2neu(int moves2, int row, int col) {
+	public int move2neu(int row, int col, int moves2) {
 		
 ArrayList<Field> K1Copy;
 
@@ -1543,7 +1542,7 @@ ArrayList<Field> K1Copy;
 	}
 
 
-public int move3neu(int moves3, int row, int col) {
+	public int move3neu(int row, int col, int moves3) {
 	
 	ArrayList<Field> K1Copy;
 
@@ -1669,7 +1668,7 @@ public int move3neu(int moves3, int row, int col) {
 	}
 	
 	
-	public int move4neu(int moves4, int row, int col) {
+	public int move4neu(int row, int col, int moves4) {
 		
 		ArrayList<Field> K1Copy;
 
@@ -1752,7 +1751,7 @@ public int move3neu(int moves3, int row, int col) {
 	}
 	
 	
-public int move5neu(int moves5, int row, int col) {
+	public int move5neu(int row, int col, int moves5) {
 
 		ArrayList<Field> K1Copy;
 		
@@ -1839,7 +1838,7 @@ public int move5neu(int moves5, int row, int col) {
 	}
 
 
-public int move6neu(int moves6, int row, int col) {
+	public int move6neu(int row, int col, int moves6) {
 
 	ArrayList<Field> K1Copy;
 	
