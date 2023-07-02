@@ -1,5 +1,8 @@
 package logic;
 
+//Name Luan Zekiri
+//Matrikelnummer 7379949
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -38,7 +41,255 @@ public class JPanels extends JPanel {
 	private MyFrame myFrame;
 	private JPanel menueTafel;
 	private JPanel spielBrett;
-	JPanel farbenAnzeige = new JPanel();
+	private JPanel farbenAnzeige = new JPanel();
+
+	public int getVerfuegbareZahlenAnzahl() {
+		return verfuegbareZahlenAnzahl;
+	}
+
+	public void setVerfuegbareZahlenAnzahl(int verfuegbareZahlenAnzahl) {
+		this.verfuegbareZahlenAnzahl = verfuegbareZahlenAnzahl;
+	}
+
+	public ArrayList<Color> getAktuellVerfuegbareFarbenPC() {
+		return aktuellVerfuegbareFarbenPC;
+	}
+
+	public void setAktuellVerfuegbareFarbenPC(ArrayList<Color> aktuellVerfuegbareFarbenPC) {
+		this.aktuellVerfuegbareFarbenPC = aktuellVerfuegbareFarbenPC;
+	}
+
+	public boolean isMax() {
+		return max;
+	}
+
+	public void setMax(boolean max) {
+		this.max = max;
+	}
+
+	public boolean isEndKonf() {
+		return endKonf;
+	}
+
+	public void setEndKonf(boolean endKonf) {
+		this.endKonf = endKonf;
+	}
+
+	public JButton getPlayButton() {
+		return playButton;
+	}
+
+	public void setPlayButton(JButton playButton) {
+		this.playButton = playButton;
+	}
+
+	public boolean isErstesMalGedrueckt() {
+		return erstesMalGedrueckt;
+	}
+
+	public void setErstesMalGedrueckt(boolean erstesMalGedrueckt) {
+		this.erstesMalGedrueckt = erstesMalGedrueckt;
+	}
+
+	public int getColorZahl() {
+		return colorZahl;
+	}
+
+	public void setColorZahl(int colorZahl) {
+		this.colorZahl = colorZahl;
+	}
+
+	public JPanel getOrangePanel() {
+		return orangePanel;
+	}
+
+	public void setOrangePanel(JPanel orangePanel) {
+		this.orangePanel = orangePanel;
+	}
+
+	public JPanel getFarbenPanel() {
+		return farbenPanel;
+	}
+
+	public void setFarbenPanel(JPanel farbenPanel) {
+		this.farbenPanel = farbenPanel;
+	}
+
+	public int getSpielZugS2OhneVergroeserung() {
+		return spielZugS2OhneVergroeserung;
+	}
+
+	public void setSpielZugS2OhneVergroeserung(int spielZugS2OhneVergroeserung) {
+		this.spielZugS2OhneVergroeserung = spielZugS2OhneVergroeserung;
+	}
+
+	public JLabel getK1Info() {
+		return K1Info;
+	}
+
+	public void setK1Info(JLabel k1Info) {
+		K1Info = k1Info;
+	}
+
+	public JLabel getK2Info() {
+		return K2Info;
+	}
+
+	public void setK2Info(JLabel k2Info) {
+		K2Info = k2Info;
+	}
+
+	public int getHours() {
+		return hours;
+	}
+
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+
+	public int getMinutes() {
+		return minutes;
+	}
+
+	public void setMinutes(int minutes) {
+		this.minutes = minutes;
+	}
+
+	public int getSeconds() {
+		return seconds;
+	}
+
+	public void setSeconds(int seconds) {
+		this.seconds = seconds;
+	}
+
+	public Timer getTimer() {
+		return timer;
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+
+	public JLabel getTimerLabel() {
+		return timerLabel;
+	}
+
+	public void setTimerLabel(JLabel timerLabel) {
+		this.timerLabel = timerLabel;
+	}
+
+	public ArrayList<JPanel> getK2Copy() {
+		return K2Copy;
+	}
+
+	public void setK2Copy(ArrayList<JPanel> k2Copy) {
+		K2Copy = k2Copy;
+	}
+
+	public ArrayList<JPanel> getK1Copy() {
+		return K1Copy;
+	}
+
+	public void setK1Copy(ArrayList<JPanel> k1Copy) {
+		K1Copy = k1Copy;
+	}
+
+	public Color getS2FarbeCopy() {
+		return s2FarbeCopy;
+	}
+
+	public void setS2FarbeCopy(Color s2FarbeCopy) {
+		this.s2FarbeCopy = s2FarbeCopy;
+	}
+
+	public Color getS2FarbeDavorCopy() {
+		return s2FarbeDavorCopy;
+	}
+
+	public void setS2FarbeDavorCopy(Color s2FarbeDavorCopy) {
+		this.s2FarbeDavorCopy = s2FarbeDavorCopy;
+	}
+
+	public int getGroeseK2Copy() {
+		return groeseK2Copy;
+	}
+
+	public void setGroeseK2Copy(int groeseK2Copy) {
+		this.groeseK2Copy = groeseK2Copy;
+	}
+
+	public boolean isK1Vergroesert() {
+		return k1Vergroesert;
+	}
+
+	public void setK1Vergroesert(boolean k1Vergroesert) {
+		this.k1Vergroesert = k1Vergroesert;
+	}
+
+	public boolean isK2Vergroesert() {
+		return k2Vergroesert;
+	}
+
+	public void setK2Vergroesert(boolean k2Vergroesert) {
+		this.k2Vergroesert = k2Vergroesert;
+	}
+
+	public JPanel getZeilenUndSpaltenAnzeige() {
+		return zeilenUndSpaltenAnzeige;
+	}
+
+	public void setZeilenUndSpaltenAnzeige(JPanel zeilenUndSpaltenAnzeige) {
+		this.zeilenUndSpaltenAnzeige = zeilenUndSpaltenAnzeige;
+	}
+
+	public JLabel getRows() {
+		return rows;
+	}
+
+	public void setRows(JLabel rows) {
+		this.rows = rows;
+	}
+
+	public JLabel getCols() {
+		return cols;
+	}
+
+	public void setCols(JLabel cols) {
+		this.cols = cols;
+	}
+
+	public boolean isS1Dran() {
+		return s1Dran;
+	}
+
+	public void setS1Dran(boolean s1Dran) {
+		this.s1Dran = s1Dran;
+	}
+
+	public boolean isS2Dran() {
+		return s2Dran;
+	}
+
+	public void setS2Dran(boolean s2Dran) {
+		this.s2Dran = s2Dran;
+	}
+
+	public JPanel[][] getSpielbrettArrayCopy() {
+		return spielbrettArrayCopy;
+	}
+
+	public void setSpielbrettArrayCopy(JPanel[][] spielbrettArrayCopy) {
+		this.spielbrettArrayCopy = spielbrettArrayCopy;
+	}
+
+	public Field[][] getSpielBrettArrayField() {
+		return spielBrettArrayField;
+	}
+
+	public void setSpielBrettArrayField(Field[][] spielBrettArrayField) {
+		this.spielBrettArrayField = spielBrettArrayField;
+	}
 
 	private ArrayList<Color> alleMöglichenFarben = new ArrayList<Color>();
 	private ArrayList<Color> ausgewaehlteFarben;
@@ -51,7 +302,6 @@ public class JPanels extends JPanel {
 	private JButton playButton;
 	
 	private boolean erstesMalGedrueckt = true;
-	private boolean playGeklickt = false;
 	
 	
 
@@ -200,13 +450,6 @@ public class JPanels extends JPanel {
 		this.brownPanel = brownPanel;
 	}
 
-	public JPanel getOrangePanel() {
-		return orangePanel;
-	}
-
-	public void setOrangePanel(JPanel orangePanel) {
-		this.orangePanel = orangePanel;
-	}
 
 	public JPanel getPinkPanel() {
 		return pinkPanel;
@@ -568,7 +811,7 @@ public class JPanels extends JPanel {
 		
 		//JPanel fuer den Beginner mit den radioButtons
 		JPanel beginnerFrage = new JPanel();
-		beginnerFrage.setBorder(new TitledBorder("Spielbrettgroese waehlen"));
+		beginnerFrage.setBorder(new TitledBorder("Beginner waehlen"));
 		s1RadioButton = new JRadioButton("S1");
 		s1RadioButton.setSelected(true);
 		s2RadioButton = new JRadioButton("S2");
@@ -588,6 +831,8 @@ public class JPanels extends JPanel {
 		JPanel farbenPanel = new JPanel();
 		farbenPanel.setBorder(new TitledBorder("Farbenanzahl waehlen"));
 		JLabel farbenFrage = new JLabel("Farbenanzahl:", JLabel.LEFT);
+		Font f1 = farbenFrage.getFont();
+		farbenFrage.setFont(f1.deriveFont(f1.getStyle() & ~Font.BOLD));
 		farbenFrage.setAlignmentX(Component.CENTER_ALIGNMENT);
 		farbenPanel.add(farbenFrage);
 		farbenAnzahl = new JComboBox<String>(farben);
@@ -602,6 +847,8 @@ public class JPanels extends JPanel {
 		JPanel strategiePanel = new JPanel();
 		strategiePanel.setBorder(new TitledBorder("Strategie fuer PC waehlen"));
 		JLabel strategieLabel = new JLabel("Strategie PC: ", JLabel.LEFT);
+		Font f2 = strategieLabel.getFont();
+		strategieLabel.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
 		strategieLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		strategiePanel.add(strategieLabel);
 		stratAuswahlListe = new JComboBox<String>(strat);
@@ -702,6 +949,7 @@ public class JPanels extends JPanel {
 					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl - 1][0].getBackground();
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
+					
 										
 				} else {
 					startButton.setText("Start");
@@ -975,6 +1223,1029 @@ public class JPanels extends JPanel {
 			pinkPanel.add(pink);
 			pinkPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 			pinkPanel.setBackground(Color.pink);
+			
+			
+			
+			
+			//Funktion, dass wenn man unten di farbe anklickt, die Komponente die Farbe auch annimmt. Fuer jedes Panel einzeln
+			
+			blackPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.black;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			bluePanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.blue;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+		
+			
+			
+			cyanPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.cyan;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			grayPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.gray;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			greenPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.green;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			brownPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = brownColour;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			orangePanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.orange;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			pinkPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.pink;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			redPanel.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					
+					
+					int groeseK1Davor = groeseK1;
+					Color farbe = Color.red;
+
+
+					if(s1Dran && (max == false && endKonf == false)) {
+
+
+					if (aktuellVerfuegbareFarben.contains(farbe)) {
+						spielZuege++;
+						groeseK1 = komponenteAnpassen(K1, farbe, groeseK1);
+
+						s1FarbeDavor = s1Farbe;
+						s1Farbe = farbe;
+						
+
+
+						aktuellVerfuegbareFarben.add(removteFarbe);
+
+						aktuellVerfuegbareFarben.remove(farbe);
+						removteFarbe = farbe;
+
+						anzeigeAktualisierenMouse(farbe);
+						
+						if(groeseK1 > groeseK1Davor) {
+							spielZugS2OhneVergroeserung=0;
+						} else {
+							spielZugS2OhneVergroeserung++;
+						}
+						
+						s1Dran = false;
+						s2Dran = true;
+						
+						infoKAendern();
+
+					
+
+						max = maximaleZuege();
+						endKonf = alleFelderBesetzt();
+						
+					
+						
+						if(max == true || endKonf == true) {
+							spielZugS2OhneVergroeserung = 0;
+							if(max) {
+								System.out.println("Spiel zu Ende! Unentschieden!");
+							} else {
+								if(K1.size() > K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S1");
+								} else if(K1.size() < K2.size()) {
+									System.out.println("Spiel zu Ende! Gewinner: S2");
+
+								} else {
+									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+
+								}
+								
+							}
+							spielEnde();
+							return;
+						}
+						
+						Timer timer = new Timer(1000, new ActionListener() {
+							  @Override
+							  public void actionPerformed(ActionEvent arg0) {
+									Color c = null;
+
+								  switch(gewaehlteStrategie) {
+									
+									case 1:
+										strat1Testing();
+										c = strategy1(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+										
+									case 2:
+										strat2Testing();
+										c = strategy2(spielbrettArray);
+										spielZugs2(c);
+
+
+										break;
+									
+									case 3:
+										strat3Testing();
+										c = strategy3(spielbrettArray);
+										spielZugs2(c);
+										break;
+						
+									}							
+								  }
+							});
+							timer.setRepeats(false);; // Only execute once
+							timer.start(); // Go go go!
+							
+						
+					}
+					
+					}
+											
+					
+
+				}
+				
+			});
+			
+			
+			
+			
 
 			// Ersten Spielzug initialisieren
 
@@ -1503,11 +2774,14 @@ public class JPanels extends JPanel {
 		spielbrettArray = spielBrettGenerieren();
 		
 
-		while (benutzteFarben.size() != farbenImSpiel) {
+//		while (benutzteFarben.size() != farbenImSpiel) {
 			spielBrett.removeAll();
 			spielbrettArray = spielBrettGenerieren();
 
-		}
+//		}
+			
+//			startKlarTest();
+
 		
 		
 		// Groese der beiden Komponenten
@@ -1602,7 +2876,6 @@ public class JPanels extends JPanel {
 
 							// Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
-							System.out.println("Klick");
 							if(s1Dran && (max == false && endKonf == false)) {
 
 
@@ -3969,6 +5242,8 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 		}
 
 	}
+	
+	
 
 	/*
 	 * In dieser Methode ueberprueft man die Umgebung des jeweiligen Feldes und

@@ -16,6 +16,9 @@ import javax.swing.SwingConstants;
 
 public class Bedienungsanleitung extends JFrame{
 	
+	//Name Luan Zekiri
+	//Matrikelnummer 7379949
+	
 	
 	public Bedienungsanleitung() {
 		this.setTitle("Bedienungsanleitung");
@@ -44,8 +47,8 @@ public class Bedienungsanleitung extends JFrame{
 		Infos.setLayout(new FlowLayout());
 		JLabel regel1 = new JLabel();
 		JLabel regel3 = new JLabel();
-		regel1.setText("<html><body>1. The next color can be selected in two ways: Either by a mouse click<br> on the respective color or by pressing a key on one of the digits 1-9,<br>where each digit repsents one of the 9 numbers.<br></body></html>");
-		regel3.setText("<html><body>3. The current selectable colors are displayed below the playing field<br><br><br></body></html>");
+		regel1.setText("<html><body>1. The next color can be selected in three ways: Either by a mouse click<br> on the respective color at at the game baord or by a mouse click<br> on one of the color Fields<br>below the game board or by pressing a key on one of the digits 1-9,<br>where each digit represents one of the 9 numbers.<br></body></html>");
+		regel3.setText("<html><body>2. The current selectable colors are displayed below the playing field<br><br><br></body></html>");
 		
 		
 		JPanel farben = new JPanel();

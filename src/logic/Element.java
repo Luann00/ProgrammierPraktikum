@@ -8,6 +8,9 @@ public class Element {
 	private int groese;
 	private int name;
 	
+	//Name Luan Zekiri
+	//Matrikelnummer 7379949
+	
 	
 	public Element(Color col, int groese, int name) {
 		this.col = col;

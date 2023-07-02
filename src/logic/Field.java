@@ -10,6 +10,9 @@ public class Field {
 	private int row;
 	private int col;
 	
+	//Name Luan Zekiri
+	//Matrikelnummer 7379949
+	
 	public Field(int row, int col, int color) {
 		this.row = row; 
 		this.col = col; 

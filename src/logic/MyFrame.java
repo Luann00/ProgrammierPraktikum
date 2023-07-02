@@ -12,14 +12,24 @@ import javax.swing.JFrame;
 import java.awt.*;
 
 
+//Name Luan Zekiri
+//Matrikelnummer 7379949
+
 public class MyFrame extends JFrame{
 	
-	JPanels jPanel;
+	private JPanels jPanel;
 	
+	public JPanels getjPanel() {
+		return jPanel;
+	}
+
+	public void setjPanel(JPanels jPanel) {
+		this.jPanel = jPanel;
+	}
+
 	public MyFrame() {
 		
-		this.setSize(new Dimension(600,600));
-//		this.setMinimumSize(new Dimension(500, 500));
+		this.setMinimumSize(new Dimension(600,600));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(true);

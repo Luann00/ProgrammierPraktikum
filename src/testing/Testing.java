@@ -1,13 +1,12 @@
 package testing;
 
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
-import javax.swing.JPanel;
+//Name Luan Zekiri
+//Matrikelnummer 7379949
 
-import logic.Element;
+
 import logic.ElementTesting;
 
 /*
@@ -15,13 +14,121 @@ import logic.ElementTesting;
  */
 
 import logic.Field;
-import logic.JPanels;
-import logic.MyFrame;
 
 public class Testing {
 
 	private Field[][] board;
-	Field[][] copyBoard;
+	
+	
+	private Field[][] copyBoard;
+	public Field[][] getCopyBoard() {
+		return copyBoard;
+	}
+
+
+
+
+
+	public void setCopyBoard(Field[][] copyBoard) {
+		this.copyBoard = copyBoard;
+	}
+
+
+
+
+
+	public int getS1FarbeDavor() {
+		return s1FarbeDavor;
+	}
+
+
+
+
+
+	public void setS1FarbeDavor(int s1FarbeDavor) {
+		this.s1FarbeDavor = s1FarbeDavor;
+	}
+
+
+
+
+
+	public int getS2FarbeDavor() {
+		return s2FarbeDavor;
+	}
+
+
+
+
+
+	public void setS2FarbeDavor(int s2FarbeDavor) {
+		this.s2FarbeDavor = s2FarbeDavor;
+	}
+
+
+
+
+
+	public int getS1FarbeCopy() {
+		return s1FarbeCopy;
+	}
+
+
+
+
+
+	public void setS1FarbeCopy(int s1FarbeCopy) {
+		this.s1FarbeCopy = s1FarbeCopy;
+	}
+
+
+
+
+
+	public int getS2FarbeCopy() {
+		return s2FarbeCopy;
+	}
+
+
+
+
+
+	public void setS2FarbeCopy(int s2FarbeCopy) {
+		this.s2FarbeCopy = s2FarbeCopy;
+	}
+
+
+
+
+
+	public ArrayList<Integer> getAlleFarben() {
+		return alleFarben;
+	}
+
+
+
+
+
+	public void setAlleFarben(ArrayList<Integer> alleFarben) {
+		this.alleFarben = alleFarben;
+	}
+
+
+
+
+
+	public ArrayList<Field> getK2Copy() {
+		return K2Copy;
+	}
+
+
+
+
+
+	public void setK2Copy(ArrayList<Field> k2Copy) {
+		K2Copy = k2Copy;
+	}
+
 	private int groeseK1;
 	private int groeseK2;
 	private int s1Farbe;
@@ -222,16 +329,6 @@ public class Testing {
 	}
 	
 	
-	/*
-	 * Gucken, ob ich diese Methode hier in der Klasse testing implementieren kann
-	 * Durch diese Methode: Komponentengroese wird zuruecgegeben
-	 */
-//	public void getGroese() {
-//		jPanel = zugriffMyFrame(JPanels j);
-//		System.out.println(jPanel.getGroeseK1());
-//	}
-	
-	
 
 	public boolean isEndConfig() {
 		
@@ -275,7 +372,7 @@ public class Testing {
 		
 		
 			
-		int col = farbeWaehlens1(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		int col = farbeWaehlens1Testing(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
 		
 				
@@ -345,273 +442,7 @@ public int getGroeseK1() {
 	public void setS2Farbe(int s2Farbe) {
 		this.s2Farbe = s2Farbe;
 	}
-
-
-
-
-
-public void spielZugMovesFull(int c, ArrayList<Integer> aktuellVerfuegbareFarben,int s1FarbeDavor, int s1Farbe, int groeseK1, ArrayList<Field>K1, int spielZuege) {
-				
-		
-		if(c == 1) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 1) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(1) == true) {
-					
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 1;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(1);
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 1, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 2) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 2) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(2) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 2;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(2);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 2, groeseK1);
-
-											
-
-			}
-			}
-		}
-		if(c == 3) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 3) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(3) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 3;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(3);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 3, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 4) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 4) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(4) == true) {
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 4;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(4);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 4, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 5) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 5) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(5) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 5;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(5);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 5, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-
-		if(c == 6) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 6) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(6) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 6;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(6);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 6, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 7) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 7) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(7) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 7;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(7);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 7, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 8) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 8) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(8) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 8;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(8);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 8, groeseK1);
-
-											
-
-			}
-			}
-		}
-		
-		if(c == 9) {
-			//Zuerst ueberpruefen, ob schwarz schon zu s1 oder s2 gehoert
-			if((s1Farbe == 9) == false) {
-
-				if(aktuellVerfuegbareFarben.contains(9) == true) {
-					
-
-					s1FarbeDavor = s1Farbe;
-					s1Farbe = 9;
-					aktuellVerfuegbareFarben.remove(s1Farbe);
-					aktuellVerfuegbareFarben.add(s1FarbeDavor);
-					
-					/*
-					 * in farbenAktualisieren wird mit s1 und s2 farbe gearbeitet und die aktuellen farben
-					 * zurueckgegeben
-					 */
-					
-					aktuellVerfuegbareFarben= farbenAktualisierenMoves(9);
-
-
-					spielZuege++;
-					groeseK1 = komponenteAnpassen(K1, 9, groeseK1);
-
-				}
-			}
-		}
-		
-	}
-		
-			
+	
 			
 		
 	
@@ -717,7 +548,7 @@ ArrayList<Integer> alleFarbenImSpiel = new ArrayList<Integer>();
 
 
 
-public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+public int farbeWaehlens1Testing(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
 	
 	ArrayList<ElementTesting> elemente = new ArrayList<ElementTesting>();
 	alleFarben= farbenAktualisierenStrats();
@@ -1143,9 +974,10 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 	public int farbeWaehlens3Testing(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
 		
 		
+		alleFarben= farbenAktualisierenStrats();
+
 		
 		ArrayList<ElementTesting> elemente = new ArrayList<ElementTesting>();
-		Color brown = new Color(153,102,0);
 		
 						
 			if(alleFarben.contains(1)) {
@@ -1286,7 +1118,7 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		
 		
 		
-		return true;
+		return false;
 	}
 	
 	
@@ -1337,52 +1169,41 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		 * sodass man die erste Zahl zurueckgeben kann
 		 */
 		ArrayList<Integer> alleZahlen = new ArrayList<Integer>();
-		if(verfuegbareFarben.contains(1)) {
+
 			int m1 = move1neu(row,col,moves1);		
 			boardZuweisen();
 			alleZahlen.add(m1);
-			System.out.println("Schwarz: " + m1);
 
 
-		}
-		if(verfuegbareFarben.contains(2)) {
+		
 			int m2 = move2neu(row,col,moves2);
 			boardZuweisen();
 			alleZahlen.add(m2);
-			System.out.println("Blau: " + m2);
 
-		}
-		if(verfuegbareFarben.contains(3)) {
+		
 			int m3 = move3neu(row,col,moves3);
 			boardZuweisen();
 			alleZahlen.add(m3);
-			System.out.println("Hellblau: " + m3);
 
-		}
-		if(verfuegbareFarben.contains(4)) {
+		
 			int m4 = move4neu(row,col,moves4);
 			boardZuweisen();
 			alleZahlen.add(m4);
-			System.out.println("Grau: " + m4);
 
-		}
-		if(verfuegbareFarben.contains(5)) {
+		
 			int m5 = move5neu(row,col,moves5);		
 			boardZuweisen();
 			alleZahlen.add(m5);
-			System.out.println("Gruen: " + m5);
 
-		}
-		if(verfuegbareFarben.contains(6)) {
+		
 			int m6 = move6neu(row,col,moves6);
 			boardZuweisen();
 			alleZahlen.add(m6);
-			System.out.println("Braun: " + m6);
 
-		}
+		
 										
 		Collections.sort(alleZahlen);
-		System.out.println("Mindestzuege: " + alleZahlen.get(0));
+		
 		return alleZahlen.get(0);
 		
 		
@@ -1422,7 +1243,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		
 		int m1 = move1(moves1);		
 		alleZahlen.add(m1);
-		System.out.println("Schwarz: "+ m1);
 		boardZuweisen();
 		
 		
@@ -1430,7 +1250,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		int m2 = move2(moves2);
 		boardZuweisen();
 		alleZahlen.add(m2);
-		System.out.println("Blau: "+ m2);
 
 		
 		
@@ -1440,7 +1259,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			int m3 = move3(moves3);
 			boardZuweisen();
 			alleZahlen.add(m3);
-			System.out.println("Hellblau: "+ m3);
 
 
 
@@ -1449,7 +1267,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			int m4 = move4(moves4);
 			boardZuweisen();
 			alleZahlen.add(m4);
-			System.out.println("Grau: "+ m4);
 
 
 		
@@ -1457,18 +1274,15 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			int m5 = move5(moves5);		
 			boardZuweisen();
 			alleZahlen.add(m5);
-			System.out.println("Gruen: "+ m5);
 
 			
 		
 			int m6 = move6(moves6);
 			boardZuweisen();
 			alleZahlen.add(m6);
-			System.out.println("Braun: "+ m6);
 
 
-
-		
+			
 		
 		Collections.sort(alleZahlen);
 
@@ -1510,8 +1324,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		}	
 		}
 		
-		System.out.println("Groese Schwarz: " + K1Copy.size());
-
 		int groeseK1Neu = K1Copy.size();		
 
 		int farbe = board[board.length-1][0].getColor();
@@ -1953,8 +1765,6 @@ ArrayList<Field> K1Copy;
 		//Alle Farben, inklusive die oben links, koennen angenommen werden. Auser natuerlich die eigene Farbe
 		ArrayList<Integer> verfuegbareFarben = new ArrayList <Integer>();
 		verfuegbareFarben = farbenAktualisierenMoves(farbe);
-
-		System.out.println("Farben am Anfang: " + verfuegbareFarben);
 
 		//So lange mit den jeweiligen Farben vergroesern, bis Feld komplett eingenommen ist
 		
