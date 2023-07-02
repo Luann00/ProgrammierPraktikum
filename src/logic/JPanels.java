@@ -794,6 +794,11 @@ public class JPanels extends JPanel {
 
 	}
 	
+	public void minMovesTest() {
+		Testing t = new Testing(spielBrettArrayField);
+		t.minMovesFull();
+	}
+	
 	
 	public void infoKAendern() {
 
@@ -1438,9 +1443,11 @@ public class JPanels extends JPanel {
 		for (int i = 0; i < farbenImSpiel; i++) {
 			ausgewaehlteFarben.add(temp.get(i));
 		}
-
+		
+		
 		aktuellVerfuegbareFarben = new ArrayList(ausgewaehlteFarben);
 		verfuegbareZahlenAnzahl = farbenImSpiel;
+		
 
 	}
 	
@@ -1509,6 +1516,8 @@ public class JPanels extends JPanel {
 
 		}
 		
+//		minMovesTest();
+		
 		// Groese der beiden Komponenten
 		K1 = new ArrayList<JPanel>();
 		K2 = new ArrayList<JPanel>();
@@ -1553,7 +1562,7 @@ public class JPanels extends JPanel {
 					  switch(gewaehlteStrategie) {
 						
 						case 1:
-//							strat1Testing();
+							strat1Testing();
 							c = strategy1(spielbrettArray);
 							spielZugs2(c);
 
@@ -1561,7 +1570,7 @@ public class JPanels extends JPanel {
 							break;
 							
 						case 2:
-//							strat2Testing();
+							strat2Testing();
 							c = strategy2(spielbrettArray);
 							spielZugs2(c);
 
@@ -1569,7 +1578,7 @@ public class JPanels extends JPanel {
 							break;
 						
 						case 3:
-//							strat3Testing();
+							strat3Testing();
 							c = strategy3(spielbrettArray);
 							spielZugs2(c);
 							break;
@@ -1668,7 +1677,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1676,7 +1685,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -1684,7 +1693,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -1783,7 +1792,7 @@ public class JPanels extends JPanel {
 									  switch(gewaehlteStrategie) {
 										
 										case 1:
-//											strat1Testing();
+											strat1Testing();
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
 
@@ -1791,7 +1800,7 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
-//											strat2Testing();
+											strat2Testing();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -1799,7 +1808,7 @@ public class JPanels extends JPanel {
 											break;
 										
 										case 3:
-//											strat3Testing();
+											strat3Testing();
 											c = strategy3(spielbrettArray);
 											spielZugs2(c);
 											break;
@@ -1878,7 +1887,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1887,14 +1896,14 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 												
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -1975,7 +1984,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -1984,14 +1993,14 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2071,7 +2080,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -2080,7 +2089,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2088,7 +2097,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2169,7 +2178,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -2177,7 +2186,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 												
@@ -2185,7 +2194,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2264,7 +2273,7 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -2272,7 +2281,7 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2280,7 +2289,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2366,14 +2375,14 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2381,7 +2390,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2461,21 +2470,21 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -2572,14 +2581,14 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-//												strat1Testing();
+												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 												
 												break;
 												
 											case 2:
-//												strat2Testing();
+												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2587,7 +2596,7 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-//												strat3Testing();
+												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 
@@ -2686,314 +2695,6 @@ public class JPanels extends JPanel {
 	
 	
 	
-	
-	
-	
-	public void s1Zug() {
-		
-		int groeseK1Davor = groeseK1;
-			for (int i = 0; i < gewaehlteZeilenAnzahl; i++) {
-
-				for (int j = 0; j < gewaehlteSpaltenAnzahl; j++) {
-
-					int zeile = i;
-					int spalte = j;
-
-					spielbrettArray[i][j].addMouseListener(new MouseAdapter() {
-
-						public void mouseClicked(MouseEvent e) {
-
-							// Farbe des geklickten Feldes der Komponente zuweisen
-							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
-
-//							if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, geklickteFarbe, groeseK1);
-
-								s1FarbeDavor = s1Farbe;
-								s1Farbe = geklickteFarbe;
-								
-
-
-								aktuellVerfuegbareFarben.add(removteFarbe);
-
-								aktuellVerfuegbareFarben.remove(geklickteFarbe);
-								removteFarbe = geklickteFarbe;
-
-								anzeigeAktualisierenMouse(geklickteFarbe);
-								
-								infoKAendern();
-								
-//							}
-								
-						}
-					});
-
-				}
-				
-			}
-			
-
-			
-			spielBrett.grabFocus();
-			spielBrett.addKeyListener(new KeyAdapter() {
-
-				public void keyPressed(KeyEvent e) {
-					
-					if (e.getKeyChar() == '1') {
-						if (Color.black.equals(s1Farbe) == false && Color.black.equals(s2Farbe) == false) {
-							
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.black) == true) {
-								
-							s1Farbe = Color.black;
-								
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-							spielZuege++;
-							groeseK1 = komponenteAnpassen(K1, Color.black, groeseK1);
-							
-							anzeigeAktualisierenKey(farbenAnzeige, 1);
-							
-							setGroeseK1(groeseK1);
-							
-							infoKAendern();
-
-
-							
-						}
-					}
-						
-						
-					}
-
-					if (e.getKeyChar() == '2') {
-						if (Color.blue.equals(s1Farbe) == false && Color.blue.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.blue) == true) {
-								
-								s1Farbe = Color.blue;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.blue, groeseK1);
-								
-								anzeigeAktualisierenKey(farbenAnzeige, 2);
-								
-								setGroeseK1(groeseK1);
-
-								infoKAendern();
-
-						}
-					}
-					}
-
-					if (e.getKeyChar() == '3') {
-
-						if (Color.cyan.equals(s1Farbe) == false && Color.cyan.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.cyan) == true) {
-
-								s1Farbe = Color.cyan;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.cyan, groeseK1);
-								
-								anzeigeAktualisierenKey(farbenAnzeige, 3);
-								
-								setGroeseK1(groeseK1);
-
-								infoKAendern();
-
-
-						}
-					}
-						
-					}
-
-					if (e.getKeyChar() == '4') {
-						if (Color.gray.equals(s1Farbe) == false && Color.gray.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.gray) == true) {
-
-								s1Farbe = Color.gray;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.gray, groeseK1);
-								
-								anzeigeAktualisierenKey(farbenAnzeige, 4);
-								setGroeseK1(groeseK1);
-
-
-								infoKAendern();
-
-
-						}
-
-					}
-						
-					}
-
-					if (e.getKeyChar() == '5' && farbenImSpiel >= 5) {
-
-						if (Color.green.equals(s1Farbe) == false && Color.green.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.green) == true) {
-
-								s1Farbe = Color.green;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.green, groeseK1);
-								anzeigeAktualisierenKey(farbenAnzeige, 5);
-								setGroeseK1(groeseK1);
-
-								infoKAendern();
-
-
-								
-						}
-					}
-						
-					}
-
-					if (e.getKeyChar() == '6' && farbenImSpiel >= 6) {
-
-						Color brown = new Color(153, 102, 0);
-						aktuellVerfuegbareFarben= farbenAktualisieren();
-
-						if (brown.equals(s1Farbe) == false && brown.equals(s2Farbe) == false) {
-							
-							if(aktuellVerfuegbareFarben.contains(brown) == true) {
-								s1Farbe = brown;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, brown, groeseK1);
-								anzeigeAktualisierenKey(farbenAnzeige, 6);
-								setGroeseK1(groeseK1);
-
-								infoKAendern();
-
-								
-
-
-						}
-
-					}
-						
-					}
-
-					if (e.getKeyChar() == '7' && farbenImSpiel >= 7) {
-
-						if (Color.orange.equals(s1Farbe) == false && Color.orange.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.orange) == true) {
-
-								s1Farbe = Color.orange;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.orange, groeseK1);
-
-								anzeigeAktualisierenKey(farbenAnzeige, 7);
-								setGroeseK1(groeseK1);
-								
-								infoKAendern();
-
-								
-
-						}
-
-					}
-						
-					}
-
-					if (e.getKeyChar() == '8' && farbenImSpiel >= 8) {
-
-						if (Color.pink.equals(s1Farbe) == false && Color.pink.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.pink) == true) {
-
-								s1Farbe = Color.pink;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.pink, groeseK1);
-								setGroeseK1(groeseK1);
-
-								infoKAendern();
-				
-								anzeigeAktualisierenKey(farbenAnzeige, 8);
-								
-								
-
-						}
-
-					}
-						
-					}
-
-					if (e.getKeyChar() == '9' && farbenImSpiel == 9) {
-
-						if (Color.red.equals(s1Farbe) == false && Color.red.equals(s2Farbe) == false) {
-							aktuellVerfuegbareFarben= farbenAktualisieren();
-
-							if(aktuellVerfuegbareFarben.contains(Color.red) == true) {
-
-								s1Farbe = Color.red;
-									
-								aktuellVerfuegbareFarben= farbenAktualisieren();
-
-
-								spielZuege++;
-								groeseK1 = komponenteAnpassen(K1, Color.red, groeseK1);
-								setGroeseK1(groeseK1);
-
-								infoKAendern();
-					
-								anzeigeAktualisierenKey(farbenAnzeige, 9);	
-
-						}
-
-					}
-						
-				}
-					
-				
-			}
-							
-
-			});
-			
-			
-			
-	}
 	
 	public void strat2Testing() {
 		Testing t = new Testing(spielBrettArrayField);
@@ -3210,22 +2911,20 @@ public Color strategy3(JPanel[][] board) {
 			}
 			
 			
-			if(aktuellVerfuegbareFarben.size() > 0) {
 			Element c = elemente.get(0);
 			for(int i = 1; i < elemente.size(); i++) {
 				
 				if(elemente.get(i).getGroese() < c.getGroese()) {
 					c = elemente.get(i);
-				}
 				
+				
+				
+				}
 				
 			}
 			
 			return c.getCol();
-			} else {
-				return null;
-			}	
-		
+			
 		
 	}
 	
@@ -3403,7 +3102,6 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 		
 		
 		//Nun groeste Farbe auswaehlen
-		if(aktuellVerfuegbareFarben.size() > 0) {
 		Element c = elemente.get(0);
 		for(int i = 1; i < elemente.size(); i++) {
 			
@@ -3415,9 +3113,7 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 		}
 		
 		return c.getCol();
-		} else {
-			return null;
-		}	
+		
 	
 	
 	
@@ -4236,6 +3932,16 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 	public ArrayList<Color> farbenAktualisieren() {
 		
 		ArrayList<Color> alleFarbenImSpiel = new ArrayList<Color>();
+		
+		for(int i = 0; i < ausgewaehlteFarben.size(); i++) {
+			
+			if(ausgewaehlteFarben.get(i).equals(s1Farbe) || ausgewaehlteFarben.get(i).equals(s2Farbe)) {
+				continue;
+			} else {
+				alleFarbenImSpiel.add(ausgewaehlteFarben.get(i));
+			}
+			
+		}
 		
 
 		
