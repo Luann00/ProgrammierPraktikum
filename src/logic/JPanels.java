@@ -30,8 +30,6 @@ import javax.swing.border.TitledBorder;
 
 import testing.Testing;
 
-import java.util.Scanner;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -905,9 +903,6 @@ public class JPanels extends JPanel {
 					
 					
 					
-//					zeilenAuswahl.setEnabled(false);
-//					spaltenAuswahl.setEnabled(false);
-					
 					erstesMalGedrueckt = false;
 					
 										
@@ -981,9 +976,7 @@ public class JPanels extends JPanel {
 					
 					String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 					timerLabel.setText(time);
-					
-					//Alle Einstellungen zuruecksenden
-					
+										
 
 				}
 			}
@@ -1030,9 +1023,9 @@ public class JPanels extends JPanel {
 		K1Info = new JLabel();
 		K2Info = new JLabel();
 		Font f3 = K1Info.getFont();
-		K1Info.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
+		K1Info.setFont(f3.deriveFont(f3.getStyle() & ~Font.BOLD));
 		Font f4 = K2Info.getFont();
-		K2Info.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
+		K2Info.setFont(f4.deriveFont(f4.getStyle() & ~Font.BOLD));
 
 
 		groese.add(K1Info);
@@ -1316,7 +1309,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -1324,7 +1316,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1332,7 +1323,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -1340,8 +1330,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start(); 
 							
 						
 					}
@@ -1432,7 +1422,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -1440,7 +1429,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1448,7 +1436,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -1456,8 +1443,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);;
+							timer.start();
 							
 						
 					}
@@ -1547,7 +1534,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -1555,7 +1541,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1563,7 +1548,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -1571,8 +1555,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start(); 
 							
 						
 					}
@@ -1663,7 +1647,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -1671,7 +1654,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1679,7 +1661,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -1687,8 +1668,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start(); 
 							
 						
 					}
@@ -1779,7 +1760,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -1787,7 +1767,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1795,7 +1774,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -1803,8 +1781,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start();
 							
 						
 					}
@@ -1895,7 +1873,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -1903,7 +1880,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -1911,7 +1887,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -1919,8 +1894,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start(); 
 							
 						
 					}
@@ -2011,7 +1986,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -2019,7 +1993,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -2027,7 +2000,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -2035,8 +2007,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start();
 							
 						
 					}
@@ -2127,7 +2099,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -2135,7 +2106,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -2143,7 +2113,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -2151,8 +2120,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start(); 
 							
 						
 					}
@@ -2242,7 +2211,6 @@ public class JPanels extends JPanel {
 								  switch(gewaehlteStrategie) {
 									
 									case 1:
-										strat1Testing();
 										c = strategy1(spielbrettArray);
 										spielZugs2(c);
 
@@ -2250,7 +2218,6 @@ public class JPanels extends JPanel {
 										break;
 										
 									case 2:
-										strat2Testing();
 										c = strategy2(spielbrettArray);
 										spielZugs2(c);
 
@@ -2258,7 +2225,6 @@ public class JPanels extends JPanel {
 										break;
 									
 									case 3:
-										strat3Testing();
 										c = strategy3(spielbrettArray);
 										spielZugs2(c);
 										break;
@@ -2266,8 +2232,8 @@ public class JPanels extends JPanel {
 									}							
 								  }
 							});
-							timer.setRepeats(false);; // Only execute once
-							timer.start(); // Go go go!
+							timer.setRepeats(false);
+							timer.start();
 							
 						
 					}
@@ -2500,12 +2466,14 @@ public class JPanels extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				//Sekunden jedes Mal erhoehen, bei 60 dann Sekunden auf 0 und minute auf 1
 				seconds++;
 				if(seconds == 60) {
 					minutes++;
 					seconds = 0;
 				}
 				
+				//Analog wie bei Sekunden
 				if(minutes == 60) {
 					hours++;
 					minutes = 0;
@@ -2524,10 +2492,10 @@ public class JPanels extends JPanel {
 	public void timerToZero() {
 		
 		if(timer != null && timer.isRunning()) {
+			timer.stop();
 			seconds = 0;
 			minutes = 0;
 			hours = 0;
-			timer.stop();
 
 			String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 			timerLabel.setText(time);
@@ -2590,18 +2558,10 @@ public class JPanels extends JPanel {
 		repaint();
 		
 		
-		
-		
-		
 		return spielbrettArray;
 
 	}
 	
-	public void brettAnzeigen() {
-		Testing t = new Testing(spielBrettArrayField);
-//		t.boardAnzeigen();
-		
-	}
 	
 	
 	
@@ -2706,25 +2666,6 @@ public class JPanels extends JPanel {
 		int x = rand.nextInt(ausgewaehlteFarbenTemporaer.size());
 		Color neueFarbe = ausgewaehlteFarbenTemporaer.get(x);
 		
-		if(neueFarbe.equals(Color.black)) {
-			colorZahl = 1;
-		} else if(neueFarbe.equals(Color.blue)) {
-			colorZahl = 2;
-		}else if(neueFarbe.equals(Color.cyan)) {
-			colorZahl = 3;
-		}else if(neueFarbe.equals(Color.gray)) {
-			colorZahl = 4;
-		}else if(neueFarbe.equals(Color.green)) {
-			colorZahl = 5;
-		}else if(neueFarbe.equals(brown)) {
-			colorZahl = 6;
-		}else if(neueFarbe.equals(Color.orange)) {
-			colorZahl = 7;
-		}else if(neueFarbe.equals(Color.pink)) {
-			colorZahl = 8;
-		}else if(neueFarbe.equals(Color.red)) {
-			colorZahl = 9;
-		}
 
 		return neueFarbe;
 
@@ -2767,32 +2708,6 @@ public class JPanels extends JPanel {
 
 	}
 
-	public String colorToString(Color color) {
-		Color brown = new Color(153, 102, 0);
-		if (color.equals(color.black))
-			return "Schwarz";
-		if (color.equals(color.blue))
-			return "Blau";
-		if (color.equals(color.yellow))
-			return "Gelb";
-		if (color.equals(color.green))
-			return "Gruen";
-		if (color.equals(color.red))
-			return "Rot";
-		if (color.equals(color.gray))
-			return "Grau";
-		if (color.equals(color.magenta))
-			return "Magenta";
-		if (color.equals(color.orange))
-			return "Orange";
-		if (color.equals(color.cyan))
-			return "Hellblau";
-		if (color.equals(brown))
-			return "Braun";
-
-		return "Andere Farbe";
-
-	}
 
 	public void setup() {
 
@@ -2811,14 +2726,12 @@ public class JPanels extends JPanel {
 		spielbrettArray = spielBrettGenerieren();
 		
 
-//		while (benutzteFarben.size() != farbenImSpiel) {
+		while (benutzteFarben.size() != farbenImSpiel) {
 			spielBrett.removeAll();
 			spielbrettArray = spielBrettGenerieren();
 
-//		}
+		}
 			
-//			startKlarTest();
-
 		
 		
 		// Groese der beiden Komponenten
@@ -2864,7 +2777,6 @@ public class JPanels extends JPanel {
 					  switch(gewaehlteStrategie) {
 						
 						case 1:
-							strat1Testing();
 							c = strategy1(spielbrettArray);
 							spielZugs2(c);
 
@@ -2872,7 +2784,6 @@ public class JPanels extends JPanel {
 							break;
 							
 						case 2:
-							strat2Testing();
 							c = strategy2(spielbrettArray);
 							spielZugs2(c);
 
@@ -2880,7 +2791,6 @@ public class JPanels extends JPanel {
 							break;
 						
 						case 3:
-							strat3Testing();
 							c = strategy3(spielbrettArray);
 							spielZugs2(c);
 							break;
@@ -2888,8 +2798,8 @@ public class JPanels extends JPanel {
 						}							
 					  }
 				});
-				timer.setRepeats(false);; // Only execute once
-				timer.start(); // Go go go!
+				timer.setRepeats(false);
+				timer.start();
 				s1Dran = true;
 				s2Dran = false;
 			
@@ -2983,7 +2893,6 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -2991,7 +2900,6 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -2999,7 +2907,6 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3007,8 +2914,8 @@ public class JPanels extends JPanel {
 											}							
 										  }
 									});
-									timer.setRepeats(false);; // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false);
+									timer.start(); 
 									
 								
 							}
@@ -3102,7 +3009,6 @@ public class JPanels extends JPanel {
 									  switch(gewaehlteStrategie) {
 										
 										case 1:
-											strat1Testing();
 											c = strategy1(spielbrettArray);
 											spielZugs2(c);
 
@@ -3110,7 +3016,6 @@ public class JPanels extends JPanel {
 											break;
 											
 										case 2:
-											strat2Testing();
 											c = strategy2(spielbrettArray);
 											spielZugs2(c);
 
@@ -3118,7 +3023,6 @@ public class JPanels extends JPanel {
 											break;
 										
 										case 3:
-											strat3Testing();
 											c = strategy3(spielbrettArray);
 											spielZugs2(c);
 											break;
@@ -3129,8 +3033,8 @@ public class JPanels extends JPanel {
 									  s2Dran = false;
 									  }
 								});
-								timer.setRepeats(false); // Only execute once
-								timer.start(); // Go go go!
+								timer.setRepeats(false); 
+								timer.start();
 						}
 					}
 						
@@ -3201,7 +3105,6 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -3210,14 +3113,12 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 												
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3229,8 +3130,8 @@ public class JPanels extends JPanel {
 										  
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false); 
+									timer.start();
 
 
 						}
@@ -3302,7 +3203,6 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -3311,14 +3211,12 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3328,8 +3226,8 @@ public class JPanels extends JPanel {
 											s2Dran =false;
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false);
+									timer.start(); 
 
 
 						}
@@ -3402,7 +3300,6 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -3411,7 +3308,6 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -3419,7 +3315,6 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3429,8 +3324,8 @@ public class JPanels extends JPanel {
 											s2Dran = false;
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false); 
+									timer.start();
 
 
 						}
@@ -3504,7 +3399,6 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -3512,7 +3406,6 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 												
@@ -3520,7 +3413,6 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3530,8 +3422,8 @@ public class JPanels extends JPanel {
 											s2Dran = false;
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false); 
+									timer.start(); 
 						}
 					}
 						
@@ -3603,7 +3495,6 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
@@ -3611,7 +3502,6 @@ public class JPanels extends JPanel {
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -3619,7 +3509,6 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3629,8 +3518,8 @@ public class JPanels extends JPanel {
 											s2Dran = false;
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false);
+									timer.start(); 
 
 
 
@@ -3709,14 +3598,12 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -3724,7 +3611,6 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3734,8 +3620,8 @@ public class JPanels extends JPanel {
 										  s2Dran = false;
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false);
+									timer.start(); 
 
 						}
 
@@ -3807,21 +3693,18 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 												break;
@@ -3833,8 +3716,8 @@ public class JPanels extends JPanel {
 										 
 										  }
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!
+									timer.setRepeats(false);
+									timer.start();
 
 
 						}
@@ -3922,14 +3805,12 @@ public class JPanels extends JPanel {
 										  switch(gewaehlteStrategie) {
 											
 											case 1:
-												strat1Testing();
 												c = strategy1(spielbrettArray);
 												spielZugs2(c);
 												
 												break;
 												
 											case 2:
-												strat2Testing();
 												c = strategy2(spielbrettArray);
 												spielZugs2(c);
 
@@ -3937,7 +3818,6 @@ public class JPanels extends JPanel {
 												break;
 											
 											case 3:
-												strat3Testing();
 												c = strategy3(spielbrettArray);
 												spielZugs2(c);
 
@@ -3951,8 +3831,8 @@ public class JPanels extends JPanel {
 										  }
 
 									});
-									timer.setRepeats(false); // Only execute once
-									timer.start(); // Go go go!	
+									timer.setRepeats(false);
+									timer.start(); 
 
 						}
 
@@ -4030,38 +3910,7 @@ public class JPanels extends JPanel {
 		
 	}
 	
-	
-//	public void minMoves() {
-//		Testing t = new Testing(spielBrettArrayField);
-//		t.minMoves(3, 4);
-//	}
-	
-	
-	
-	
-	public void strat2Testing() {
-		Testing t = new Testing(spielBrettArrayField);
-		int zahl = t.testStrategy02();
-		System.out.println("Naechste Zahl: " + zahl);
 		
-	}
-	
-	public void strat1Testing() {
-		Testing t = new Testing(spielBrettArrayField);
-		int zahl = t.testStrategy01();
-		System.out.println("Naechste Zahl: " + zahl);
-		
-	}
-	
-	public void strat3Testing() {
-		Testing t = new Testing(spielBrettArrayField);
-		int zahl = t.testStrategy03();
-		System.out.println("Naechste Zahl: " + zahl);
-		
-	}
-	
-	
-	
 	
 	
 	
@@ -4133,8 +3982,6 @@ public class JPanels extends JPanel {
 		
 		return col;
 		
-
-		//Eigentlicher Spielzug, bei der ich dann die jeweilige Farbe gemaes der Strategie zurueckgeben
 		
 		
 		
@@ -4259,9 +4106,6 @@ public Color strategy3(JPanel[][] board) {
 				
 				if(elemente.get(i).getGroese() < c.getGroese()) {
 					c = elemente.get(i);
-				
-				
-				
 				}
 				
 			}
@@ -4460,11 +4304,6 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 	
 }
 
-	
-	
-
-
-	
 	
 	
 	public int komponentenZuwachs(ArrayList<JPanel> K, Color c, int groeseK) {

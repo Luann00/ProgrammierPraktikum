@@ -40,31 +40,6 @@ public class MyFrame extends JFrame{
 
 		this.add(jPanel);
 
-
-		
-
-		
-
-		
-		
-		
-//		this.addComponentListener(new ComponentAdapter() {
-//			public void componentResized(ComponentEvent component) {
-//				
-//				Component mase = (Component) component.getSource();
-//				
-//				int width = mase.getWidth();
-//				int height = mase.getHeight();
-//				
-//				menueTafel.setPreferredSize(new Dimension(width/3, height));
-//				anzeigeTafel.setPreferredSize(new Dimension(width/3*2, height));
-//				System.out.println(height);
-//
-//				
-//			}
-//		});
-				
-		
 		
 		this.setVisible(true);
 		

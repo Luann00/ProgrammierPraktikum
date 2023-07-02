@@ -464,33 +464,6 @@ public int komponenteAnpassen(ArrayList<Field> K, int geklickteFarbe, int groese
 	
 	
 	
-	public void boardAnzeigen() {
-		
-		 for(int i = 0; i < board.length ; i ++){
-
-	            System.out.println();
-	            for(int j = 0 ; j < board[i].length ; j++){
-	                System.out.print(" | " + board[i][j].getColor()  );
-	            }
-	            System.out.print(" |");
-	            System.out.println();
-	        }
-		
-	}
-	
-	public void copyBoardAnzeigen() {
-		for(int i = 0; i < board.length ; i ++){
-
-            System.out.println();
-            for(int j = 0 ; j < copyBoard[i].length ; j++){
-                System.out.print(" | " + copyBoard[i][j].getColor()  );
-            }
-            System.out.print(" |");
-            System.out.println();
-        }
-	
-	}
-	
 
 	
 	
@@ -612,38 +585,6 @@ public int farbeWaehlens1Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			elemente.add(farbe6);
 			K2Copy = new ArrayList<>(K2);
 
-	}
-	
-	if(alleFarben.contains(7)) {
-
-
-			k7 = komponentenZuwachsTesting(K2Copy, 7, groeseK2);
-			ElementTesting farbe7 = new ElementTesting(k7,7);
-			elemente.add(farbe7);
-			K2Copy = new ArrayList<>(K2);
-			
-	}
-	
-	if(alleFarben.contains(8)) {
-
-
-
-			k8 = komponentenZuwachsTesting(K2Copy, 8, groeseK2);
-			ElementTesting farbe8 = new ElementTesting(k8,8);
-			elemente.add(farbe8);
-			K2Copy = new ArrayList<>(K2);
-
-
-	}
-	
-	if(alleFarben.contains(9)) {
-
-			k9 = komponentenZuwachsTesting(K2Copy, 9, groeseK2);
-			ElementTesting farbe9 = new ElementTesting(k9,9);
-			elemente.add(farbe9);
-			K2Copy = new ArrayList<>(K2);
-
-		
 	}
 		
 		
@@ -895,26 +836,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			K2Copy = new ArrayList<>(K2);
 
 
-		}if(alleFarben.contains(7)) {
-			k7 = komponentenZuwachsTesting(K2Copy, 7, groeseK2);
-			ElementTesting orange = new ElementTesting(k7,7);
-			elemente.add(orange);
-			K2Copy = new ArrayList<>(K2);
-
-
-		}if(alleFarben.contains(8)) {
-			k8 = komponentenZuwachsTesting(K2Copy, 8, groeseK2);
-			ElementTesting pink = new ElementTesting(k8,8);
-			elemente.add(pink);
-			K2Copy = new ArrayList<>(K2);
-
-
-		}if(alleFarben.contains(9)) {
-			k9 = komponentenZuwachsTesting(K2Copy, 9, groeseK2);
-			ElementTesting red = new ElementTesting(k9,9);
-			elemente.add(red);
-			K2Copy = new ArrayList<>(K2);
-
 		}
 		
 		
@@ -928,10 +849,7 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			
 			
 		}
-		
-		System.out.println("Groese K2: "+ K2Copy.size());
-
-		
+				
 		
 		return c.getName();
 		
@@ -1024,26 +942,6 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 				elemente.add(brown1);
 				K1Copy = new ArrayList<>(K1);
 
-
-			}if(alleFarben.contains(7)) {
-				k7 = komponentenZuwachsTesting(K1Copy, 7, groeseK1);
-				ElementTesting orange = new ElementTesting(k7,7);
-				elemente.add(orange);
-				K1Copy = new ArrayList<>(K1);
-
-
-			}if(alleFarben.contains(8)) {
-				k8 = komponentenZuwachsTesting(K1Copy, 8, groeseK1);
-				ElementTesting pink = new ElementTesting(k8,8);
-				elemente.add(pink);
-				K1Copy = new ArrayList<>(K1);
-
-
-			}if(alleFarben.contains(9)) {
-				k9 = komponentenZuwachsTesting(K1Copy, 9, groeseK1);
-				ElementTesting red = new ElementTesting(k9,9);
-				elemente.add(red);
-				K1Copy = new ArrayList<>(K1);
 
 			}
 			
