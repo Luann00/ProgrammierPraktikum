@@ -661,13 +661,11 @@ public class JPanels extends JPanel {
 					
 					erstesMalGedrueckt = false;
 					
-					playGeklickt = true;
 										
 					play1();
 					
 				}else if(playButton.getText().equals("Play") && erstesMalGedrueckt == false) {
 					playButton.setText("Pause");
-					playGeklickt = true;
 					startTimer();
 					play1();
 					infoKAendern();
@@ -677,7 +675,6 @@ public class JPanels extends JPanel {
 					}  else if(playButton.getText().equals("Pause")){
 						playButton.setText("Play");
 						startTimer();
-						playGeklickt = false;
 
 
 				}
@@ -1516,7 +1513,6 @@ public class JPanels extends JPanel {
 
 		}
 		
-//		minMovesTest();
 		
 		// Groese der beiden Komponenten
 		K1 = new ArrayList<JPanel>();
@@ -1550,7 +1546,6 @@ public class JPanels extends JPanel {
 	
 	public void play1() {
 		
-		boolean amWaehlen = true;
 		
 		if(s2Dran && (max == false && endKonf == false)) {
 			
@@ -1590,12 +1585,10 @@ public class JPanels extends JPanel {
 				timer.start(); // Go go go!
 				s1Dran = true;
 				s2Dran = false;
-				amWaehlen = false;
 			
 		}
 		
 
-		if(amWaehlen == false) {
 			for (int i = 0; i < gewaehlteZeilenAnzahl; i++) {
 
 				for (int j = 0; j < gewaehlteSpaltenAnzahl; j++) {
@@ -1613,8 +1606,8 @@ public class JPanels extends JPanel {
 
 							// Farbe des geklickten Feldes der Komponente zuweisen
 							geklickteFarbe = spielbrettArray[zeile][spalte].getBackground();
-							
-							if(s1Dran && (max == false && endKonf == false) && playGeklickt == true) {
+							System.out.println("Klick");
+							if(s1Dran && (max == false && endKonf == false)) {
 
 
 							if (aktuellVerfuegbareFarben.contains(geklickteFarbe)) {
@@ -1716,7 +1709,7 @@ public class JPanels extends JPanel {
 
 				}
 					
-			}
+			
 				
 				
 				
@@ -3005,7 +2998,6 @@ public Color farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int 
 			
 			
 			//Nun groeste Farbe auswaehlen
-			if(aktuellVerfuegbareFarben.size() > 0) {
 			Element c = elemente.get(0);
 			for(int i = 1; i < elemente.size(); i++) {
 				
@@ -3017,9 +3009,7 @@ public Color farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int 
 			}
 			
 			return c.getCol();
-			} else {
-				return null;
-			}	
+			 
 		
 		
 	}

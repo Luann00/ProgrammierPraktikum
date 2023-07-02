@@ -721,7 +721,6 @@ ArrayList<Integer> alleFarbenImSpiel = new ArrayList<Integer>();
 public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
 	
 	ArrayList<ElementTesting> elemente = new ArrayList<ElementTesting>();
-	Color brown = new Color(153,102,0);
 	alleFarben= farbenAktualisierenStrats();
 
 					
@@ -729,7 +728,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	if(alleFarben.contains(1)) {
 
-			k1 = komponentenZuwachs(K2Copy, 1, groeseK2);
+			k1 = komponentenZuwachsTesting(K2Copy, 1, groeseK2);
 			ElementTesting farbe1 = new ElementTesting(k1, 1);
 			elemente.add(farbe1);
 			K2Copy = new ArrayList<>(K2);
@@ -739,7 +738,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 	if(alleFarben.contains(2)) {
 
-			k2 = komponentenZuwachs(K2Copy, 2, groeseK2);
+			k2 = komponentenZuwachsTesting(K2Copy, 2, groeseK2);
 			ElementTesting farbe2 = new ElementTesting(k2, 2);
 			elemente.add(farbe2);
 			K2Copy = new ArrayList<>(K2);
@@ -749,7 +748,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	if(alleFarben.contains(3)) {
 
-			k3 = komponentenZuwachs(K2Copy, 3, groeseK2);
+			k3 = komponentenZuwachsTesting(K2Copy, 3, groeseK2);
 			ElementTesting farbe3 = new ElementTesting(k3,3);
 			elemente.add(farbe3);
 			K2Copy = new ArrayList<>(K2);
@@ -758,7 +757,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 	if(alleFarben.contains(4)) {
 
-			k4 = komponentenZuwachs(K2Copy, 4, groeseK2);
+			k4 = komponentenZuwachsTesting(K2Copy, 4, groeseK2);
 			ElementTesting farbe4 = new ElementTesting(k4,4);
 			elemente.add(farbe4);
 			K2Copy = new ArrayList<>(K2);
@@ -768,7 +767,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	if(alleFarben.contains(5)) {
 
-			k5 = komponentenZuwachs(K2Copy, 5, groeseK2);
+			k5 = komponentenZuwachsTesting(K2Copy, 5, groeseK2);
 			ElementTesting farbe5 = new ElementTesting(k5,5);
 			elemente.add(farbe5);
 			K2Copy = new ArrayList<>(K2);
@@ -778,7 +777,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	if(alleFarben.contains(6)) {
 
-			k6 = komponentenZuwachs(K2Copy, 6, groeseK2);
+			k6 = komponentenZuwachsTesting(K2Copy, 6, groeseK2);
 			ElementTesting farbe6 = new ElementTesting(k6,6);
 			elemente.add(farbe6);
 			K2Copy = new ArrayList<>(K2);
@@ -788,7 +787,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	if(alleFarben.contains(7)) {
 
 
-			k7 = komponentenZuwachs(K2Copy, 7, groeseK2);
+			k7 = komponentenZuwachsTesting(K2Copy, 7, groeseK2);
 			ElementTesting farbe7 = new ElementTesting(k7,7);
 			elemente.add(farbe7);
 			K2Copy = new ArrayList<>(K2);
@@ -799,7 +798,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 
 
 
-			k8 = komponentenZuwachs(K2Copy, 8, groeseK2);
+			k8 = komponentenZuwachsTesting(K2Copy, 8, groeseK2);
 			ElementTesting farbe8 = new ElementTesting(k8,8);
 			elemente.add(farbe8);
 			K2Copy = new ArrayList<>(K2);
@@ -809,7 +808,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 	
 	if(alleFarben.contains(9)) {
 
-			k9 = komponentenZuwachs(K2Copy, 9, groeseK2);
+			k9 = komponentenZuwachsTesting(K2Copy, 9, groeseK2);
 			ElementTesting farbe9 = new ElementTesting(k9,9);
 			elemente.add(farbe9);
 			K2Copy = new ArrayList<>(K2);
@@ -832,7 +831,7 @@ public int farbeWaehlens1(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 }
 
 
-public int komponentenZuwachs(ArrayList<Field> K, int c, int groeseK) {
+public int komponentenZuwachsTesting(ArrayList<Field> K, int c, int groeseK) {
 	
 	for (int i = 0; i < K.size(); i++) {
 		nachbarAufnehmen(K, c, K.get(i).getRow(), K.get(i).getCol());
@@ -985,7 +984,6 @@ public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int 
 		alleFarben= farbenAktualisierenStrats();
 		
 		
-		
 		int k1Black = groeseK2;
 		int k1Blue = groeseK2;
 		int k1Cyan = groeseK2;
@@ -1003,26 +1001,28 @@ public void nachbarAufnehmenMoves(ArrayList<Field> K, int farbe, int zeile, int 
 		
 			
 			
-		int col = farbeWaehlens2(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		int col = farbeWaehlens2Testing(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		
 		
 		
 		return col;
 
 	}
 	
-public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
 		
 		
-	ArrayList<Element> elemente = new ArrayList<Element>();
-	Color brown = new Color(153,102,0);
+	ArrayList<ElementTesting> elemente = new ArrayList<ElementTesting>();
 
+	
 	alleFarben= farbenAktualisierenStrats();
+	
 	
 
 					
 		if(alleFarben.contains(1)) {
-			k1 = komponentenZuwachs(K2Copy, 1, groeseK2);
-			Element black = new Element(Color.black,k1, 1);
+			k1 = komponentenZuwachsTesting(K2Copy, 1, groeseK2);
+			ElementTesting black = new ElementTesting(k1, 1);
 			elemente.add(black);
 			K2Copy = new ArrayList<>(K2);
 
@@ -1030,58 +1030,58 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 
 		if(alleFarben.contains(2)) {
-			k2 = komponentenZuwachs(K2Copy, 2, groeseK2);
-			Element blue = new Element(Color.blue,k2, 2);
+			k2 = komponentenZuwachsTesting(K2Copy, 2, groeseK2);
+			ElementTesting blue = new ElementTesting(k2, 2);
 			elemente.add(blue);
 			K2Copy = new ArrayList<>(K2);
 
 
 
 		}if(alleFarben.contains(3)) {
-			k3 = komponentenZuwachs(K2Copy, 3, groeseK2);
-			Element cyan = new Element(Color.cyan,k3,3);
+			k3 = komponentenZuwachsTesting(K2Copy, 3, groeseK2);
+			ElementTesting cyan = new ElementTesting(k3,3);
 			elemente.add(cyan);
 			K2Copy = new ArrayList<>(K2);
 
 
 		}if(alleFarben.contains(4)) {
-			k4 = komponentenZuwachs(K2Copy, 4, groeseK2);
-			Element gray = new Element(Color.gray,k4,4);
+			k4 = komponentenZuwachsTesting(K2Copy, 4, groeseK2);
+			ElementTesting gray = new ElementTesting(k4,4);
 			elemente.add(gray);
 			K2Copy = new ArrayList<>(K2);
 
 
 		}if(alleFarben.contains(5)) {
-			k5 = komponentenZuwachs(K2Copy, 5, groeseK2);
-			Element green = new Element(Color.green,k5,5);
+			k5 = komponentenZuwachsTesting(K2Copy, 5, groeseK2);
+			ElementTesting green = new ElementTesting(k5,5);
 			elemente.add(green);
 			K2Copy = new ArrayList<>(K2);
 
 
 		}if(alleFarben.contains(6)) {
-			k6 = komponentenZuwachs(K2Copy, 6, groeseK2);
-			Element brown1 = new Element(brown,k6,6);
+			k6 = komponentenZuwachsTesting(K2Copy, 6, groeseK2);
+			ElementTesting brown1 = new ElementTesting(k6,6);
 			elemente.add(brown1);
 			K2Copy = new ArrayList<>(K2);
 
 
 		}if(alleFarben.contains(7)) {
-			k7 = komponentenZuwachs(K2Copy, 7, groeseK2);
-			Element orange = new Element(Color.orange,k7,7);
+			k7 = komponentenZuwachsTesting(K2Copy, 7, groeseK2);
+			ElementTesting orange = new ElementTesting(k7,7);
 			elemente.add(orange);
 			K2Copy = new ArrayList<>(K2);
 
 
 		}if(alleFarben.contains(8)) {
-			k8 = komponentenZuwachs(K2Copy, 8, groeseK2);
-			Element pink = new Element(Color.pink,k8,8);
+			k8 = komponentenZuwachsTesting(K2Copy, 8, groeseK2);
+			ElementTesting pink = new ElementTesting(k8,8);
 			elemente.add(pink);
 			K2Copy = new ArrayList<>(K2);
 
 
 		}if(alleFarben.contains(9)) {
-			k9 = komponentenZuwachs(K2Copy, 9, groeseK2);
-			Element red = new Element(Color.red,k9,9);
+			k9 = komponentenZuwachsTesting(K2Copy, 9, groeseK2);
+			ElementTesting red = new ElementTesting(k9,9);
 			elemente.add(red);
 			K2Copy = new ArrayList<>(K2);
 
@@ -1089,7 +1089,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		
 		//Nun groeste Farbe auswaehlen
-		Element c = elemente.get(0);
+		ElementTesting c = elemente.get(0);
 		for(int i = 1; i < elemente.size(); i++) {
 			
 			if(elemente.get(i).getGroese() > c.getGroese()) {
@@ -1098,6 +1098,9 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			
 			
 		}
+		
+		System.out.println("Groese K2: "+ groeseK2);
+
 		
 		
 		return c.getName();
@@ -1131,24 +1134,24 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 			
 			
-		int col = farbeWaehlens3(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
+		int col = farbeWaehlens3Testing(k1Black, k1Blue, k1Cyan, k1Gray, k1Green, k1Brown,k1Yellow,k1Pink,k1Red);
 		
 		
 		return col;
 
 	}
 	
-	public int farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
+	public int farbeWaehlens3Testing(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9) {
 		
 		
 		
-		ArrayList<Element> elemente = new ArrayList<Element>();
+		ArrayList<ElementTesting> elemente = new ArrayList<ElementTesting>();
 		Color brown = new Color(153,102,0);
-
+		
 						
 			if(alleFarben.contains(1)) {
-				k1 = komponentenZuwachs(K1Copy, 1, groeseK1);
-				Element black = new Element(Color.black,k1, 1);
+				k1 = komponentenZuwachsTesting(K1Copy, 1, groeseK1);
+				ElementTesting black = new ElementTesting(k1, 1);
 				elemente.add(black);
 				K1Copy = new ArrayList<>(K1);
 
@@ -1156,58 +1159,58 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			
 
 			if(alleFarben.contains(2)) {
-				k2 = komponentenZuwachs(K1Copy, 2, groeseK1);
-				Element blue = new Element(Color.blue,k2, 2);
+				k2 = komponentenZuwachsTesting(K1Copy, 2, groeseK1);
+				ElementTesting blue = new ElementTesting(k2, 2);
 				elemente.add(blue);
 				K1Copy = new ArrayList<>(K1);
 
 
 
 			}if(alleFarben.contains(3)) {
-				k3 = komponentenZuwachs(K1Copy, 3, groeseK1);
-				Element cyan = new Element(Color.cyan,k3,3);
+				k3 = komponentenZuwachsTesting(K1Copy, 3, groeseK1);
+				ElementTesting cyan = new ElementTesting(k3,3);
 				elemente.add(cyan);
 				K1Copy = new ArrayList<>(K1);
 
 
 			}if(alleFarben.contains(4)) {
-				k4 = komponentenZuwachs(K1Copy,4, groeseK1);
-				Element gray = new Element(Color.gray,k4,4);
+				k4 = komponentenZuwachsTesting(K1Copy,4, groeseK1);
+				ElementTesting gray = new ElementTesting(k4,4);
 				elemente.add(gray);
 				K1Copy = new ArrayList<>(K1);
 
 
 			}if(alleFarben.contains(5)) {
-				k5 = komponentenZuwachs(K1Copy, 5, groeseK1);
-				Element green = new Element(Color.green,k5,5);
+				k5 = komponentenZuwachsTesting(K1Copy, 5, groeseK1);
+				ElementTesting green = new ElementTesting(k5,5);
 				elemente.add(green);
 				K1Copy = new ArrayList<>(K1);
 
 
 			}if(alleFarben.contains(6)) {
-				k6 = komponentenZuwachs(K1Copy, 6, groeseK1);
-				Element brown1 = new Element(brown,k6,6);
+				k6 = komponentenZuwachsTesting(K1Copy, 6, groeseK1);
+				ElementTesting brown1 = new ElementTesting(k6,6);
 				elemente.add(brown1);
 				K1Copy = new ArrayList<>(K1);
 
 
 			}if(alleFarben.contains(7)) {
-				k7 = komponentenZuwachs(K1Copy, 7, groeseK1);
-				Element orange = new Element(Color.orange,k7,7);
+				k7 = komponentenZuwachsTesting(K1Copy, 7, groeseK1);
+				ElementTesting orange = new ElementTesting(k7,7);
 				elemente.add(orange);
 				K1Copy = new ArrayList<>(K1);
 
 
 			}if(alleFarben.contains(8)) {
-				k8 = komponentenZuwachs(K1Copy, 8, groeseK1);
-				Element pink = new Element(Color.pink,k8,8);
+				k8 = komponentenZuwachsTesting(K1Copy, 8, groeseK1);
+				ElementTesting pink = new ElementTesting(k8,8);
 				elemente.add(pink);
 				K1Copy = new ArrayList<>(K1);
 
 
 			}if(alleFarben.contains(9)) {
-				k9 = komponentenZuwachs(K1Copy, 9, groeseK1);
-				Element red = new Element(Color.red,k9,9);
+				k9 = komponentenZuwachsTesting(K1Copy, 9, groeseK1);
+				ElementTesting red = new ElementTesting(k9,9);
 				elemente.add(red);
 				K1Copy = new ArrayList<>(K1);
 
@@ -1216,7 +1219,7 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 			
 			//Nun groeste Farbe auswaehlen
 			if(alleFarben.size() > 0) {
-			Element c = elemente.get(0);
+			ElementTesting c = elemente.get(0);
 			for(int i = 1; i < elemente.size(); i++) {
 				
 				if(elemente.get(i).getGroese() > c.getGroese()) {
@@ -1403,7 +1406,6 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		int m1 = move1(moves1);		
 		alleZahlen.add(m1);
-						
 		boardZuweisen();
 		
 		
@@ -1414,8 +1416,6 @@ public int farbeWaehlens2(int k1, int k2, int k3, int k4, int k5, int k6, int k7
 		
 		
 			
-			
-
 	
 
 			int m3 = move3(moves3);
