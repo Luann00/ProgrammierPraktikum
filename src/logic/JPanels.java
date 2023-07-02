@@ -786,14 +786,14 @@ public class JPanels extends JPanel {
 		//JPanel fuer die Zeilen und Spaltenauswahl
 		JPanel brettGroese = new JPanel();
 		brettGroese.setBorder(new TitledBorder("Spielbrettgroese waehlen"));
-		JLabel zeilenanzahlAuswaehlen = new JLabel("Rows: ", JLabel.LEFT);
+		JLabel zeilenanzahlAuswaehlen = new JLabel("Zeilen ", JLabel.LEFT);
 		Font f = zeilenanzahlAuswaehlen.getFont();
 		zeilenanzahlAuswaehlen.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
 		brettGroese.add(zeilenanzahlAuswaehlen);
 		zeilenAuswahl = new JComboBox<String>(zeilenAnzahl);
 		zeilenAuswahl.setSelectedItem("6");
 		brettGroese.add(zeilenAuswahl);
-		JLabel spaltenanzahlAuswaehlen = new JLabel("Cols: ");
+		JLabel spaltenanzahlAuswaehlen = new JLabel("Spalten: ");
 		Font g = zeilenanzahlAuswaehlen.getFont();
 		spaltenanzahlAuswaehlen.setFont(g.deriveFont(g.getStyle() & ~Font.BOLD));
 		brettGroese.add(spaltenanzahlAuswaehlen);
@@ -974,6 +974,10 @@ public class JPanels extends JPanel {
 					
 					timerToZero();
 					
+					K1Info.setText("");
+					K2Info.setText("");
+
+					
 					
 					String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 					timerLabel.setText(time);
@@ -1003,7 +1007,7 @@ public class JPanels extends JPanel {
 		
 		JPanel bedienungsanleitung = new JPanel();
 		bedienungsanleitung.setBorder(new TitledBorder("Bedienungsanleitung"));
-		JButton bedienung = new JButton("Help");
+		JButton bedienung = new JButton("Bedienungsanleitung");
 		bedienung.setBackground(Color.YELLOW);
 		bedienung.setFocusPainted(false);
 		bedienungsanleitung.add(bedienung);
@@ -1043,8 +1047,8 @@ public class JPanels extends JPanel {
 	
 	public void infoKAendern() {
 
-		K1Info.setText("Size of S1: " + Integer.toString(groeseK1));
-		K2Info.setText("Size of S2: " + Integer.toString(groeseK2));
+		K1Info.setText("Groese von S1: " + Integer.toString(groeseK1));
+		K2Info.setText("Groese von S2: " + Integer.toString(groeseK2));
 	}
 	
 	
@@ -1276,17 +1280,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -1389,17 +1396,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -1501,17 +1511,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -1614,17 +1627,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -1727,17 +1743,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -1840,17 +1859,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -1953,17 +1975,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -2066,17 +2091,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -2178,17 +2206,20 @@ public class JPanels extends JPanel {
 					
 						
 						if(max == true || endKonf == true) {
+							if(timer != null && timer.isRunning()) {
+								timer.stop();
+							}
 							spielZugS2OhneVergroeserung = 0;
 							if(max) {
-								System.out.println("Spiel zu Ende! Unentschieden!");
+								Endfenster unentscheden = new Endfenster("Test",3);
 							} else {
 								if(K1.size() > K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S1");
+									Endfenster unentscheden = new Endfenster("S1",1);
 								} else if(K1.size() < K2.size()) {
-									System.out.println("Spiel zu Ende! Gewinner: S2");
+									Endfenster unentscheden = new Endfenster("S2",1);
 
 								} else {
-									System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+									Endfenster unentscheden = new Endfenster("Test",2);
 
 								}
 								
@@ -2914,17 +2945,22 @@ public class JPanels extends JPanel {
 							
 								
 								if(max == true || endKonf == true) {
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
+									
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3027,17 +3063,21 @@ public class JPanels extends JPanel {
 							infoKAendern();
 							
 							if(max == true || endKonf == true) {
+								
+								if(timer != null && timer.isRunning()) {
+									timer.stop();
+								}
 								spielZugS2OhneVergroeserung = 0;
 								if(max) {
-									System.out.println("Spiel zu Ende! Unentschieden!");
+									Endfenster unentscheden = new Endfenster("Test",3);
 								} else {
 									if(K1.size() > K2.size()) {
-										System.out.println("Spiel zu Ende! Gewinner: S1");
+										Endfenster unentscheden = new Endfenster("S1",1);
 									} else if(K1.size() < K2.size()) {
-										System.out.println("Spiel zu Ende! Gewinner: S2");
+										Endfenster unentscheden = new Endfenster("S2",1);
 
 									} else {
-										System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+										Endfenster unentscheden = new Endfenster("Test",2);
 
 									}
 									
@@ -3124,17 +3164,21 @@ public class JPanels extends JPanel {
 
 								
 								if(max == true || endKonf == true) {
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3219,17 +3263,21 @@ public class JPanels extends JPanel {
 								endKonf = alleFelderBesetzt();
 								
 								if(max == true || endKonf == true) {
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3317,16 +3365,20 @@ public class JPanels extends JPanel {
 
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3414,16 +3466,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3510,16 +3566,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3611,16 +3671,20 @@ public class JPanels extends JPanel {
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3706,17 +3770,20 @@ public class JPanels extends JPanel {
 								anzeigeAktualisierenKey(farbenPanel, 8);
 
 								if(max == true || endKonf == true) {
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3804,17 +3871,21 @@ public class JPanels extends JPanel {
 
 								
 								if(max == true || endKonf == true) {
+									
+									if(timer != null && timer.isRunning()) {
+										timer.stop();
+									}
 									spielZugS2OhneVergroeserung = 0;
 									if(max) {
-										System.out.println("Spiel zu Ende! Unentschieden!");
+										Endfenster unentscheden = new Endfenster("Test",3);
 									} else {
 										if(K1.size() > K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S1");
+											Endfenster unentscheden = new Endfenster("S1",1);
 										} else if(K1.size() < K2.size()) {
-											System.out.println("Spiel zu Ende! Gewinner: S2");
+											Endfenster unentscheden = new Endfenster("S2",1);
 
 										} else {
-											System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+											Endfenster unentscheden = new Endfenster("Test",2);
 
 										}
 										
@@ -3943,8 +4014,8 @@ public class JPanels extends JPanel {
 		
 		
 		
-		K1Info.setText("Size of S1: ");
-		K2Info.setText("Size of S2: ");
+		K1Info.setText("");
+		K2Info.setText("");
 
 				
 		
@@ -4447,16 +4518,19 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					
 					if(max == true || endKonf == true) {
 						spielZugS2OhneVergroeserung = 0;
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4510,17 +4584,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4528,7 +4605,6 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 						spielEnde();
 						return;
 					}
-					
 
 			}
 			}
@@ -4571,17 +4647,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4631,17 +4710,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					infoKAendern();
 
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4692,17 +4774,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4754,17 +4839,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 					infoKAendern();
 
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4815,17 +4903,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4875,17 +4966,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
@@ -4936,17 +5030,20 @@ public Color farbeWaehlens3(int k1, int k2, int k3, int k4, int k5, int k6, int 
 
 					
 					if(max == true || endKonf == true) {
+						if(timer != null && timer.isRunning()) {
+							timer.stop();
+						}
 						spielZugS2OhneVergroeserung = 0;
 						if(max) {
-							System.out.println("Spiel zu Ende! Unentschieden!");
+							Endfenster unentscheden = new Endfenster("Test",3);
 						} else {
 							if(K1.size() > K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S1");
+								Endfenster unentscheden = new Endfenster("S1",1);
 							} else if(K1.size() < K2.size()) {
-								System.out.println("Spiel zu Ende! Gewinner: S2");
+								Endfenster unentscheden = new Endfenster("S2",1);
 
 							} else {
-								System.out.println("Spiel zu Ende! Unentschieden aufgrund gleich groser Komponente");
+								Endfenster unentscheden = new Endfenster("Test",2);
 
 							}
 							
