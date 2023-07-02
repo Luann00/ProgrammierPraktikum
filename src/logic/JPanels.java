@@ -656,6 +656,8 @@ public class JPanels extends JPanel {
 					startTimer();					
 					infoKAendern();
 					
+					
+					
 //					zeilenAuswahl.setEnabled(false);
 //					spaltenAuswahl.setEnabled(false);
 					
@@ -700,8 +702,6 @@ public class JPanels extends JPanel {
 					s1Farbe = spielbrettArray[gewaehlteZeilenAnzahl - 1][0].getBackground();
 					s2Farbe = spielbrettArray[0][gewaehlteSpaltenAnzahl - 1].getBackground();
 					farbenAnzeigeInit(farbenAnzeige, s1Farbe, s2Farbe);
-					
-					
 										
 				} else {
 					startButton.setText("Start");
@@ -791,10 +791,6 @@ public class JPanels extends JPanel {
 
 	}
 	
-	public void minMovesTest() {
-		Testing t = new Testing(spielBrettArrayField);
-		t.minMovesFull();
-	}
 	
 	
 	public void infoKAendern() {
@@ -1637,10 +1633,12 @@ public class JPanels extends JPanel {
 								
 								infoKAendern();
 
-								
+							
 
 								max = maximaleZuege();
 								endKonf = alleFelderBesetzt();
+								
+							
 								
 								if(max == true || endKonf == true) {
 									spielZugS2OhneVergroeserung = 0;
@@ -2654,10 +2652,6 @@ public class JPanels extends JPanel {
 		playButton.setText("Play");
 		
 		timerToZero();
-		
-		Testing t = new Testing(spielBrettArrayField);
-		boolean c = t.isEndConfig();
-		System.out.println("Endkonfig: " + c);
 
 
 		farbenAnzeige.removeAll();
@@ -2685,6 +2679,12 @@ public class JPanels extends JPanel {
 		
 		
 	}
+	
+	
+//	public void minMoves() {
+//		Testing t = new Testing(spielBrettArrayField);
+//		t.minMoves(3, 4);
+//	}
 	
 	
 	

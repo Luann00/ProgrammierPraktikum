@@ -256,7 +256,6 @@ public class Testing {
 		alleFarben= farbenAktualisierenStrats();
 		
 		
-		
 		int k1Black = groeseK2;
 		int k1Blue = groeseK2;
 		int k1Cyan = groeseK2;
@@ -665,7 +664,7 @@ public int komponenteAnpassen(ArrayList<Field> K, int geklickteFarbe, int groese
 	
 	
 public ArrayList<Integer> farbenAktualisierenStrats() {
-		
+	
 	ArrayList<Integer> alleFarbenImSpiel = new ArrayList<Integer>();
 	
 	for(int i = 1; i <= 6; i++) {
@@ -1099,7 +1098,7 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			
 		}
 		
-		System.out.println("Groese K2: "+ groeseK2);
+		System.out.println("Groese K2: "+ K2Copy.size());
 
 		
 		
@@ -1247,20 +1246,10 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		}
 		
 		
-		//Pruefen, ob beide boards die gleichen sind. falls ja, wird am Ende true ausgegeben
-		boolean gleichesBoard = true;
-		for(int i = 0; i < board.length; i++) {
-			for(int j = 0; j < board[0].length; j++) {
-				
-				if(board[i][j].getColor() != anotherBoard[i][j].getColor()) {
-					gleichesBoard = false;
-				}
-				
-			}
-		}
+		
 		
 		//Pruefen, ob beide Boards gleich viele farben haben
-		
+
 		ArrayList<Integer> alleFarbenBoard1 = farbenAktualisierenStrats();
 		
 		
@@ -1285,9 +1274,12 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		
 		
 	
-		if(gleichesBoard) {
+		if(gleicheBoards(anotherBoard)) {
 			return true;
 		}
+		
+		
+		
 
 		
 		
@@ -1295,6 +1287,30 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		
 		
 		return true;
+	}
+	
+	
+	public boolean gleicheBoards(Field[][] anotherB) {
+		
+		//Pruefen, ob beide boards die gleichen sind. falls ja, wird am Ende true ausgegeben
+				boolean gleichesBoard = true;
+				for(int i = 0; i < board.length; i++) {
+					for(int j = 0; j < board[0].length; j++) {
+						
+						if(board[i][j].getColor() != anotherB[i][j].getColor()) {
+							gleichesBoard = false;
+						}
+						
+					}
+				}
+				
+				if(gleichesBoard) {
+					return true;
+				} else {
+					return false;
+				}
+						
+		
 	}
 
 	public int minMoves(int row, int col) { 
@@ -1406,6 +1422,7 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		
 		int m1 = move1(moves1);		
 		alleZahlen.add(m1);
+		System.out.println("Schwarz: "+ m1);
 		boardZuweisen();
 		
 		
@@ -1413,6 +1430,8 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 		int m2 = move2(moves2);
 		boardZuweisen();
 		alleZahlen.add(m2);
+		System.out.println("Blau: "+ m2);
+
 		
 		
 			
@@ -1421,6 +1440,8 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			int m3 = move3(moves3);
 			boardZuweisen();
 			alleZahlen.add(m3);
+			System.out.println("Hellblau: "+ m3);
+
 
 
 		
@@ -1428,17 +1449,23 @@ public int farbeWaehlens2Testing(int k1, int k2, int k3, int k4, int k5, int k6,
 			int m4 = move4(moves4);
 			boardZuweisen();
 			alleZahlen.add(m4);
+			System.out.println("Grau: "+ m4);
+
 
 		
 
 			int m5 = move5(moves5);		
 			boardZuweisen();
 			alleZahlen.add(m5);
+			System.out.println("Gruen: "+ m5);
+
 			
 		
 			int m6 = move6(moves6);
 			boardZuweisen();
 			alleZahlen.add(m6);
+			System.out.println("Braun: "+ m6);
+
 
 
 		
