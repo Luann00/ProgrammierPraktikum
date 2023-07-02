@@ -1029,6 +1029,12 @@ public class JPanels extends JPanel {
 		groese.setLayout(new BoxLayout(groese,BoxLayout.Y_AXIS));
 		K1Info = new JLabel();
 		K2Info = new JLabel();
+		Font f3 = K1Info.getFont();
+		K1Info.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
+		Font f4 = K2Info.getFont();
+		K2Info.setFont(f1.deriveFont(f2.getStyle() & ~Font.BOLD));
+
+
 		groese.add(K1Info);
 		groese.add(K2Info);
 		menueTafel.add(groese);
